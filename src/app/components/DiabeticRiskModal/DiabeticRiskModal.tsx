@@ -1,6 +1,9 @@
 "use client";
-import React from 'react';
-import "./diabeticriskmodal.css"; // Import the external CSS file
+import React, { useState } from "react";
+import axios from "axios";
+import "./diabeticriskmodal.css";
+import RiskAssessment from "../RiskAssesment/RiskAssesment";
+import { ClipLoader } from "react-spinners";
 
 interface DiabeticRiskModalProps {
     isOpen: boolean;
@@ -8,119 +11,186 @@ interface DiabeticRiskModalProps {
 }
 
 const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose }) => {
-    if (!isOpen) return null; // Don't render the modal if it's not open
+    const [formData, setFormData] = useState({});
+    const [showResult, setShowResult] = useState(false);
+    const [prediction, setPrediction] = useState<number>(0);
+    const [isLoading, setIsLoading] = useState(false);
+
+    if (!isOpen) return null;
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData((prev: any) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+        try {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            const response = await axios.post("http://127.0.0.1:5000/predictdata", formData, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            setPrediction(response.data.prediction);
+            console.log("response",response.data.prediction);
+            setShowResult(true);
+            onClose();
+        } catch (error: any) {
+            console.error("Error:", error);
+            if (error.code === 'ERR_NETWORK') {
+                alert("Cannot connect to the server. Please make sure the backend server is running on port 5000.");
+            } else if (error.response) {
+                alert(`Error: ${error.response.data.error || 'Server error occurred'}`);
+            } else if (error.request) {
+                alert("No response received from server. Please try again.");
+            } else {
+                alert("Error: " + error.message);
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <div className='modal-header'>
-                <h2>Diabetic Risk Assessment</h2>
+        <div className="diabetic-modal-overlay">
+            <div className="diabetic-modal-content">
+                <div className="diabetic-modal-header">
+                    <h2>Diabetic Risk Assessment</h2>
                 </div>
-                <form className="modal-form">
-                    <div className="mb-3">
-                        <label className="form-label">Age</label>
-                        <input
-                            className="form-control"
-                            type="number"
-                            name="age"
-                            placeholder="Enter your age"
-                            min="20"
-                            max="50"
-                            required
+                {isLoading ? (
+                    <div className="loading-container">
+                        <div className="loading-spinner">
+                        <ClipLoader
+                            color="#4CAF50"
+                            loading={isLoading}
+                            size={100}
+                            aria-label="Loading Spinner"
                         />
+                        </div>
+                        <p>Predicting your Diabetic risk score...</p>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Gender</label>
-                        <select className="form-control" name="gender" required>
-                            <option className="placeholder" selected disabled value="">
-                                Select your Gender
-                            </option>
-                            <option value="1.0">Male</option>
-                            <option value="0.0">Female</option>
-                        </select>
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Height (in cm)</label>
-                        <input
-                            className="form-control"
-                            type="number"
-                            name="height"
-                            placeholder="Enter your Height"
-                            required
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Weight (in kg)</label>
-                        <input
-                            className="form-control"
-                            type="number"
-                            name="weight"
-                            placeholder="Enter your Weight"
-                            required
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Waist Circumference (in cm)</label>
-                        <input
-                            className="form-control"
-                            type="number"
-                            name="Waist_Circumference"
-                            placeholder="Enter your Waist Circumference"
-                            required
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Diet Food Habits (Meals per Day)</label>
-                        <select className="form-control" name="Diet_Food_Habits" required>
-                            <option className="placeholder" selected disabled value="">
-                                Select Meals per Day
-                            </option>
-                            {[...Array(10)].map((_, i) => (
-                                <option key={i + 1} value={i + 1}>
-                                    {i + 1} Meal{i + 1 > 1 ? 's' : ''}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Family History (Do any family members have diabetes?)</label>
-                        <select className="form-control" name="Family_History" required>
-                            <option className="placeholder" selected disabled value="">
-                                Select an Option
-                            </option>
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">High Blood Pressure (Do you have high blood pressure continuously?)</label>
-                        <select className="form-control" name="Blood_Pressure" required>
-                            <option className="placeholder" selected disabled value="">
-                                Select an Option
-                            </option>
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Expected Diabetic Risk (Risk Level)</label>
-                        <select className="form-control" name="RiskLevel" required>
-                            <option className="placeholder" selected disabled value="">
-                                Select Risk Level
-                            </option>
-                            <option value="0.0">Low</option>
-                            <option value="1.0">Moderate</option>
-                            <option value="2.0">High</option>
-                        </select>
-                    </div>
-                    <div className="button-group">
-                        <button className="btn btn-primary" type="submit" value="Submit ">Submit</button>
-                        <button className="modal-close-btn" onClick={onClose}>
-                            Close
-                        </button>
-                    </div>
-                </form>
-
+                )  : (
+                    <form className="diabetic-modal-form" onSubmit={handleSubmit}>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Age</label>
+                            <input className="diabetic-modal-form-control" name="age" type="number" onChange={handleChange} required />
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Gender</label>
+                            <select className="diabetic-modal-form-control" name="gender" onChange={handleChange} required>
+                                <option disabled selected value="">Select Gender</option>
+                                <option value="1.0">Male</option>
+                                <option value="0.0">Female</option>
+                            </select>
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Height (in cm)</label>
+                            <input className="diabetic-modal-form-control" name="height" type="number" onChange={handleChange} required />
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Weight (in kg)</label>
+                            <input className="diabetic-modal-form-control" name="weight" type="number" onChange={handleChange} required />
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Waist Circumference (in cm)</label>
+                            <input className="diabetic-modal-form-control" name="Waist_Circumference" type="number" onChange={handleChange} required />
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Diet Food Habits</label>
+                            <select className="diabetic-modal-form-control" name="Diet_Food_Habits" onChange={handleChange} required>
+                                <option disabled selected value="">Select</option>
+                                {[...Array(10)].map((_, i) => (
+                                    <option key={i + 1} value={i + 1}>{i + 1} Meal{i + 1 > 1 ? 's' : ''}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Family History</label>
+                            <select className="diabetic-modal-form-control" name="Family_History" onChange={handleChange} required>
+                                <option disabled selected value="">Select</option>
+                                <option value="1.0">Yes</option>
+                                <option value="0.0">No</option>
+                            </select>
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">High Blood Pressure</label>
+                            <select className="diabetic-modal-form-control" name="Blood_Pressure" onChange={handleChange} required>
+                                <option disabled selected value="">Select an Option</option>
+                                <option value="1.0">Yes</option>
+                                <option value="0.0">No</option>
+                            </select>
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Cholesterol / Lipid Levels</label>
+                            <select className="diabetic-modal-form-control" name="Cholesterol_Lipid_Levels" onChange={handleChange} required>
+                                <option disabled selected value="">Select an Option</option>
+                                <option value="1.0">Yes</option>
+                                <option value="0.0">No</option>
+                            </select>
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Thirst / Hunger</label>
+                            <select className="diabetic-modal-form-control" name="Thirst" onChange={handleChange} required>
+                                <option disabled selected value="">Select an Option</option>
+                                <option value="1.0">Yes</option>
+                                <option value="0.0">No</option>
+                            </select>
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Fatigue</label>
+                            <select className="diabetic-modal-form-control" name="Fatigue" onChange={handleChange} required>
+                                <option disabled selected value="">Select an Option</option>
+                                <option value="1.0">Yes</option>
+                                <option value="0.0">No</option>
+                            </select>
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Urination</label>
+                            <select className="diabetic-modal-form-control" name="Urination" onChange={handleChange} required>
+                                <option disabled selected value="">Select an Option</option>
+                                <option value="1.0">Yes</option>
+                                <option value="0.0">No</option>
+                            </select>
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Vision Changes</label>
+                            <select className="diabetic-modal-form-control" name="Vision_Changes" onChange={handleChange} required>
+                                <option disabled selected value="">Select an Option</option>
+                                <option value="1.0">Yes</option>
+                                <option value="0.0">No</option>
+                            </select>
+                        </div>
+                        <div className="diabetic-modal-mb-3">
+                            <label className="diabetic-modal-form-label">Expected Diabetic Risk (Risk Level)</label>
+                            <select className="diabetic-modal-form-control" name="RiskLevel" onChange={handleChange} required>
+                                <option disabled selected value="">Select Risk</option>
+                                <option value="0.0">Low</option>
+                                <option value="1.0">Moderate</option>
+                                <option value="2.0">High</option>
+                            </select>
+                        </div>
+                        <div className="diabetic-modal-button-group">
+                            <button
+                                className="diabetic-modal-btn-primary"
+                                type="submit"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? 'Calculating...' : 'Submit'}
+                            </button>
+                            <button
+                                className="diabetic-modal-close-btn"
+                                type="button"
+                                onClick={onClose}
+                                disabled={isLoading}
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </form>
+                )}
             </div>
         </div>
     );

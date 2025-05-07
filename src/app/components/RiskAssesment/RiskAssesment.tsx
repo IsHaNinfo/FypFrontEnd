@@ -1,10 +1,23 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Flat } from "@alptugidin/react-circular-progress-bar";
 import "./riskassesment.css"; // Import the external CSS file
+import NutrationRiskModal from "../NutritionRiskModal/NutrationRiskModal";
+import PhysicalRiskModal from "../PhysicalRiskModal/PhysicalRiskModal";
 
-const RiskAssesment = () => {
-    const percentage = 80; // Example percentage
+interface RiskAssessmentProps {
+    progress: number;
+}
+
+const RiskAssessment: React.FC<RiskAssessmentProps> = ({ progress }) => {
+    const [isNutritionModalOpen, setIsNutritionModalOpen] = useState(false); // State to control modal visibility
+    const [isPhysicalModalOpen, setIsPhysicalModalOpen] = useState(false); // State to control modal visibility
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Convert the prediction (0-2) to a percentage (0-100)
+    const percentage =  10;
+    console.log("ss",progress);
+    
 
     return (
         <div className="risk-assessment-container">
@@ -44,35 +57,36 @@ const RiskAssesment = () => {
                 {/* Title */}
                 <h2 className="risk-title">Diabetic Risk Score</h2>
                 {/* Circular Progress Bar */}
-                <Flat
-                    progress={percentage}
-                    range={{ from: 0, to: 100 }}
-                    sign={{ value: "%", position: "end" }}
-                    showMiniCircle={false}
-                    showValue={true}
-                    sx={{
-                        strokeColor: "#ff5722", // Purple progress bar color
-                        barWidth: 10, // Increase bar width
-                        bgStrokeColor: "#2d3748", // Dark grey background circle
-                        bgColor: { value: "#000000", transparency: "20" },
-                        shape: "full",
-                        strokeLinecap: "round",
-                        valueSize: 20, // Increase value size
-                        valueWeight: "bold",
-                        valueColor: "#ff5722", // White value color
-                        valueFamily: "Trebuchet MS",
-                        textSize: 16,
-                        textWeight: "bold",
-                        textColor: "#ff5722", // White text color
-                        textFamily: "Trebuchet MS",
-                        loadingTime: 1000,
-                        miniCircleColor: "#a78bfa",
-                        miniCircleSize: 5,
-                        valueAnimation: true,
-                        intersectionEnabled: true,
-                    }}
-
-                />
+                <div className="progress-container">
+                    <Flat
+                        progress={percentage}
+                        range={{ from: 0, to: 100 }}
+                        sign={{ value: "%", position: "end" }}
+                        showMiniCircle={false}
+                        showValue={true}
+                        sx={{
+                            strokeColor: "#ff5722", // Purple progress bar color
+                            barWidth: 10, // Increase bar width
+                            bgStrokeColor: "#2d3748", // Dark grey background circle
+                            bgColor: { value: "#000000", transparency: "20" },
+                            shape: "full",
+                            strokeLinecap: "round",
+                            valueSize: 20, // Increase value size
+                            valueWeight: "bold",
+                            valueColor: "#ff5722", // White value color
+                            valueFamily: "Trebuchet MS",
+                            textSize: 16,
+                            textWeight: "bold",
+                            textColor: "#ff5722", // White text color
+                            textFamily: "Trebuchet MS",
+                            loadingTime: 1000,
+                            miniCircleColor: "#a78bfa",
+                            miniCircleSize: 5,
+                            valueAnimation: true,
+                            intersectionEnabled: true,
+                        }}
+                    />
+                </div>
                 {/* Description */}
                 <p className="risk-description">
                     Your current diabetic risk score is calculated based on your health data.
@@ -82,14 +96,22 @@ const RiskAssesment = () => {
                 <div className="risk-buttons-container">
                     <h3 className="risk-buttons-title">Select a Risk Category</h3>
                     <div className="risk-buttons">
-                        <button className="risk-button nutrition-risk">Nutrition Risk</button>
-                        <button className="risk-button physical-activity-risk">Physical Activity Risk</button>
+                        <button className="risk-button nutrition-risk" onClick={() => setIsNutritionModalOpen(true)}>Nutrition Risk</button>
+                        <button className="risk-button physical-activity-risk" onClick={() => setIsPhysicalModalOpen(true)}>Physical Activity Risk</button>
                         <button className="risk-button mental-risk">Mental Risk</button>
                     </div>
                 </div>
             </div>
+            <NutrationRiskModal
+                isOpen={isNutritionModalOpen}
+                onClose={() => setIsNutritionModalOpen(false)}
+            />
+            <PhysicalRiskModal
+                isOpen={isPhysicalModalOpen}
+                onClose={() => setIsPhysicalModalOpen(false)}
+            />
         </div>
     );
 };
 
-export default RiskAssesment;
+export default RiskAssessment;

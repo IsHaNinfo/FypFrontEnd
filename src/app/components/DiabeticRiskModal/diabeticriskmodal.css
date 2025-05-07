@@ -1,11 +1,11 @@
 /* Modal Overlay */
-.modal-overlay {
+.diabetic-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.518);
+    background-color: linear-gradient(#0B1117, #102530, #0b1f296a);
     /* Dark transparent background */
     display: flex;
     justify-content: center;
@@ -14,7 +14,12 @@
 }
 
 /* Modal Content */
-.modal-content {
+.diabetic-modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;
+    /* Ensures enough height for sticky footer */
     background: rgba(20, 20, 20, 0.95);
     /* Dark background for the modal */
     padding: 30px;
@@ -28,45 +33,42 @@
     overflow-y: auto;
     max-height: 90vh;
     /* Allow scrolling if content exceeds height */
-    display: flex;
-    flex-direction: column;
-    /* Ensure content flows vertically */
 }
 
 /* Modal Form */
-.modal-form {
+.diabetic-modal-form {
     display: flex;
     flex-wrap: wrap;
-    /* Allow wrapping for responsiveness */
     gap: 20px;
-    /* Space between form fields */
-    justify-content: space-between;
+    justify-content: center;
     color: white;
+    margin: 0 auto;
+    width: 100%;
+    align-items: flex-start;
 }
 
-.modal-form .mb-3 {
-    flex: 1 1 calc(33.33% - 20px);
-    /* Take 1/3 width minus the gap */
+.diabetic-modal-mb-3 {
+    flex: 0 0 calc(33.33% - 14px);
+    /* Three columns with gap consideration */
     display: flex;
     flex-direction: column;
+    min-width: 200px;
+    box-sizing: border-box;
 }
 
-.modal-form .mb-3 label {
+.diabetic-modal-mb-3:last-child {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.diabetic-modal-form-label {
     font-weight: bold;
     margin-bottom: 5px;
     text-align: left;
     font-size: 14px;
-
 }
 
-.modal-header {
-    font-weight: bold;
-    margin-bottom: 5px;
-    font-size: 18px;
-}
-
-.modal-form .mb-3 input,
-.modal-form .mb-3 select {
+.diabetic-modal-form-control {
     padding: 10px;
     font-size: 12px;
     border: 1px solid #ccc;
@@ -79,7 +81,13 @@
     /* White text for inputs */
 }
 
-.modal-form .btn-primary {
+.diabetic-modal-header {
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.diabetic-modal-btn-primary {
     background-color: #007bff;
     color: white;
     border: none;
@@ -92,12 +100,12 @@
     /* Full width for the submit button */
 }
 
-.modal-form .btn-primary:hover {
+.diabetic-modal-btn-primary:hover {
     background-color: #0056b3;
 }
 
 /* Close Button */
-.modal-close-btn {
+.diabetic-modal-close-btn {
     margin-top: 20px;
     padding: 10px 20px;
     background: black;
@@ -108,30 +116,27 @@
     transition: background-color 0.3s ease;
 }
 
-.modal-close-btn:hover {
+.diabetic-modal-close-btn:hover {
     background: #333;
 }
 
 /* Button Group */
-/* Button Group */
-.button-group {
+.diabetic-modal-button-group {
     display: flex;
     justify-content: center;
-    /* Center the buttons horizontally */
-    align-items: flex-end;
-    /* Align buttons vertically */
+    align-items: center;
     gap: 20px;
-    /* Add spacing between buttons */
-    margin-top: 20px;
     margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
-    /* Push the buttons to the bottom */
-    /* Add some margin above the buttons */
+    margin-bottom: 0;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    background: rgba(20, 20, 20, 0.95);
+    padding: 20px 0 0 0;
 }
 
-.button-group .btn-primary,
-.button-group .modal-close-btn {
+.diabetic-modal-button-group .btn-primary,
+.diabetic-modal-button-group .modal-close-btn {
     flex: 0 0 150px;
     /* Set both buttons to the same fixed width */
     background-color: #007bff;
@@ -144,33 +149,68 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-align: center;
+    min-width: 120px;
+    max-width: 180px;
+    text-align: center;
 }
 
-.button-group .btn-primary:hover {
+.diabetic-modal-button-group .btn-primary:hover {
     background-color: #0056b3;
     /* Hover effect for Submit button */
 }
 
-.button-group .modal-close-btn {
+.diabetic-modal-button-group .modal-close-btn {
     background: black;
     /* Default background for Close button */
 }
 
-.button-group .modal-close-btn:hover {
+.diabetic-modal-button-group .modal-close-btn:hover {
     background: #333;
     /* Hover effect for Close button */
 }
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    width: 300px; /* Decreased width */
+    margin: 0 auto; /* Center the container */
+}
 
+.loading-spinner-wrapper {
+    background: rgba(255, 255, 255, 0.1); /* Subtle background */
+    padding: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.loading-container p {
+    color: #ffffff;
+    font-size: 16px;
+    margin-top: 1rem;
+}
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .diabetic-modal-mb-3 {
+        flex: 0 0 calc(50% - 10px);
+        /* Two columns on medium screens */
+    }
+}
+
 @media (max-width: 768px) {
-    .modal-form .mb-3 {
-        flex: 1 1 50%;
-        /* Two fields per row on smaller screens */
+    .diabetic-modal-mb-3 {
+        flex: 1 1 100%;
+        /* Single column on small screens */
     }
 }
 
 @media (max-width: 480px) {
-    .modal-form .mb-3 {
+    .diabetic-modal-mb-3 {
         flex: 1 1 100%;
         /* Full width for smaller screens */
     }

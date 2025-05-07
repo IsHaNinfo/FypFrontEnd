@@ -1,0 +1,177 @@
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.518);
+    /* Dark transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+    background: rgba(20, 20, 20, 0.95);
+    /* Dark background for the modal */
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 900px;
+    /* Expanded horizontal width */
+    text-align: center;
+    color: white;
+    /* Ensure text is visible on dark background */
+    overflow-y: auto;
+    max-height: 90vh;
+    /* Allow scrolling if content exceeds height */
+    display: flex;
+    flex-direction: column;
+    /* Ensure content flows vertically */
+}
+
+/* Modal Form */
+.modal-form {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow wrapping for responsiveness */
+    gap: 20px;
+    /* Space between form fields */
+    justify-content: space-between;
+    color: white;
+}
+
+.modal-form .mb-3 {
+    flex: 1 1 calc(33.33% - 20px);
+    /* Take 1/3 width minus the gap */
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form .mb-3 label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 14px;
+
+}
+
+.modal-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.modal-form .mb-3 input,
+.modal-form .mb-3 select {
+    padding: 10px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #333;
+    /* Dark input background */
+    color: white;
+    /* White text for inputs */
+}
+
+.modal-form .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1 1 100%;
+    /* Full width for the submit button */
+}
+
+.modal-form .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Close Button */
+.modal-close-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background: #333;
+}
+
+/* Button Group */
+/* Button Group */
+.button-group {
+    display: flex;
+    justify-content: center;
+    /* Center the buttons horizontally */
+    align-items: flex-end;
+    /* Align buttons vertically */
+    gap: 20px;
+    /* Add spacing between buttons */
+    margin-top: 20px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    /* Push the buttons to the bottom */
+    /* Add some margin above the buttons */
+}
+
+.button-group .btn-primary,
+.button-group .modal-close-btn {
+    flex: 0 0 150px;
+    /* Set both buttons to the same fixed width */
+    background-color: #007bff;
+    /* Default background for Submit button */
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.button-group .btn-primary:hover {
+    background-color: #0056b3;
+    /* Hover effect for Submit button */
+}
+
+.button-group .modal-close-btn {
+    background: black;
+    /* Default background for Close button */
+}
+
+.button-group .modal-close-btn:hover {
+    background: #333;
+    /* Hover effect for Close button */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal-form .mb-3 {
+        flex: 1 1 50%;
+        /* Two fields per row on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-form .mb-3 {
+        flex: 1 1 100%;
+        /* Full width for smaller screens */
+    }
+}

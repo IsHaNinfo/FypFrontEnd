@@ -1,0 +1,196 @@
+/* Container */
+.risk-assessment-container {
+    height: 100vh;
+    /* Full height of the viewport */
+    display: flex;
+    justify-content: flex-end;
+    /* Align content to the right */
+    align-items: center;
+    /* Center content vertically */
+    background: linear-gradient(#0B1117, #102530, #0B1F29);
+    /* Dark grey gradient background */
+    padding-right: 200px;
+    /* Adjust this value to move content slightly to the left */
+}
+
+
+
+/* Left Side: Diagnostic Information */
+.diagnostic-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-self: flex-start;
+    margin-top: 100px;
+    /* Two columns */
+    gap: 20px;
+    /* Space between cards */
+    width: 45%;
+    /* Adjust width for the left side */
+    padding: 20px;
+    margin-right: 20%;
+
+}
+
+.diagnostic-card {
+    background: #2d3748; /* Dark grey background */
+    border-radius: 15px; /* Add rounded corners */
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    position: relative; /* Required for pseudo-element positioning */
+    overflow: hidden; /* Prevent the pseudo-element from spilling outside */
+    cursor: pointer;
+}
+
+.diagnostic-card::before {
+    content: "";
+    position: absolute;
+    bottom: 0; /* Position the line at the bottom of the card */
+    right: 0; /* Start from the right */
+    width: 0%; /* Start with no width */
+    height: 3px; /* Thickness of the line */
+    background: #ff5722; /* Line color (orange) */
+    transition: width 0.4s ease-in-out, right 0.4s ease-in-out; /* Smooth animation */
+}
+
+.diagnostic-card:hover::before {
+    width: 100%; /* Expand the line to full width */
+    right: 0;
+    left: 0; /* Animate to cover the full width from right to left */
+}
+
+.diagnostic-card.image-card {
+    background: url('https://ophthalmology.wustl.edu/app/uploads/2023/11/2-1024x1024.png') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+    position: relative;
+    border-radius: 15px; /* Ensure the overlay matches the card's rounded corners */
+    overflow: hidden; /* Prevent the overlay from spilling outside the card */
+}
+
+.diagnostic-card.image-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    z-index: 1; /* Ensure the overlay is above the background but below the content */
+    border-radius: 15px; /* Match the card's border radius */
+}
+
+.diagnostic-card.image-card h2,
+.diagnostic-card.image-card p {
+    position: relative;
+    z-index: 2;
+    /* Ensure the text is above the overlay */
+}
+
+.diagnostic-percentage {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff5722;
+    /* Orange color for percentage */
+    margin-bottom: 10px;
+}
+
+.diagnostic-text {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.diagnostic-card.tall-card {
+    grid-column: span 2;
+    /* Make it span across two columns */
+    width: 100%;
+    /* Ensure it spans the full width of the grid */
+    height: auto;
+    /* Allow height to adjust based on content */
+    padding: 20px;
+    /* Add consistent padding */
+    text-align: center;
+    /* Center-align the content */
+    background: #2d3748;
+    /* Match the background of other cards */
+    border-radius: 10px;
+    /* Keep the same border radius */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Consistent shadow */
+}
+
+/* Content Wrapper */
+.risk-assessment-content {
+    text-align: center;
+    width: 270px;
+    /* Set container width */
+}
+
+/* Title */
+.risk-title {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+/* Description */
+.risk-description {
+    margin-top: 20px;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Buttons Container */
+.risk-buttons-container {
+    margin-top: 50px;
+    /* Add spacing above the buttons */
+}
+
+/* Buttons Title */
+.risk-buttons-title {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+/* Buttons Wrapper */
+.risk-buttons {
+    display: flex;
+    justify-content: space-between;
+    /* Space between buttons */
+    gap: 10px;
+    /* Add consistent spacing between buttons */
+}
+
+/* Button Styles */
+.risk-button {
+    flex: 1;
+    padding: 15px;
+    /* Increase padding for larger buttons */
+    color: #ffffff;
+    /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 120px;
+    /* Increase button width */
+}
+
+/* Specific Button Colors */
+.nutrition-risk {
+    background-color: #4caf50;
+    /* Green background */
+}
+
+.physical-activity-risk {
+    background-color: #2196f3;
+    /* Blue background */
+}
+
+.mental-risk {
+    background-color: #ff5722;
+    /* Orange background */
+}

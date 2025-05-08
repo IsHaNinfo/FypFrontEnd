@@ -1,10 +1,42 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Flat } from "@alptugidin/react-circular-progress-bar";
 import "./styles.css"; // Import the external CSS file
+import axios from "axios";
+import NutritionRiskModal from '../../components/NutritionRiskModal/NutrationRiskModal';
+import PhysicalActivityRiskModal from '../../components/PhysicalActivityRiskModal/PhysicalRiskModal';
 
 const RiskAssesment = () => {
-    const percentage = 80; // Example percentage
+    const [prediction, setPrediction] = useState<number>(0);
+    const [loading, setLoading] = useState(true);
+    const [showNutritionModal, setShowNutritionModal] = useState(false);
+    const [showPhysicalModal, setShowPhysicalModal] = useState(false);
+
+    useEffect(() => {
+        const fetchUserPrediction = async () => {
+            try {
+                const storedUser = localStorage.getItem('userData');
+                if (storedUser) {
+                    const { email } = JSON.parse(storedUser);
+                    const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                    if (response.data && response.data.length > 0) {
+                        const user = response.data[0];
+                        if (user.diabeticAssessments && user.diabeticAssessments.length > 0) {
+                            // Get the latest prediction
+                            const latestAssessment = user.diabeticAssessments[user.diabeticAssessments.length - 1];
+                            setPrediction(latestAssessment.prediction);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching prediction:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchUserPrediction();
+    }, []);
+    const percentage = Math.round(prediction);
 
     return (
         <div className="risk-assessment-container">
@@ -82,12 +114,32 @@ const RiskAssesment = () => {
                 <div className="risk-buttons-container">
                     <h3 className="risk-buttons-title">Select a Risk Category</h3>
                     <div className="risk-buttons">
-                        <button className="risk-button nutrition-risk">Nutrition Risk</button>
-                        <button className="risk-button physical-activity-risk">Physical Activity Risk</button>
+                        <button
+                            className="risk-button nutrition-risk"
+                            onClick={() => setShowNutritionModal(true)}
+                        >
+                            Nutrition Risk
+                        </button>
+                        <button
+                            className="risk-button physical-activity-risk"
+                            onClick={() => setShowPhysicalModal(true)}
+                        >
+                            Physical Activity Risk
+                        </button>
                         <button className="risk-button mental-risk">Mental Risk</button>
                     </div>
                 </div>
             </div>
+
+            <NutritionRiskModal
+                isOpen={showNutritionModal}
+                onClose={() => setShowNutritionModal(false)}
+            />
+
+            <PhysicalActivityRiskModal
+                isOpen={showPhysicalModal}
+                onClose={() => setShowPhysicalModal(false)}
+            />
         </div>
     );
 };

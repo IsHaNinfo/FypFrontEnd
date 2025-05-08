@@ -1,0 +1,129 @@
+.user-menu {
+    width: 280px;
+    background: #18181b;
+    color: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    padding: 1.5rem 1rem 1rem 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.avatar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 1001
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.user-followers {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.menu-item {
+    background: none;
+    border: none;
+    color: inherit;
+    text-align: left;
+    padding: 0.7rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.menu-item:hover,
+.menu-item:focus {
+    background: #23232b;
+}
+
+.menu-item.switch {
+    justify-content: space-between;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #444;
+    border-radius: 20px;
+    transition: .4s;
+}
+
+.switch input:checked+.slider {
+    background: #ff6b00;
+}
+
+.slider:before {
+    position: absolute;
+    content: '';
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background: #fff;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+.switch input:checked+.slider:before {
+    transform: translateX(16px);
+}
+
+.menu-item.logout {
+    color: #ff6b6b;
+}
+
+.menu-footer {
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+    color: #888;
+    text-align: center;
+}
+
+.menu-footer a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 0.2rem;
+}
+
+.user-menu.dark {
+    background: #23232b;
+}

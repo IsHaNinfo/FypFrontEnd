@@ -1,0 +1,66 @@
+{
+  "users": [
+    {
+      "id": "1746685903852",
+      "firstName": "Ishan",
+      "lastName": "Nethmina",
+      "email": "ishan@gmail.com",
+      "password": "ishan",
+      "diabeticAssessments": [
+        {
+          "id": "1746696019872",
+          "timestamp": "2025-05-08T09:20:19.872Z",
+          "formData": {
+            "age": "47",
+            "gender": "1.0",
+            "height": "178",
+            "weight": "96",
+            "Waist_Circumference": "34",
+            "Diet_Food_Habits": "3",
+            "Family_History": "1.0",
+            "Blood_Pressure": "1.0",
+            "Cholesterol_Lipid_Levels": "1.0",
+            "Thirst": "1.0",
+            "Fatigue": "1.0",
+            "Vision_Changes": "1.0",
+            "RiskLevel": "0.0",
+            "Urination": "1.0"
+          },
+          "prediction": 86.49314837022601
+        }
+      ]
+    }
+  ],
+  "tokens": [
+    {
+      "id": "6fb2",
+      "userId": "1746685903852",
+      "token": "eyJ1c2VySWQiOiIxNzQ2Njg1OTAzODUyIiwiZW1haWwiOiJpc2hhbkBnbWFpbC5jb20iLCJ0b2tlbiI6IjU3ZThlNTU0OTQyYzYzNDE1OGEwNWFmMzZjMzUyZjkzMTU3OGNhMDJkZTYzMzkxY2I1YmQ2OTc2IiwidGltZXN0YW1wIjoxNzQ2Njg3MDUzNzYzfQ==",
+      "createdAt": "2025-05-08T06:50:53.763Z"
+    },
+    {
+      "id": "265f",
+      "userId": "1746685903852",
+      "token": "eyJ1c2VySWQiOiIxNzQ2Njg1OTAzODUyIiwiZW1haWwiOiJpc2hhbkBnbWFpbC5jb20iLCJ0b2tlbiI6IjdhOTc4ZDNiOTNiMWFiM2Q1Y2JhYzUxMDkxZDc4MDIxNTJjYmY4ZTdjZDkxYzM2ZjNmMWE4YzMwIiwidGltZXN0YW1wIjoxNzQ2NjkxNDI0NTc1fQ==",
+      "createdAt": "2025-05-08T08:03:44.576Z"
+    },
+    {
+      "id": "d383",
+      "userId": "1746685903852",
+      "token": "eyJ1c2VySWQiOiIxNzQ2Njg1OTAzODUyIiwiZW1haWwiOiJpc2hhbkBnbWFpbC5jb20iLCJ0b2tlbiI6IjFlM2QzNDMxZjcxYTQ2MTFkODI3YmQ4ZjdhZTEyNzgyNjFjODBiYTNjZmUzMTBhZjM2MjgxZjBkIiwidGltZXN0YW1wIjoxNzQ2Njk1MjkxODY0fQ==",
+      "createdAt": "2025-05-08T09:08:11.864Z"
+    },
+    {
+      "id": "b5ae",
+      "userId": "1746685903852",
+      "token": "eyJ1c2VySWQiOiIxNzQ2Njg1OTAzODUyIiwiZW1haWwiOiJpc2hhbkBnbWFpbC5jb20iLCJ0b2tlbiI6Ijk2MGMxNWEwNzdmZTU0M2ZjMGE5OTIyOWVmMmMxYjNjNjc3MWRlYzE2ODg0NzI3MmY1ZmE4Yjk2IiwidGltZXN0YW1wIjoxNzQ2Njk1MjkzNDcwfQ==",
+      "createdAt": "2025-05-08T09:08:13.470Z"
+    },
+    {
+      "id": "a5b6",
+      "userId": "1746685903852",
+      "token": "eyJ1c2VySWQiOiIxNzQ2Njg1OTAzODUyIiwiZW1haWwiOiJpc2hhbkBnbWFpbC5jb20iLCJ0b2tlbiI6ImZjNDdiODE5YmI3Njk4YjcxODYxOTI4NGMyNzlhODQ4ODM3NWM0MDEwZTI2ODk3NjFkZTVjNzA2IiwidGltZXN0YW1wIjoxNzQ2Njk1Mjk0NDQwfQ==",
+      "createdAt": "2025-05-08T09:08:14.440Z"
+    }
+  ]
+}

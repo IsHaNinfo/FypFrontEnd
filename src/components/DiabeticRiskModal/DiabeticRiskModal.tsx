@@ -1,13 +1,28 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./diabeticriskmodal.css";
-import RiskAssessment from "../RiskAssesment/RiskAssesment";
 import { ClipLoader } from "react-spinners";
+
+interface User {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    diabeticAssessments?: DiabeticAssessment[];
+}
 
 interface DiabeticRiskModalProps {
     isOpen: boolean;
     onClose: () => void;
+}
+
+interface DiabeticAssessment {
+    id: string;
+    timestamp: string;
+    formData: any;
+    prediction: number;
 }
 
 const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose }) => {
@@ -15,6 +30,31 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose }
     const [showResult, setShowResult] = useState(false);
     const [prediction, setPrediction] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(false);
+    const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                // Get email from localStorage
+                const storedUser = localStorage.getItem('userData');
+
+                console.log("sss",storedUser);
+                if (storedUser) {
+                    const { email } = JSON.parse(storedUser);
+
+                    // Fetch user from db.json using email
+                    const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                    if (response.data && response.data.length > 0) {
+                        setCurrentUser(response.data[0]);
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+
+        fetchUserData();
+    }, []);
 
     if (!isOpen) return null;
 
@@ -23,10 +63,35 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose }
         setFormData((prev: any) => ({ ...prev, [name]: value }));
     };
 
+    const updateUserAssessment = async (assessment: DiabeticAssessment) => {
+        if (!currentUser) return;
+
+        try {
+            // Get current user data
+            const userResponse = await axios.get(`http://localhost:8000/users/${currentUser.id}`);
+            const userData = userResponse.data;
+
+            // Initialize diabeticAssessments array if it doesn't exist
+            const updatedUser = {
+                ...userData,
+                diabeticAssessments: [...(userData.diabeticAssessments || []), assessment]
+            };
+
+            // Update user in db.json
+            await axios.put(`http://localhost:8000/users/${currentUser.id}`, updatedUser);
+        } catch (error) {
+            console.error('Error updating user assessment:', error);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
         try {
+            if (!currentUser) {
+                throw new Error("User not logged in");
+            }
+
             await new Promise(resolve => setTimeout(resolve, 2000));
 
             const response = await axios.post("http://127.0.0.1:5000/predictdata", formData, {
@@ -34,13 +99,29 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose }
                     "Content-Type": "application/json",
                 },
             });
-            setPrediction(response.data.prediction);
-            console.log("response",response.data.prediction);
+
+            const predictionValue = response.data.prediction;
+            setPrediction(predictionValue);
+
+            // Create assessment object
+            const assessment: DiabeticAssessment = {
+                id: Date.now().toString(),
+                timestamp: new Date().toISOString(),
+                formData: formData,
+                prediction: predictionValue
+            };
+
+            // Update user's assessments in db.json
+            await updateUserAssessment(assessment);
+
+            console.log("Assessment saved:", assessment);
             setShowResult(true);
             onClose();
         } catch (error: any) {
             console.error("Error:", error);
-            if (error.code === 'ERR_NETWORK') {
+            if (error.message === "User not logged in") {
+                alert("Please log in to save your assessment.");
+            } else if (error.code === 'ERR_NETWORK') {
                 alert("Cannot connect to the server. Please make sure the backend server is running on port 5000.");
             } else if (error.response) {
                 alert(`Error: ${error.response.data.error || 'Server error occurred'}`);
@@ -63,16 +144,16 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose }
                 {isLoading ? (
                     <div className="loading-container">
                         <div className="loading-spinner">
-                        <ClipLoader
-                            color="#4CAF50"
-                            loading={isLoading}
-                            size={100}
-                            aria-label="Loading Spinner"
-                        />
+                            <ClipLoader
+                                color="#4CAF50"
+                                loading={isLoading}
+                                size={100}
+                                aria-label="Loading Spinner"
+                            />
                         </div>
                         <p>Predicting your Diabetic risk score...</p>
                     </div>
-                )  : (
+                ) : (
                     <form className="diabetic-modal-form" onSubmit={handleSubmit}>
                         <div className="diabetic-modal-mb-3">
                             <label className="diabetic-modal-form-label">Age</label>

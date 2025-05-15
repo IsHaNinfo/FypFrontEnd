@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import HomePage from './HomePage/page';
 import RiskAssesment from './RiskAssesment/page';
@@ -8,6 +8,7 @@ import UserMenu from "../components/UserMenu";
 export default function Home() {
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Example user data
   const user = {
@@ -15,6 +16,22 @@ export default function Home() {
     name: "Alexis Sanchez",
     followers: "123K"
   };
+
+  useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    const token = localStorage.getItem('token');
+
+    if (!userData || !token) {
+      router.push('/signin');
+    } else {
+      setIsLoading(false);
+    }
+  }, [router]);
+
+  // Show loading state while checking authentication
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div style={{ position: "relative", minHeight: "100vh" }}>
@@ -41,7 +58,7 @@ export default function Home() {
           onLogout={() => {
             localStorage.removeItem("token");
             localStorage.removeItem("userData");
-            // redirect or update UI as needed
+            router.push('/signin'); // Redirect to login page after logout
           }}
         />
       )}

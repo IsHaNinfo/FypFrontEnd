@@ -11,6 +11,7 @@ const SignIn = () => {
         email: '',
         password: ''
     });
+    console.log("wee",formData.password);
     const [error, setError] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +26,7 @@ const SignIn = () => {
         try {
             // Find user in db.json
             const response = await axios.get(`http://localhost:8000/users?email=${formData.email}`);
+            console.log("ee",formData.email);
             const user = response.data[0];
 
             if (!user || user.password !== formData.password) { // In a real app, use proper password comparison

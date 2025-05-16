@@ -68,3 +68,140 @@
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }
+
+.guidelines-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    text-align: center;
+}
+
+.guideline-text {
+    font-size: 55px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-in-out forwards;
+}
+
+.guideline-text.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.timer-indicators {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.timer-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: gray;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.timer-dot.acti {
+    background-color: white;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add these new styles */
+.hero-section {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 55px;
+    font-weight: bold;
+    animation: fadeIn 1s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.hero-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.hero-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: gray;
+    cursor: pointer;
+}
+
+.hero-dot.active {
+    background-color: white;
+}
+
+.avatar-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+.avatar-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.user-menu-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 2100;
+}
+
+.hero-background {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    color: white;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.navbar {
+    position: relative;
+    z-index: 10;
+}

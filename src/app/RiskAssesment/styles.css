@@ -32,32 +32,44 @@
 }
 
 .diagnostic-card {
-    background: #2d3748; /* Dark grey background */
-    border-radius: 15px; /* Add rounded corners */
+    background: #2d3748;
+    /* Dark grey background */
+    border-radius: 15px;
+    /* Add rounded corners */
     padding: 40px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: #ffffff;
-    position: relative; /* Required for pseudo-element positioning */
-    overflow: hidden; /* Prevent the pseudo-element from spilling outside */
+    position: relative;
+    /* Required for pseudo-element positioning */
+    overflow: hidden;
+    /* Prevent the pseudo-element from spilling outside */
     cursor: pointer;
 }
 
 .diagnostic-card::before {
     content: "";
     position: absolute;
-    bottom: 0; /* Position the line at the bottom of the card */
-    right: 0; /* Start from the right */
-    width: 0%; /* Start with no width */
-    height: 3px; /* Thickness of the line */
-    background: #ff5722; /* Line color (orange) */
-    transition: width 0.4s ease-in-out, right 0.4s ease-in-out; /* Smooth animation */
+    bottom: 0;
+    /* Position the line at the bottom of the card */
+    right: 0;
+    /* Start from the right */
+    width: 0%;
+    /* Start with no width */
+    height: 3px;
+    /* Thickness of the line */
+    background: #ff5722;
+    /* Line color (orange) */
+    transition: width 0.4s ease-in-out, right 0.4s ease-in-out;
+    /* Smooth animation */
 }
 
 .diagnostic-card:hover::before {
-    width: 100%; /* Expand the line to full width */
+    width: 100%;
+    /* Expand the line to full width */
     right: 0;
-    left: 0; /* Animate to cover the full width from right to left */
+    left: 0;
+    /* Animate to cover the full width from right to left */
 }
 
 .diagnostic-card.image-card {
@@ -65,8 +77,10 @@
     background-size: cover;
     color: #ffffff;
     position: relative;
-    border-radius: 15px; /* Ensure the overlay matches the card's rounded corners */
-    overflow: hidden; /* Prevent the overlay from spilling outside the card */
+    border-radius: 15px;
+    /* Ensure the overlay matches the card's rounded corners */
+    overflow: hidden;
+    /* Prevent the overlay from spilling outside the card */
 }
 
 .diagnostic-card.image-card::before {
@@ -76,9 +90,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-    z-index: 1; /* Ensure the overlay is above the background but below the content */
-    border-radius: 15px; /* Match the card's border radius */
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black overlay */
+    z-index: 1;
+    /* Ensure the overlay is above the background but below the content */
+    border-radius: 15px;
+    /* Match the card's border radius */
 }
 
 .diagnostic-card.image-card h2,

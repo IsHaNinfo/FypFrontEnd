@@ -5,8 +5,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.518);
-    /* Dark transparent background */
+    background-color: linear-gradient(#0B1117, #102530, #0b1f296a);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,39 +15,38 @@
 /* Modal Content */
 .modal-content {
     background: rgba(20, 20, 20, 0.95);
-    /* Dark background for the modal */
-    padding: 30px;
+    padding: 10px;
     border-radius: 10px;
     width: 90%;
     max-width: 900px;
-    /* Expanded horizontal width */
     text-align: center;
     color: white;
-    /* Ensure text is visible on dark background */
     overflow-y: auto;
     max-height: 90vh;
-    /* Allow scrolling if content exceeds height */
     display: flex;
     flex-direction: column;
-    /* Ensure content flows vertically */
+    justify-content: center;
+    position: relative;
 }
 
 /* Modal Form */
 .modal-form {
     display: flex;
     flex-wrap: wrap;
-    /* Allow wrapping for responsiveness */
     gap: 20px;
-    /* Space between form fields */
-    justify-content: space-between;
+    justify-content: center;
     color: white;
+    margin: 0 auto;
+    width: 90%;
 }
 
 .modal-form .mb-3 {
-    flex: 1 1 calc(33.33% - 20px);
-    /* Take 1/3 width minus the gap */
+    flex: 0 0 calc(33.33% - 14px);
+    /* Three columns with gap consideration */
     display: flex;
     flex-direction: column;
+    min-width: 200px;
+    box-sizing: border-box;
 }
 
 .modal-form .mb-3 label {
@@ -56,13 +54,14 @@
     margin-bottom: 5px;
     text-align: left;
     font-size: 14px;
-
 }
 
 .modal-header {
     font-weight: bold;
     margin-bottom: 5px;
     font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .modal-form .mb-3 input,
@@ -74,9 +73,7 @@
     width: 100%;
     box-sizing: border-box;
     background: #333;
-    /* Dark input background */
     color: white;
-    /* White text for inputs */
 }
 
 .modal-form .btn-primary {
@@ -89,7 +86,6 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     flex: 1 1 100%;
-    /* Full width for the submit button */
 }
 
 .modal-form .btn-primary:hover {
@@ -113,29 +109,21 @@
 }
 
 /* Button Group */
-/* Button Group */
 .button-group {
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    /* Center the buttons horizontally */
-    align-items: flex-end;
-    /* Align buttons vertically */
+    align-items: center;
     gap: 20px;
-    /* Add spacing between buttons */
-    margin-top: 20px;
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
-    /* Push the buttons to the bottom */
-    /* Add some margin above the buttons */
+    width: 100%;
+    position: relative;
+    background: rgba(20, 20, 20, 0.95);
 }
 
-.button-group .btn-primary,
-.button-group .modal-close-btn {
-    flex: 0 0 150px;
-    /* Set both buttons to the same fixed width */
+.button-group .btn-primary {
+    flex: 0 0 auto;
+    width: 150px;
     background-color: #007bff;
-    /* Default background for Submit button */
     color: white;
     border: none;
     padding: 10px 10px;
@@ -146,32 +134,62 @@
     text-align: center;
 }
 
+.button-group .modal-close-btn {
+    flex: 0 0 auto;
+    width: 150px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .button-group .btn-primary:hover {
     background-color: #0056b3;
-    /* Hover effect for Submit button */
 }
 
 .button-group .modal-close-btn {
     background: black;
-    /* Default background for Close button */
 }
 
 .button-group .modal-close-btn:hover {
     background: #333;
-    /* Hover effect for Close button */
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .modal-form .mb-3 {
-        flex: 1 1 50%;
-        /* Two fields per row on smaller screens */
+        flex: 0 0 calc(50% - 10px);
+        /* Two columns on medium screens */
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .modal-form .mb-3 {
         flex: 1 1 100%;
-        /* Full width for smaller screens */
+        /* Single column on small screens */
     }
+}
+
+.modal-close-icon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.modal-close-icon:hover {
+    color: #ff5252;
 }

@@ -15,7 +15,8 @@ const API_CONFIG = {
         BASE_URL: 'http://127.0.0.1:5000',
         ENDPOINTS: {
             NUTRITION_RISK_PREDICTION: '/nutritionriskprediction',
-            DIABETIC_RISK_PREDICTION: '/diabeticriskprediction'
+            DIABETIC_RISK_PREDICTION: '/diabeticriskprediction',
+            PHYSICAL_RISK_PREDICTION: '/physicalriskprediction'
         }
     }
 };

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { generateToken } from '../utils/auth';
 import './styles.css';
+import API_CONFIG, { getDatabaseUrl, getAiModelUrl } from '../../services/api';
 
 const SignIn = () => {
     const router = useRouter();
@@ -11,7 +12,7 @@ const SignIn = () => {
         email: '',
         password: ''
     });
-    console.log("wee",formData.password);
+    console.log("wee", formData.password);
     const [error, setError] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,8 +26,8 @@ const SignIn = () => {
         e.preventDefault();
         try {
             // Find user in db.json
-            const response = await axios.get(`http://localhost:8000/users?email=${formData.email}`);
-            console.log("ee",formData.email);
+            const response = await axios.get(getDatabaseUrl(API_CONFIG.DATABASE.ENDPOINTS.USER_BY_EMAIL(formData.email)));
+            console.log("ee", formData.email);
             const user = response.data[0];
 
             if (!user || user.password !== formData.password) { // In a real app, use proper password comparison
@@ -42,7 +43,7 @@ const SignIn = () => {
             });
             console.log(token);
             // Store token in db.json
-            await axios.post('http://localhost:8000/tokens', {
+            await axios.post(getDatabaseUrl(API_CONFIG.DATABASE.ENDPOINTS.TOKENS), {
                 userId: user.id,
                 token,
                 createdAt: new Date().toISOString()

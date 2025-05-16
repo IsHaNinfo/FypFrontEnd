@@ -4,31 +4,51 @@ import { useRouter } from 'next/navigation';
 import HomePage from './HomePage/page';
 import RiskAssesment from './RiskAssesment/page';
 import UserMenu from "../components/UserMenu";
-
+import RiskScores from './RiskScores/page';
+import axios from "axios";
 export default function Home() {
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasPredictions, setHasPredictions] = useState(false);
 
   // Example user data
   const user = {
-    avatar: "/avatar.jpg", // Replace with actual path
+    avatar: "/avatar.jpg",
     name: "Alexis Sanchez",
     followers: "123K"
   };
 
   useEffect(() => {
-    const userData = localStorage.getItem('userData');
-    const token = localStorage.getItem('token');
+    const checkUserData = async () => {
+      const userData = localStorage.getItem('userData');
+      const token = localStorage.getItem('token');
 
-    if (!userData || !token) {
-      router.push('/signin');
-    } else {
-      setIsLoading(false);
-    }
+      if (!userData || !token) {
+        router.push('/signin');
+        return;
+      }
+
+      try {
+        const parsedUserData = JSON.parse(userData);
+        const email = parsedUserData.email;
+        console.log("email", email);
+        const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+        const userResponseData = await response.data;
+        const hasDiabeticAssessments = userResponseData[0]?.diabeticAssessments?.length > 0;
+        const hasNutritionAssessments = userResponseData[0]?.nutritionAssessments?.length > 0;
+
+        setHasPredictions(hasDiabeticAssessments || hasNutritionAssessments);
+        setIsLoading(false);
+      } catch {
+        setHasPredictions(false);
+        setIsLoading(false);
+      }
+    };
+
+    checkUserData();
   }, [router]);
 
-  // Show loading state while checking authentication
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -58,12 +78,13 @@ export default function Home() {
           onLogout={() => {
             localStorage.removeItem("token");
             localStorage.removeItem("userData");
-            router.push('/signin'); // Redirect to login page after logout
+            router.push('/signin');
           }}
         />
       )}
       <HomePage />
-      <RiskAssesment />
+      {hasPredictions && <RiskAssesment />}
+      {hasPredictions && <RiskScores />}
     </div>
   );
 }

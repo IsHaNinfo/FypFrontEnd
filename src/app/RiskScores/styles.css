@@ -1,0 +1,85 @@
+.risk-scores-container {
+    padding: 20px;
+    background: linear-gradient(#0B1117, #102530, #0B1F29);
+    min-height: 100vh;
+}
+
+.risk-scores-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+    font-size: 2rem;
+}
+
+.risk-scores-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.risk-score-card {
+    flex: 1;
+    max-width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #2d3748;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.risk-score-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.risk-score-title.nutrition {
+    color: #ff5722;
+}
+
+.risk-score-title.physical {
+    color: #4CAF50;
+}
+
+.risk-score-title.mental {
+    color: #2196F3;
+}
+
+.recommendation-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.recommendation-button.nutrition {
+    background-color: #ff5722;
+}
+
+.recommendation-button.nutrition:hover {
+    background-color: #e64a19;
+}
+
+.recommendation-button.physical {
+    background-color: #4CAF50;
+}
+
+.recommendation-button.physical:hover {
+    background-color: #388E3C;
+}
+
+.recommendation-button.mental {
+    background-color: #2196F3;
+}
+
+.recommendation-button.mental:hover {
+    background-color: #1976D2;
+}

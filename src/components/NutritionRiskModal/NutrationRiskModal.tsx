@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import "./nutritionrisk.css"; // Import the external CSS file
 import axios from 'axios';
+import API_CONFIG, { getDatabaseUrl, getAiModelUrl } from '../../services/api';
 
 interface NutrationRiskModalProps {
     isOpen: boolean;
@@ -61,7 +62,7 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
                 console.log("email", email);
 
                 // Fetch user data from db.json
-                const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                const response = await axios.get(getDatabaseUrl(API_CONFIG.DATABASE.ENDPOINTS.USER_BY_EMAIL(email)));
                 const users = response.data;
 
                 if (users && users.length > 0) {
@@ -110,7 +111,7 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
             const { email } = JSON.parse(userData);
 
             // First get the user to find their ID
-            const userResponse = await axios.get(`http://localhost:8000/users?email=${email}`);
+            const userResponse = await axios.get(getDatabaseUrl(API_CONFIG.DATABASE.ENDPOINTS.USER_BY_EMAIL(email)));
             const users = userResponse.data;
 
             if (!users || users.length === 0) {
@@ -154,7 +155,7 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
             };
 
             // Update the user with the new assessment
-            const response = await axios.put(`http://localhost:8000/users/${user.id}`, updatedUser);
+            const response = await axios.put(getDatabaseUrl(API_CONFIG.DATABASE.ENDPOINTS.USER_BY_ID(user.id)), updatedUser);
             return response.data;
         } catch (error) {
             console.error('Error updating assessment:', error);
@@ -192,7 +193,7 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
             console.log("formattedData", formattedData);
             await new Promise(resolve => setTimeout(resolve, 2000));
 
-            const response = await axios.post("http://127.0.0.1:5000/nutritionriskprediction", formattedData, {
+            const response = await axios.post(getAiModelUrl(API_CONFIG.AI_MODEL.ENDPOINTS.NUTRITION_RISK_PREDICTION), formattedData, {
                 headers: {
                     "Content-Type": "application/json",
                 },

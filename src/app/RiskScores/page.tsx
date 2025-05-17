@@ -3,11 +3,37 @@ import { Flat } from "@alptugidin/react-circular-progress-bar";
 import API_CONFIG, { getDatabaseUrl, getAiModelUrl } from '../../services/api';
 import axios from 'axios';
 import "./styles.css";
+import NutritionRecommandationModal from '../../components/NutritionRecommandationModal';
 
 const RiskScores = () => {
     const [nutritionScore, setNutritionScore] = useState<number>(0);
     const [physicalScore, setPhysicalScore] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(true);
+    const [showNutritionModal, setShowNutritionModal] = useState(false);
+    const [nutritionRecommendations, setNutritionRecommendations] = useState([]);
+
+    const mockRecommendations = [
+
+        {
+            day: 'Monday',
+            meals: {
+                breakfast: [{ food: 'Oatmeal', grams: 50 }, { food: 'Banana', grams: 100 }],
+                lunch: [{ food: 'Grilled Chicken', grams: 120 }, { food: 'Brown Rice', grams: 80 }],
+                dinner: [{ food: 'Salmon', grams: 100 }, { food: 'Broccoli', grams: 70 }],
+                snack: [{ food: 'Almonds', grams: 30 }]
+            },
+        },
+        {
+            day: 'Tuesday',
+            meals: {
+                breakfast: [{ food: 'Oatmeal', grams: 50 }, { food: 'Banana', grams: 100 }],
+                lunch: [{ food: 'Grilled Chicken', grams: 120 }, { food: 'Brown Rice', grams: 80 }],
+                dinner: [{ food: 'Salmon', grams: 100 }, { food: 'Broccoli', grams: 70 }],
+                snack: [{ food: 'Almonds', grams: 30 }]
+            }
+        },
+        // ... add 6 more days with similar structure ...
+    ];
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -84,7 +110,10 @@ const RiskScores = () => {
                             intersectionEnabled: true,
                         }}
                     />
-                    <button className="recommendation-button nutrition">
+                    <button className="recommendation-button nutrition" onClick={() => {
+                        setNutritionRecommendations(mockRecommendations);
+                        setShowNutritionModal(true);
+                    }}>
                         View Recommendations
                     </button>
                 </div>
@@ -161,6 +190,11 @@ const RiskScores = () => {
                     </button>
                 </div>
             </div>
+            <NutritionRecommandationModal
+                isOpen={showNutritionModal}
+                onClose={() => setShowNutritionModal(false)}
+                recommendations={nutritionRecommendations}
+            />
         </div>
     );
 };

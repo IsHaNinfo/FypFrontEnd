@@ -32,7 +32,6 @@ export default function Home() {
       try {
         const parsedUserData = JSON.parse(userData);
         const email = parsedUserData.email;
-        console.log("email", email);
         const response = await axios.get(`http://localhost:8000/users?email=${email}`);
         const userResponseData = await response.data;
         const hasDiabeticAssessments = userResponseData[0]?.diabeticAssessments?.length > 0;

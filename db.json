@@ -81,6 +81,85 @@
           ]
         }
       ]
+    },
+    {
+      "id": "1747712791102",
+      "firstName": "kasuni",
+      "lastName": "maheshika",
+      "email": "kasunimaheshika2325@gmail.com",
+      "password": "kasu",
+      "diabeticAssessments": [
+        {
+          "id": "1747714764955",
+          "timestamp": "2025-05-20T04:19:24.955Z",
+          "formData": {
+            "age": "25",
+            "gender": "1.0",
+            "height": "156",
+            "weight": "69",
+            "Waist_Circumference": "32",
+            "Diet_Food_Habits": "3",
+            "Family_History": "0.0",
+            "Blood_Pressure": "1.0",
+            "Cholesterol_Lipid_Levels": "0.0",
+            "Thirst": "1.0",
+            "Fatigue": "0.0",
+            "Urination": "1.0",
+            "Vision_Changes": "1.0",
+            "RiskLevel": "0.0"
+          },
+          "prediction": 38.08852588116437
+        }
+      ],
+      "nutritionAssessments": [
+        {
+          "id": "1747714860014",
+          "timestamp": "2025-05-20T04:21:00.014Z",
+          "formData": {
+            "age": "25",
+            "gender": "1.0",
+            "height": "156",
+            "weight": "69",
+            "Carbohydrate_Consumption": "3.0",
+            "Protein_Intake": "1.0",
+            "Fat_Intake": "1.0",
+            "Regularity_of_Meals": "1.0",
+            "Portion_Control": "1.0",
+            "Caloric_Balance": "2000",
+            "Sugar_Consumption": "2.0",
+            "Diabetic_Risk": "38.08852588116437"
+          },
+          "nutritionRiskPrediction": [
+            63.48210104171282
+          ]
+        }
+      ],
+      "physicalAssessments": [
+        {
+          "id": "1747714941997",
+          "timestamp": "2025-05-20T04:22:21.997Z",
+          "formData": {
+            "age": "25",
+            "gender": "1.0",
+            "height": "156",
+            "weight": "69",
+            "EnergyLevels": "3",
+            "PhysicalActivity": "3",
+            "SittingTime": "Yes",
+            "CardiovascularHealth": "Yes",
+            "MuscleStrength": "Yes",
+            "Flexibility": "Yes",
+            "Balance": "Yes",
+            "Thirsty": "3",
+            "PainOrDiscomfort": "Yes",
+            "AvailableTime": "120",
+            "Diabetic_Risk": "38.08852588116437"
+          },
+          "physicalRiskPrediction": [
+            20.09174657699372
+          ]
+        }
+      ]
     }
   ],
   "tokens": [
@@ -125,6 +204,12 @@
       "userId": "1746685903852",
       "token": "eyJ1c2VySWQiOiIxNzQ2Njg1OTAzODUyIiwiZW1haWwiOiJpc2hhbkBnbWFpbC5jb20iLCJ0b2tlbiI6IjhlZTM2MWYxODA5YTQ5NDMzNTU5M2FjZmU5ZDk5OTkzM2RmYmNjODk2YzQxZDk5MzVlNmI5ZTYzIiwidGltZXN0YW1wIjoxNzQ3MzgxMjc0OTk0fQ==",
       "createdAt": "2025-05-16T07:41:14.994Z"
+    },
+    {
+      "id": "1095",
+      "userId": 1747712791102,
+      "token": "eyJ1c2VySWQiOjE3NDc3MTI3OTExMDIsImVtYWlsIjoia2FzdW5pbWFoZXNoaWthMjMyNUBnbWFpbC5jb20iLCJ0b2tlbiI6ImNkMWFhZjE4MjI0NmYwMzZhZWM5N2I2YzUwZjA4MGFmMzExNzU4M2RhZmMwMWM1OTJjNWNhMTY5IiwidGltZXN0YW1wIjoxNzQ3NzEyNzkxMTQwfQ==",
+      "createdAt": "2025-05-20T03:46:31.140Z"
     }
   ]
 }

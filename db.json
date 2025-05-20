@@ -109,6 +109,69 @@
             "RiskLevel": "0.0"
           },
           "prediction": 38.08852588116437
+        },
+        {
+          "id": "1747726443031",
+          "timestamp": "2025-05-20T07:34:03.031Z",
+          "formData": {
+            "age": "36",
+            "gender": "0.0",
+            "height": "156",
+            "weight": "76",
+            "Waist_Circumference": "34",
+            "Diet_Food_Habits": "3",
+            "Family_History": "1.0",
+            "Blood_Pressure": "1.0",
+            "Cholesterol_Lipid_Levels": "1.0",
+            "Thirst": "1.0",
+            "Fatigue": "1.0",
+            "Urination": "1.0",
+            "Vision_Changes": "0.0",
+            "RiskLevel": "0.0"
+          },
+          "prediction": 76.88295956435053
+        },
+        {
+          "id": "1747726977888",
+          "timestamp": "2025-05-20T07:42:57.888Z",
+          "formData": {
+            "age": "24",
+            "gender": "0.0",
+            "height": "156",
+            "weight": "70",
+            "Waist_Circumference": "32",
+            "Diet_Food_Habits": "4",
+            "Family_History": "1.0",
+            "Blood_Pressure": "1.0",
+            "Cholesterol_Lipid_Levels": "0.0",
+            "Thirst": "1.0",
+            "Fatigue": "1.0",
+            "Urination": "0.0",
+            "Vision_Changes": "1.0",
+            "RiskLevel": "0.0"
+          },
+          "prediction": 59.4828696019309
+        },
+        {
+          "id": "1747727037312",
+          "timestamp": "2025-05-20T07:43:57.312Z",
+          "formData": {
+            "age": "24",
+            "gender": "0.0",
+            "height": "156",
+            "weight": "70",
+            "Waist_Circumference": "32",
+            "Diet_Food_Habits": "4",
+            "Family_History": "1.0",
+            "Blood_Pressure": "0.0",
+            "Cholesterol_Lipid_Levels": "0.0",
+            "Thirst": "0.0",
+            "Fatigue": "0.0",
+            "Urination": "0.0",
+            "Vision_Changes": "1.0",
+            "RiskLevel": "0.0"
+          },
+          "prediction": 34.69696188450997
         }
       ],
       "nutritionAssessments": [
@@ -131,6 +194,48 @@
           },
           "nutritionRiskPrediction": [
             63.48210104171282
+          ]
+        },
+        {
+          "id": "1747726132146",
+          "timestamp": "2025-05-20T07:28:52.146Z",
+          "formData": {
+            "age": "25",
+            "gender": "1.0",
+            "height": "156",
+            "weight": "69",
+            "Carbohydrate_Consumption": "2.0",
+            "Protein_Intake": "1.0",
+            "Fat_Intake": "1.0",
+            "Regularity_of_Meals": "1.0",
+            "Portion_Control": "1.0",
+            "Caloric_Balance": "1700",
+            "Sugar_Consumption": "3.0",
+            "Diabetic_Risk": "38.08852588116437"
+          },
+          "nutritionRiskPrediction": [
+            48.852967825355634
+          ]
+        },
+        {
+          "id": "1747727650735",
+          "timestamp": "2025-05-20T07:54:10.735Z",
+          "formData": {
+            "age": "24",
+            "gender": "0.0",
+            "height": "156",
+            "weight": "70",
+            "Carbohydrate_Consumption": "2.0",
+            "Protein_Intake": "1.0",
+            "Fat_Intake": "1.0",
+            "Regularity_of_Meals": "0.0",
+            "Portion_Control": "1.0",
+            "Caloric_Balance": "2100",
+            "Sugar_Consumption": "2.0",
+            "Diabetic_Risk": "34.69696188450997"
+          },
+          "nutritionRiskPrediction": [
+            49.1244199961013
           ]
         }
       ],
@@ -157,6 +262,30 @@
           },
           "physicalRiskPrediction": [
             20.09174657699372
+          ]
+        },
+        {
+          "id": "1747727701037",
+          "timestamp": "2025-05-20T07:55:01.037Z",
+          "formData": {
+            "age": "24",
+            "gender": "0.0",
+            "height": "156",
+            "weight": "70",
+            "EnergyLevels": "4",
+            "PhysicalActivity": "2",
+            "SittingTime": "Yes",
+            "CardiovascularHealth": "No",
+            "MuscleStrength": "Yes",
+            "Flexibility": "Yes",
+            "Balance": "Yes",
+            "Thirsty": "4",
+            "PainOrDiscomfort": "Yes",
+            "AvailableTime": "120",
+            "Diabetic_Risk": "34.69696188450997"
+          },
+          "physicalRiskPrediction": [
+            20.984011211074638
           ]
         }
       ]

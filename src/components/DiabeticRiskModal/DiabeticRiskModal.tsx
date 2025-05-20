@@ -17,6 +17,7 @@ interface User {
 interface DiabeticRiskModalProps {
     isOpen: boolean;
     onClose: () => void;
+    onPredictionComplete?: (prediction: number) => void;
 }
 
 interface DiabeticAssessment {
@@ -26,7 +27,7 @@ interface DiabeticAssessment {
     prediction: number;
 }
 
-const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose }) => {
+const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose, onPredictionComplete }) => {
     const [formData, setFormData] = useState({});
     const [showResult, setShowResult] = useState(false);
     const [prediction, setPrediction] = useState<number>(0);
@@ -140,6 +141,9 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose }
 
             console.log("Assessment saved:", assessment);
             setShowResult(true);
+            if (onPredictionComplete) {
+                onPredictionComplete(predictionValue);
+            }
             onClose();
         } catch (error: any) {
             console.error("Error:", error);

@@ -66,6 +66,16 @@ const RiskScores = () => {
         };
 
         fetchUserData();
+
+        // Add event listener for prediction updates
+        const handlePredictionUpdate = () => {
+            fetchUserData();
+        };
+
+        window.addEventListener('predictionUpdated', handlePredictionUpdate);
+        return () => {
+            window.removeEventListener('predictionUpdated', handlePredictionUpdate);
+        };
     }, []);
 
     if (isLoading) {

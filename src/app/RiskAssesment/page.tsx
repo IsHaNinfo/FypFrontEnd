@@ -12,30 +12,44 @@ const RiskAssesment = () => {
     const [showNutritionModal, setShowNutritionModal] = useState(false);
     const [showPhysicalModal, setShowPhysicalModal] = useState(false);
 
-    useEffect(() => {
-        const fetchUserPrediction = async () => {
-            try {
-                const storedUser = localStorage.getItem('userData');
-                if (storedUser) {
-                    const { email } = JSON.parse(storedUser);
-                    const response = await axios.get(`http://localhost:8000/users?email=${email}`);
-                    if (response.data && response.data.length > 0) {
-                        const user = response.data[0];
-                        if (user.diabeticAssessments && user.diabeticAssessments.length > 0) {
-                            // Get the latest prediction
-                            const latestAssessment = user.diabeticAssessments[user.diabeticAssessments.length - 1];
-                            setPrediction(latestAssessment.prediction);
-                        }
+    const fetchUserPrediction = async () => {
+        try {
+            const storedUser = localStorage.getItem('userData');
+            if (storedUser) {
+                const { email } = JSON.parse(storedUser);
+                const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                if (response.data && response.data.length > 0) {
+                    const user = response.data[0];
+                    if (user.diabeticAssessments && user.diabeticAssessments.length > 0) {
+                        // Get the latest prediction
+                        const latestAssessment = user.diabeticAssessments[user.diabeticAssessments.length - 1];
+                        setPrediction(latestAssessment.prediction);
                     }
                 }
-            } catch (error) {
-                console.error('Error fetching prediction:', error);
-            } finally {
-                setLoading(false);
             }
-        };
+        } catch (error) {
+            console.error('Error fetching prediction:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
         fetchUserPrediction();
     }, []);
+
+    // Add event listener for prediction updates
+    useEffect(() => {
+        const handlePredictionUpdate = () => {
+            fetchUserPrediction();
+        };
+
+        window.addEventListener('predictionUpdated', handlePredictionUpdate);
+        return () => {
+            window.removeEventListener('predictionUpdated', handlePredictionUpdate);
+        };
+    }, []);
+
     const percentage = Math.round(prediction);
 
     return (

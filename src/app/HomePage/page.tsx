@@ -82,6 +82,10 @@ const HomePage = () => {
         router.push('/signin');
     };
 
+    const handlePredictionComplete = (prediction: number) => {
+        // Dispatch a custom event to notify other components
+        window.dispatchEvent(new CustomEvent('predictionUpdated'));
+    };
 
     return (
         <div style={{ position: "relative", minHeight: "100vh" }}>
@@ -154,6 +158,7 @@ const HomePage = () => {
             <DiabeticRiskModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
+                onPredictionComplete={handlePredictionComplete}
             />
         </div>
     );

@@ -211,3 +211,41 @@
     background-color: #ff5722;
     /* Orange background */
 }
+
+.circular-progress {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.circular-progress-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff5722;
+}
+
+.circular-progress-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.circular-progress-circle-bg {
+    fill: none;
+    stroke: #2d3748;
+    stroke-width: 10;
+}
+
+.circular-progress-circle {
+    fill: none;
+    stroke: #ff5722;
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-dasharray: 565.48px;
+    transition: stroke-dashoffset 0.5s ease;
+}

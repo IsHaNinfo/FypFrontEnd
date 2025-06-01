@@ -5,12 +5,16 @@ import "./styles.css"; // Import the external CSS file
 import axios from "axios";
 import NutritionRiskModal from '../../components/NutritionRiskModal/NutrationRiskModal';
 import PhysicalActivityRiskModal from '../../components/PhysicalActivityRiskModal/PhysicalRiskModal';
+import MentalRiskModal from "@/components/MentalRiskModal/MentalRiskModal";
 
 const RiskAssesment = () => {
     const [prediction, setPrediction] = useState<number>(0);
     const [loading, setLoading] = useState(true);
     const [showNutritionModal, setShowNutritionModal] = useState(false);
     const [showPhysicalModal, setShowPhysicalModal] = useState(false);
+        const [showMentalModal, setShowMentalModal] = useState(false); 
+    
+
 
     useEffect(() => {
         const fetchUserPrediction = async () => {
@@ -126,7 +130,12 @@ const RiskAssesment = () => {
                         >
                             Physical Activity Risk
                         </button>
-                        <button className="risk-button mental-risk">Mental Risk</button>
+                      <button 
+                            className="risk-button mental-risk"
+                            onClick={() => setShowMentalModal(true)} 
+                        >
+                            Mental Risk
+                        </button>
                     </div>
                 </div>
             </div>
@@ -139,6 +148,11 @@ const RiskAssesment = () => {
             <PhysicalActivityRiskModal
                 isOpen={showPhysicalModal}
                 onClose={() => setShowPhysicalModal(false)}
+            />
+
+             <MentalRiskModal
+                isOpen={showMentalModal}
+                onClose={() => setShowMentalModal(false)}
             />
         </div>
     );

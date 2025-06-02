@@ -1,0 +1,35 @@
+.face-capture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.camera-container {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin-bottom: 1rem;
+}
+
+.camera-feed {
+  width: 100%;
+  background-color: #000;
+  border-radius: 4px;
+}
+
+.camera-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.image-preview-container {
+  text-align: center;
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}

@@ -5,9 +5,9 @@ import './styles.css';
 import UserMenu from '../../components/UserMenu/index';
 import DiabeticRiskModal from '../../components/DiabeticRiskModal/DiabeticRiskModal';
 import Link from 'next/link';
+import { BackgroundLines } from "@/components/ui/background-lines";
 
 const HomePage = () => {
-
     const [avatarUrl, setAvatarUrl] = useState("https://avatar.iran.liara.run/public");
     const router = useRouter();
     const [userData, setUserData] = useState<{ firstName: string; lastName: string; email: string } | null>(null);
@@ -20,14 +20,6 @@ const HomePage = () => {
         "Monitor your blood glucose levels daily.",
         "Stay hydrated and avoid sugary drinks.",
         "Consult your doctor for personalized advice.",
-    ];
-
-    const images = [
-        "/images/diet.jpg",
-        "/images/exercise.jpg",
-        "/images/mental.jpg",
-        "/images/hydration.jpg",
-        "/images/diabetic.jpg",
     ];
 
     const [currentGuideline, setCurrentGuideline] = useState(0);
@@ -50,11 +42,13 @@ const HomePage = () => {
             const menuContainer = document.querySelector('.user-menu-container');
             const avatarButton = document.querySelector('.avatar-button');
 
-            if (showMenu &&
+            if (
+                showMenu &&
                 menuContainer &&
                 avatarButton &&
                 !menuContainer.contains(event.target as Node) &&
-                !avatarButton.contains(event.target as Node)) {
+                !avatarButton.contains(event.target as Node)
+            ) {
                 setShowMenu(false);
             }
         };
@@ -66,12 +60,10 @@ const HomePage = () => {
     }, [showMenu]);
 
     useEffect(() => {
-        // Check if we already have a stored avatar
         const storedAvatar = localStorage.getItem('userAvatar');
         if (storedAvatar) {
             setAvatarUrl(storedAvatar);
         } else {
-            // If no stored avatar, generate and store a new one
             localStorage.setItem('userAvatar', avatarUrl);
         }
     }, []);
@@ -83,22 +75,18 @@ const HomePage = () => {
     };
 
     const handlePredictionComplete = (prediction: number) => {
-        // Dispatch a custom event to notify other components
         window.dispatchEvent(new CustomEvent('predictionUpdated'));
     };
 
     return (
-        <div style={{ position: "relative", minHeight: "100vh" }}>
+        <BackgroundLines svgOptions={{ duration: 15 }} >
             <div
                 className="hero-background"
-                style={{ backgroundImage: `url(${images[currentGuideline]})` }}
-            >
-                <div className="hero-overlay"></div>
+            >               
 
                 <nav className="navbar flex justify-between items-center max-w-7xl mx-auto px-6 py-4">
                     <span className="text-white text-2xl font-bold">DRS</span>
                     <div className="flex space-x-2 bg-white/80 rounded-full px-2 py-1 backdrop-blur-md shadow-md">
-
                         <a href="#" className="px-4 py-2 text-gray-800 font-medium rounded-full hover:bg-green-100 transition">
                             About Us
                         </a>
@@ -106,7 +94,6 @@ const HomePage = () => {
                             Blogs
                         </a>
                     </div>
-
                 </nav>
 
                 <div className="hero-section">
@@ -122,10 +109,7 @@ const HomePage = () => {
                             ></span>
                         ))}
                     </div>
-                    <button
-                        className="diabetic-btn"
-                        onClick={() => setIsModalOpen(true)}
-                    >
+                    <button className="diabetic-btn" onClick={() => setIsModalOpen(true)}>
                         Check Your Diabetic Risk
                     </button>
                 </div>
@@ -136,12 +120,9 @@ const HomePage = () => {
                 onClick={() => setShowMenu((s) => !s)}
                 aria-label="Open user menu"
             >
-                <img
-                    src={avatarUrl}
-                    alt="avatar"
-                    className="avatar-image"
-                />
+                <img src={avatarUrl} alt="avatar" className="avatar-image" />
             </button>
+
             {showMenu && userData && (
                 <div className="user-menu-container">
                     <UserMenu
@@ -160,7 +141,7 @@ const HomePage = () => {
                 onClose={() => setIsModalOpen(false)}
                 onPredictionComplete={handlePredictionComplete}
             />
-        </div>
+        </BackgroundLines>
     );
 };
 

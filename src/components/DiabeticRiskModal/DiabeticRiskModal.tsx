@@ -139,7 +139,6 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose, 
             setLoadingStep(3);
             await new Promise(resolve => setTimeout(resolve, 1000));
 
-            console.log("Assessment saved:", assessment);
             setShowResult(true);
             if (onPredictionComplete) {
                 onPredictionComplete(predictionValue);
@@ -167,6 +166,9 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose, 
     return (
         <div className="diabetic-modal-overlay">
             <div className="diabetic-modal-content">
+            <button className="modal-close-icon" onClick={onClose} type="button">
+                    &times;
+                </button>
                 <div className="diabetic-modal-header">
                     <h2>Diabetic Risk Assessment</h2>
                 </div>
@@ -193,21 +195,21 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose, 
                             </select>
                         </div>
                         <div className="diabetic-modal-mb-3">
-                            <label className="diabetic-modal-form-label">What is your height?  Please enter your height in centimeters (eg: 170 cm)</label>
+                            <label className="diabetic-modal-form-label">What is your height?  (eg: 170 cm)</label>
                             <input className="diabetic-modal-form-control" name="height" type="number" onChange={handleChange} required />
                         </div>
                         <div className="diabetic-modal-mb-3">
-                            <label className="diabetic-modal-form-label">What is your weight? ( Please enter your weight in kilograms (eg: 65 kg)    </label>
+                            <label className="diabetic-modal-form-label">What is your weight?  (eg: 65 kg)    </label>
                             <input className="diabetic-modal-form-control" name="weight" type="number" onChange={handleChange} required />
                         </div>
                         <div className="diabetic-modal-mb-3">
-                            <label className="diabetic-modal-form-label"> What is your waist circumference?( Please measure your waist at the narrowest point and enter the value in centimeters (eg: 32 inch))</label>
+                            <label className="diabetic-modal-form-label"> What is your waist circumference? (eg: 32 inch)</label>
                             <input className="diabetic-modal-form-control" name="Waist_Circumference" type="number" onChange={handleChange} required />
                         </div>
                         <div className="diabetic-modal-mb-3">
                             <label className="diabetic-modal-form-label"> How often do you eat sugary snacks, fast food, or processed meals? (Per Day)</label>
                             <select className="diabetic-modal-form-control" name="Diet_Food_Habits" onChange={handleChange} required defaultValue="">
-                                <option value="" disabled>Select</option>
+                                <option value="" disabled>Select an Option</option>
                                 {[...Array(10)].map((_, i) => (
                                     <option key={i + 1} value={i + 1}>{i + 1} Meal{i + 1 > 1 ? 's' : ''}</option>
                                 ))}
@@ -216,7 +218,7 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose, 
                         <div className="diabetic-modal-mb-3">
                             <label className="diabetic-modal-form-label">Do any of your family members have diabetes?</label>
                             <select className="diabetic-modal-form-control" name="Family_History" onChange={handleChange} required defaultValue="">
-                                <option value="" disabled>Select</option>
+                                <option value="" disabled>Select an Option</option>
                                 <option value="1.0">Yes</option>
                                 <option value="0.0">No</option>
                             </select>

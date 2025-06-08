@@ -279,6 +279,106 @@
             "ML_Output": "Severe",
             "Scenario": "Scenario 08"
           }
+        },
+        {
+          "id": "1749365347875",
+          "timestamp": "2025-06-08T06:49:07.875Z",
+          "formData": {
+            "age": "47",
+            "gender": "1.0",
+            "Perceived_Control": "1",
+            "Stress_Freq_Intensity": "Rarely  (0-1 times)",
+            "Emotional_Reg": "Not at all",
+            "Physical_Stress": "Not at all",
+            "Cognitive_Stress": "Never",
+            "Behavioral_Response": "Never",
+            "Work_Stress": "1",
+            "Productivity": "Not at all",
+            "Suicidal_Thoughts": "Not at all",
+            "FreeTime": "118",
+            "image": {},
+            "Diabetic_Risk": "86.49314837022601"
+          },
+          "prediction": {
+            "DL_Output": "Stable",
+            "ML_Output": "Low",
+            "Scenario": "Scenario 01"
+          }
+        },
+        {
+          "id": "1749366610378",
+          "timestamp": "2025-06-08T07:10:10.378Z",
+          "formData": {
+            "age": "47",
+            "gender": "1.0",
+            "Perceived_Control": "1",
+            "Stress_Freq_Intensity": "Rarely  (0-1 times)",
+            "Emotional_Reg": "Not at all",
+            "Physical_Stress": "Not at all",
+            "Cognitive_Stress": "Sometimes",
+            "Behavioral_Response": "Never",
+            "Work_Stress": "2",
+            "Productivity": "Several days",
+            "Suicidal_Thoughts": "Several days",
+            "FreeTime": "120",
+            "image": {},
+            "Diabetic_Risk": "86.49314837022601"
+          },
+          "prediction": {
+            "DL_Output": "Stable",
+            "ML_Output": "Moderate",
+            "Scenario": "Scenario 03"
+          }
+        },
+        {
+          "id": "1749367652220",
+          "timestamp": "2025-06-08T07:27:32.220Z",
+          "formData": {
+            "age": "47",
+            "gender": "1.0",
+            "Perceived_Control": "5",
+            "Stress_Freq_Intensity": "Always (6+ times)",
+            "Emotional_Reg": "Nearly every day",
+            "Physical_Stress": "Nearly every day",
+            "Cognitive_Stress": "Always",
+            "Behavioral_Response": "Often",
+            "Work_Stress": "4",
+            "Productivity": "Nearly every day",
+            "Suicidal_Thoughts": "Nearly every day",
+            "FreeTime": "120",
+            "image": {},
+            "Diabetic_Risk": "86.49314837022601"
+          },
+          "prediction": {
+            "DL_Output": "Unstable",
+            "ML_Output": "Severe",
+            "Scenario": "Scenario 08"
+          }
+        },
+        {
+          "id": "1749370922066",
+          "timestamp": "2025-06-08T08:22:02.066Z",
+          "formData": {
+            "age": "47",
+            "gender": "1.0",
+            "Perceived_Control": "2",
+            "Stress_Freq_Intensity": "Rarely  (0-1 times)",
+            "Emotional_Reg": "More than half the days",
+            "Physical_Stress": "Not at all",
+            "Cognitive_Stress": "Never",
+            "Behavioral_Response": "Rarely",
+            "Work_Stress": "3",
+            "Productivity": "Several days",
+            "Suicidal_Thoughts": "Not at all",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "86.49314837022601"
+          },
+          "prediction": {
+            "DL_Output": "Stable",
+            "ML_Output": "Moderate",
+            "Scenario": "Scenario 03"
+          }
         }
       ]
     }
@@ -331,6 +431,18 @@
       "userId": "1746685903852",
       "token": "eyJ1c2VySWQiOiIxNzQ2Njg1OTAzODUyIiwiZW1haWwiOiJpc2hhbkBnbWFpbC5jb20iLCJ0b2tlbiI6ImZiZDNmYjlhODU4MTk5ZWZmMTg5MTA5MGUwNzhmNjY5YTM3MjgyMWM2MzNjZjVjNTExNDVhYjdlIiwidGltZXN0YW1wIjoxNzQ4NjE4Mzg0NzMzfQ==",
       "createdAt": "2025-05-30T15:19:44.733Z"
+    },
+    {
+      "id": "ac50",
+      "userId": "1746685903852",
+      "token": "eyJ1c2VySWQiOiIxNzQ2Njg1OTAzODUyIiwiZW1haWwiOiJpc2hhbkBnbWFpbC5jb20iLCJ0b2tlbiI6IjE4ZGMyZDUzMTg3NDFjYmNmODFiMTViNDdkMGZmNmY3ZmZkZTYxNWZkYmY1ODk0YThiYTY4OWQxIiwidGltZXN0YW1wIjoxNzQ4ODg5Njc4MzY0fQ==",
+      "createdAt": "2025-06-02T18:41:18.364Z"
+    },
+    {
+      "id": "b008",
+      "userId": "1746685903852",
+      "token": "eyJ1c2VySWQiOiIxNzQ2Njg1OTAzODUyIiwiZW1haWwiOiJpc2hhbkBnbWFpbC5jb20iLCJ0b2tlbiI6ImY4ODYxODM1Mjg3ODQ3NGZkZTY2Zjg2MmMzMWM5ZGYxNjc2Y2UzNzgwNTc4Nzc5NGI1ZDkyZjI3IiwidGltZXN0YW1wIjoxNzQ5MzY0OTk3MzI5fQ==",
+      "createdAt": "2025-06-08T06:43:17.329Z"
     }
   ]
 }

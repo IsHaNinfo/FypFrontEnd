@@ -72,9 +72,10 @@ const MentalRiskModal: React.FC<MentalRiskModalProps> = ({
     }));
   };
 
-  const handleCaptureError = (error: Error) => {
-    console.error("Face capture error:", error);
-  };
+  const handleCameraError = (error: Error) => {
+  console.error("Camera error:", error.message);
+  alert(error.message);
+};
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -193,97 +194,89 @@ const MentalRiskModal: React.FC<MentalRiskModalProps> = ({
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+  e.preventDefault();
+  setIsLoading(true);
 
-    try {
-      const currentUser = localStorage.getItem("userData");
-      if (!currentUser) {
-        throw new Error("User not logged in");
-      }
-
-      // Prepare form data for file upload
-      const formDataToSend = new FormData();
-      formDataToSend.append("Perceived_Control", formData.Perceived_Control);
-      formDataToSend.append(
-        "Stress_Freq_Intensity",
-        formData.Stress_Freq_Intensity
-      );
-      formDataToSend.append("Emotional_Reg", formData.Emotional_Reg);
-      formDataToSend.append("Physical_Stress", formData.Physical_Stress);
-      formDataToSend.append("Cognitive_Stress", formData.Cognitive_Stress);
-      formDataToSend.append(
-        "Behavioral_Response",
-        formData.Behavioral_Response
-      );
-      formDataToSend.append("Work_Stress", formData.Work_Stress);
-      formDataToSend.append("Productivity", formData.Productivity);
-      formDataToSend.append("Suicidal_Thoughts", formData.Suicidal_Thoughts);
-      formDataToSend.append("FreeTime", formData.FreeTime);
-      if (formData.image) {
-        formDataToSend.append("image", formData.image);
-      }
-
-      const response = await axios.post(
-        getAiModelUrl(API_CONFIG.AI_MODEL.ENDPOINTS.MENTAL_RISK_PREDICTION),
-        formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      setPrediction(response.data);
-
-      const assessment: MentalAssessment = {
-        id: Date.now().toString(),
-        timestamp: new Date().toISOString(),
-        formData: {
-          ...formData,
-          Diabetic_Risk: formData.Diabetic_Risk,
-        },
-        prediction: response.data,
-      };
-
-      await updateUserAssessment(assessment);
-      setShowResult(true);
-      onClose();
-    } catch (error) {
-      console.error("Error:", error);
-
-      // Type guard for AxiosError
-      if (axios.isAxiosError(error)) {
-        if (error.code === "ERR_NETWORK") {
-          alert(
-            "Cannot connect to the server. Please make sure the backend server is running."
-          );
-        } else if (error.response) {
-          alert(
-            `Error: ${error.response.data.error || "Server error occurred"}`
-          );
-        } else if (error.request) {
-          alert("No response received from server. Please try again.");
-        } else {
-          alert("Error: " + error.message);
-        }
-      }
-      // Type guard for regular Error
-      else if (error instanceof Error) {
-        if (error.message === "User not logged in") {
-          alert("Please log in to save your assessment.");
-        } else {
-          alert("Error: " + error.message);
-        }
-      }
-      // Fallback for unknown error types
-      else {
-        alert("An unknown error occurred");
-      }
-    } finally {
-      setIsLoading(false);
+  try {
+    const currentUser = localStorage.getItem("userData");
+    if (!currentUser) {
+      throw new Error("User not logged in");
     }
-  };
+
+    // Prepare form data for file upload
+    const formDataToSend = new FormData();
+    formDataToSend.append("Perceived_Control", formData.Perceived_Control);
+    formDataToSend.append(
+      "Stress_Freq_Intensity",
+      formData.Stress_Freq_Intensity
+    );
+    formDataToSend.append("Emotional_Reg", formData.Emotional_Reg);
+    formDataToSend.append("Physical_Stress", formData.Physical_Stress);
+    formDataToSend.append("Cognitive_Stress", formData.Cognitive_Stress);
+    formDataToSend.append(
+      "Behavioral_Response",
+      formData.Behavioral_Response
+    );
+    formDataToSend.append("Work_Stress", formData.Work_Stress);
+    formDataToSend.append("Productivity", formData.Productivity);
+    formDataToSend.append("Suicidal_Thoughts", formData.Suicidal_Thoughts);
+    formDataToSend.append("FreeTime", formData.FreeTime);
+    if (formData.image) {
+      formDataToSend.append("image", formData.image);
+    }
+
+    const response = await axios.post(
+      getAiModelUrl(API_CONFIG.AI_MODEL.ENDPOINTS.MENTAL_RISK_PREDICTION),
+      formDataToSend,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    setPrediction(response.data);
+
+    const assessment: MentalAssessment = {
+      id: Date.now().toString(),
+      timestamp: new Date().toISOString(),
+      formData: {
+        ...formData,
+        Diabetic_Risk: formData.Diabetic_Risk,
+      },
+      prediction: response.data,
+    };
+
+    await updateUserAssessment(assessment);
+    
+    // Reset form after successful submission
+    setFormData({
+      age: formData.age, // Keep age and gender if you want
+      gender: formData.gender,
+      Perceived_Control: "",
+      Stress_Freq_Intensity: "",
+      Emotional_Reg: "",
+      Physical_Stress: "",
+      Cognitive_Stress: "",
+      Behavioral_Response: "",
+      Work_Stress: "",
+      Productivity: "",
+      Suicidal_Thoughts: "",
+      FreeTime: "",
+      image: null,
+      Diabetic_Risk: formData.Diabetic_Risk, // Keep diabetic risk if you want
+    });
+    setImagePreview(null);
+    
+    setShowResult(true);
+    onClose();
+  } catch (error) {
+    console.error("Error:", error);
+    // ... existing error handling code ...
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   if (!isOpen) return null;
 
@@ -527,15 +520,17 @@ const MentalRiskModal: React.FC<MentalRiskModalProps> = ({
               </div>
             )}
 
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <label className="form-label">
                 Capture a live photo of yourself for emotional state analysis
               </label>
               <FaceCapture
                 onCapture={handleFaceCapture}
-                onError={handleCaptureError}
+                onError={handleCameraError}
+                onCameraStart={() => console.log("Camera started")}
+                onCameraStop={() => console.log("Camera stopped")}
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="button-group">

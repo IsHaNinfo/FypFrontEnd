@@ -30,6 +30,21 @@ interface DiabeticAssessment {
     timestamp: string;
     formData: FormData;
     prediction: number;
+    feature_contributions?: {
+        Age: number;
+        BMI: number;
+        Caloric_Balance: number;
+        Carbohydrate_Consumption: number;
+        DiabetesRisk: number;
+        Fat_Intake: number;
+        Gender: number;
+        Height: number;
+        Portion_Control: number;
+        Protein_Intake: number;
+        Regularity_of_Meals: number;
+        Sugar_Consumption: number;
+        Weight: number;
+    };
 }
 
 const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose }) => {
@@ -123,7 +138,7 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
             // Get the latest diabetic assessment to get the diabetic risk
             const latestDiabeticAssessment = user.diabeticAssessments?.[user.diabeticAssessments.length - 1];
             const diabeticRisk = latestDiabeticAssessment?.prediction?.toString() || '0';
-            console.log("diabeticRisk", diabeticRisk);
+
             // Create a new nutrition assessment object
             const newNutritionAssessment = {
                 id: Date.now().toString(),
@@ -142,7 +157,8 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
                     Sugar_Consumption: formData.Sugar_Consumption,
                     Diabetic_Risk: diabeticRisk
                 },
-                nutritionRiskPrediction: assessment.prediction
+                nutritionRiskPrediction: [assessment.prediction],
+                feature_contributions: assessment.feature_contributions
             };
 
             // Add the new assessment to the user's nutritionAssessments array
@@ -167,13 +183,11 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
         e.preventDefault();
         setIsLoading(true);
 
-
         try {
             const currentUser = localStorage.getItem('userData');
             if (!currentUser) {
                 throw new Error("User not logged in");
             }
-            console.log("formData", formData);
             // Format the data to ensure all values are numbers
             const formattedData = {
                 age: parseFloat(formData.age) || 0,
@@ -198,12 +212,12 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
                     "Content-Type": "application/json",
                 },
             });
-
+            console.log("response", response.data);
             const predictionValue = response.data.prediction;
+            const featureContributions = response.data.feature_contributions;
             setPrediction(predictionValue);
-            console.log("predictionValue", predictionValue);
 
-            // Create assessment object with the original form data
+            // Create assessment object with feature contributions
             const assessment: DiabeticAssessment = {
                 id: Date.now().toString(),
                 timestamp: new Date().toISOString(),
@@ -211,13 +225,21 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
                     ...formData,
                     Diabetic_Risk: formData.Diabetic_Risk
                 },
-                prediction: predictionValue
+                prediction: predictionValue,
+                feature_contributions: featureContributions
             };
 
             // Update user's assessments in db.json
             await updateUserAssessment(assessment);
 
-            console.log("Assessment saved:", assessment);
+            // Dispatch event to notify other components
+            window.dispatchEvent(new CustomEvent('nutritionAssessmentUpdated', {
+                detail: {
+                    prediction: predictionValue,
+                    featureContributions: featureContributions
+                }
+            }));
+
             setShowResult(true);
             onClose();
         } catch (error: any) {
@@ -241,17 +263,17 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
     if (!isOpen) return null; // Don't render the modal if it's not open
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <button className="modal-close-icon" onClick={onClose} type="button">
+        <div className="nutrition-modal-overlay">
+            <div className="nutrition-modal-content">
+                <button className="nutrition-modal-close" onClick={onClose} type="button">
                     &times;
                 </button>
-                <div className='modal-header'>
+                <div className='nutrition-modal-head'>
                     <h2>Nutrition Risk Assessment</h2>
                 </div>
-                <form className="modal-form" onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label className="form-label">How many servings of rice, bread, or pasta do you eat daily?(Carbohydrate Consumption) (g/day)</label>
+                <form className="nutrition-modal-form" onSubmit={handleSubmit}>
+                    <div className="nutrition-modal-mb-3">
+                        <label className="nutrition-modal-form-label">How many servings of rice, bread, or pasta do you eat daily?(Carbohydrate Consumption) (g/day)</label>
                         <select
                             className="form-control"
                             name="Carbohydrate_Consumption"
@@ -267,8 +289,8 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
                             <option value="5.0">5</option>
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">How often do you include protein sources (e.g., eggs, chicken, lentils) in your meals? (Protein Intake) </label>
+                    <div className="nutrition-modal-mb-3">
+                        <label className="nutrition-modal-form-label">How often do you include protein sources (e.g., eggs, chicken, lentils) in your meals? (Protein Intake) </label>
                         <select
                             className="form-control"
                             name="Protein_Intake"
@@ -277,12 +299,12 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
                             required
                         >
                             <option value="">Select Option</option>
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">What type of fats do you consume most frequently? (Fat Intake) </label>
+                    <div className="nutrition-modal-mb-3">
+                        <label className="nutrition-modal-form-label">What type of fats do you consume most frequently? (Fat Intake) </label>
                         <select
                             className="form-control"
                             name="Fat_Intake"
@@ -291,12 +313,12 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
                             required
                         >
                             <option value="">Select Option</option>
-                            <option value="1.0">Healthy fats</option>
-                            <option value="0.0">Unhealthy fats</option>
+                            <option value="Healthy fats">Healthy fats</option>
+                            <option value="Unhealthy fats">Unhealthy fats</option>
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Do you skip meals during the day? (Regularity of Meals)</label>
+                    <div className="nutrition-modal-mb-3">
+                        <label className="nutrition-modal-form-label">Do you skip meals during the day? (Regularity of Meals)</label>
                         <select
                             className="form-control"
                             name="Regularity_of_Meals"
@@ -305,12 +327,12 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
                             required
                         >
                             <option value="">Select Option</option>
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">How large are your portions on average (in cups or plates per meal) (Portion Control) ?</label>
+                    <div className="nutrition-modal-mb-3">
+                        <label className="nutrition-modal-form-label">How large are your portions on average (in cups or plates per meal) (Portion Control) ?</label>
                         <select
                             className="form-control"
                             name="Portion_Control"
@@ -326,8 +348,8 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
                             <option value="5.0">Large (2 plates or 4 cups)</option>
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">What is your estimated daily calorie intake (if known)?(e.g., 2000 calories per day) </label>
+                    <div className="nutrition-modal-mb-3">
+                        <label className="nutrition-modal-form-label">What is your estimated daily calorie intake (if known)?(e.g., 2000 calories per day) </label>
                         <input
                             className="form-control"
                             type="number"
@@ -339,8 +361,8 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
                         />
 
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">How many sugary snacks or drinks do you consume in a day? (Sugar Consumption) (g/day)</label>
+                    <div className="nutrition-modal-mb-3">
+                        <label className="nutrition-modal-form-label">How many sugary snacks or drinks do you consume in a day? (Sugar Consumption) (g/day)</label>
                         <select
                             className="form-control"
                             name="Sugar_Consumption"
@@ -355,11 +377,21 @@ const NutrationRiskModal: React.FC<NutrationRiskModalProps> = ({ isOpen, onClose
                             <option value="4.0">4</option>
                             <option value="5.0">5</option>
                         </select>
-                    </div>                    <div className="button-group">
-                        <button className="btn btn-primary" type="submit" disabled={isLoading}>
-                            {isLoading ? 'Submitting...' : 'Submit'}
+                    </div>
+                    <div className="nutrition-modal-button-group">
+                        <button
+                            className="nutrition-modal-btn-primary"
+                            type="submit"
+                            disabled={isLoading}
+                        >
+                            {isLoading ? 'Predicting...' : 'Submit'}
                         </button>
-                        <button className="modal-close-btn" onClick={onClose}>
+                        <button
+                            className="nutrition-modal-close-btn"
+                            type="button"
+                            onClick={onClose}
+                            disabled={isLoading}
+                        >
                             Close
                         </button>
                     </div>

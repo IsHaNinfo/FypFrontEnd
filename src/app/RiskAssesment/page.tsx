@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Flat } from "@alptugidin/react-circular-progress-bar";
 import "./styles.css"; // Import the external CSS file
 import axios from "axios";
-import NutritionRiskModal from '../../components/NutritionRiskModal/NutrationRiskModal';
+import NutritionRiskModal from '../../components/NutritionRiskModal/NutritionRiskModal';
 import PhysicalActivityRiskModal from '../../components/PhysicalActivityRiskModal/PhysicalRiskModal';
 
 const RiskAssesment = () => {
@@ -11,31 +11,46 @@ const RiskAssesment = () => {
     const [loading, setLoading] = useState(true);
     const [showNutritionModal, setShowNutritionModal] = useState(false);
     const [showPhysicalModal, setShowPhysicalModal] = useState(false);
+    const [showMentalModal, setShowMentalModal] = useState(false);
 
-    useEffect(() => {
-        const fetchUserPrediction = async () => {
-            try {
-                const storedUser = localStorage.getItem('userData');
-                if (storedUser) {
-                    const { email } = JSON.parse(storedUser);
-                    const response = await axios.get(`http://localhost:8000/users?email=${email}`);
-                    if (response.data && response.data.length > 0) {
-                        const user = response.data[0];
-                        if (user.diabeticAssessments && user.diabeticAssessments.length > 0) {
-                            // Get the latest prediction
-                            const latestAssessment = user.diabeticAssessments[user.diabeticAssessments.length - 1];
-                            setPrediction(latestAssessment.prediction);
-                        }
+    const fetchUserPrediction = async () => {
+        try {
+            const storedUser = localStorage.getItem('userData');
+            if (storedUser) {
+                const { email } = JSON.parse(storedUser);
+                const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                if (response.data && response.data.length > 0) {
+                    const user = response.data[0];
+                    if (user.diabeticAssessments && user.diabeticAssessments.length > 0) {
+                        // Get the latest prediction
+                        const latestAssessment = user.diabeticAssessments[user.diabeticAssessments.length - 1];
+                        setPrediction(latestAssessment.prediction);
                     }
                 }
-            } catch (error) {
-                console.error('Error fetching prediction:', error);
-            } finally {
-                setLoading(false);
             }
-        };
+        } catch (error) {
+            console.error('Error fetching prediction:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
         fetchUserPrediction();
     }, []);
+
+    // Add event listener for prediction updates
+    useEffect(() => {
+        const handlePredictionUpdate = () => {
+            fetchUserPrediction();
+        };
+
+        window.addEventListener('predictionUpdated', handlePredictionUpdate);
+        return () => {
+            window.removeEventListener('predictionUpdated', handlePredictionUpdate);
+        };
+    }, []);
+
     const percentage = Math.round(prediction);
 
     return (
@@ -120,13 +135,19 @@ const RiskAssesment = () => {
                         >
                             Nutrition Risk
                         </button>
+                        
                         <button
                             className="risk-button physical-activity-risk"
                             onClick={() => setShowPhysicalModal(true)}
                         >
                             Physical Activity Risk
                         </button>
-                        <button className="risk-button mental-risk">Mental Risk</button>
+                        <button
+                            className="risk-button mental-risk"
+                            onClick={() => setShowMentalModal(true)}
+                        >
+                            Mental Risk
+                        </button>
                     </div>
                 </div>
             </div>
@@ -140,6 +161,16 @@ const RiskAssesment = () => {
                 isOpen={showPhysicalModal}
                 onClose={() => setShowPhysicalModal(false)}
             />
+
+            {showMentalModal && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h2>Mental Risk Assessment</h2>
+                        <p>This feature is coming soon!</p>
+                        <button onClick={() => setShowMentalModal(false)}>Close</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

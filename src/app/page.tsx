@@ -6,6 +6,7 @@ import RiskAssesment from './RiskAssesment/page';
 import UserMenu from "../components/UserMenu";
 import RiskScores from './RiskScores/page';
 import axios from "axios";
+import { BackgroundLines } from "@/components/ui/background-lines";
 
 export default function Home() {
   const router = useRouter();
@@ -83,6 +84,7 @@ export default function Home() {
   }
 
   return (
+    <BackgroundLines svgOptions={{ duration: 15 }}>
     <div style={{ position: "relative", minHeight: "100vh" }}>
       <button
         style={{
@@ -115,5 +117,6 @@ export default function Home() {
       {hasPredictions && <RiskAssesment />}
       {hasPredictions && <RiskScores />}
     </div>
+    </BackgroundLines>
   );
 }

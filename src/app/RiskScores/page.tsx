@@ -4,6 +4,8 @@ import API_CONFIG, { getDatabaseUrl, getAiModelUrl } from '../../services/api';
 import axios from 'axios';
 import "./styles.css";
 import NutritionRecommandationModal from '../../components/NutritionRecommandationModal';
+import FeatureContributionsModal from '../../components/NutritionFeatureContributionsModal/NutritionFeatureContributionsModal';
+import PhysicalRiskFeatureContributionsModal from '../../components/PhysicalRiskFeatureContributionsModal/PhysicalRiskFeatureContributionsModal';
 
 const RiskScores = () => {
     const [nutritionScore, setNutritionScore] = useState<number>(0);
@@ -11,6 +13,10 @@ const RiskScores = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [showNutritionModal, setShowNutritionModal] = useState(false);
     const [nutritionRecommendations, setNutritionRecommendations] = useState([]);
+    const [showFeatureContributions, setShowFeatureContributions] = useState(false);
+    const [featureContributions, setFeatureContributions] = useState(null);
+    const [showPhysicalFeatureContributions, setShowPhysicalFeatureContributions] = useState(false);
+    const [physicalFeatureContributions, setPhysicalFeatureContributions] = useState(null);
 
     const mockRecommendations = [
 
@@ -46,10 +52,14 @@ const RiskScores = () => {
                 const userResponseData = await response.json();
 
                 if (userResponseData && userResponseData[0]?.nutritionAssessments?.length > 0) {
-                    // Get the latest nutrition assessment
                     const latestAssessment = userResponseData[0].nutritionAssessments[userResponseData[0].nutritionAssessments.length - 1];
                     const score = latestAssessment.nutritionRiskPrediction[0];
                     setNutritionScore(Math.round(score));
+
+                    // Set feature contributions if available
+                    if (latestAssessment.feature_contributions) {
+                        setFeatureContributions(latestAssessment.feature_contributions);
+                    }
                 }
 
                 // Get the latest physical assessment
@@ -57,6 +67,11 @@ const RiskScores = () => {
                     const latestPhysicalAssessment = userResponseData[0].physicalAssessments[userResponseData[0].physicalAssessments.length - 1];
                     const physicalScore = latestPhysicalAssessment.physicalRiskPrediction[0];
                     setPhysicalScore(Math.round(physicalScore));
+
+                    // Set physical feature contributions if available
+                    if (latestPhysicalAssessment.feature_contributions) {
+                        setPhysicalFeatureContributions(latestPhysicalAssessment.feature_contributions);
+                    }
                 }
                 setIsLoading(false);
             } catch (error) {
@@ -67,16 +82,74 @@ const RiskScores = () => {
 
         fetchUserData();
 
-        // Add event listener for prediction updates
-        const handlePredictionUpdate = () => {
-            fetchUserData();
+        // Listen for nutrition assessment updates
+        const handleNutritionUpdate = (event: CustomEvent) => {
+            const { prediction, featureContributions } = event.detail;
+            setNutritionScore(Math.round(prediction));
+            setFeatureContributions(featureContributions);
         };
 
-        window.addEventListener('predictionUpdated', handlePredictionUpdate);
+        // Listen for physical assessment updates
+        const handlePhysicalUpdate = (event: CustomEvent) => {
+            const { prediction, featureContributions } = event.detail;
+            setPhysicalScore(Math.round(prediction));
+            setPhysicalFeatureContributions(featureContributions);
+        };
+
+        window.addEventListener('nutritionAssessmentUpdated', handleNutritionUpdate as EventListener);
+        window.addEventListener('physicalAssessmentUpdated', handlePhysicalUpdate as EventListener);
+
         return () => {
-            window.removeEventListener('predictionUpdated', handlePredictionUpdate);
+            window.removeEventListener('nutritionAssessmentUpdated', handleNutritionUpdate as EventListener);
+            window.removeEventListener('physicalAssessmentUpdated', handlePhysicalUpdate as EventListener);
         };
     }, []);
+
+    // Add this function to fetch feature contributions
+    const fetchFeatureContributions = async () => {
+        try {
+            const storedUser = localStorage.getItem('userData');
+            if (storedUser) {
+                const { email } = JSON.parse(storedUser);
+                const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                if (response.data && response.data.length > 0) {
+                    const user = response.data[0];
+                    if (user.nutritionAssessments && user.nutritionAssessments.length > 0) {
+                        const latestAssessment = user.nutritionAssessments[user.nutritionAssessments.length - 1];
+                        if (latestAssessment.feature_contributions) {
+                            setFeatureContributions(latestAssessment.feature_contributions);
+                            setShowFeatureContributions(true);
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching feature contributions:', error);
+        }
+    };
+
+    // Add this function to fetch physical feature contributions
+    const fetchPhysicalFeatureContributions = async () => {
+        try {
+            const storedUser = localStorage.getItem('userData');
+            if (storedUser) {
+                const { email } = JSON.parse(storedUser);
+                const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                if (response.data && response.data.length > 0) {
+                    const user = response.data[0];
+                    if (user.physicalAssessments && user.physicalAssessments.length > 0) {
+                        const latestAssessment = user.physicalAssessments[user.physicalAssessments.length - 1];
+                        if (latestAssessment.feature_contributions) {
+                            setPhysicalFeatureContributions(latestAssessment.feature_contributions);
+                            setShowPhysicalFeatureContributions(true);
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching physical feature contributions:', error);
+        }
+    };
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -120,6 +193,12 @@ const RiskScores = () => {
                             intersectionEnabled: true,
                         }}
                     />
+                    <button
+                        className="recommendation-button nutrition"
+                        onClick={fetchFeatureContributions}
+                    >
+                        Feature Contribution
+                    </button>
                     <button className="recommendation-button nutrition" onClick={() => {
                         setNutritionRecommendations(mockRecommendations);
                         setShowNutritionModal(true);
@@ -159,6 +238,9 @@ const RiskScores = () => {
                             intersectionEnabled: true,
                         }}
                     />
+                    <button className="recommendation-button physical" onClick={fetchPhysicalFeatureContributions}>
+                        Feature Contribution
+                    </button>
                     <button className="recommendation-button physical">
                         View Recommendations
                     </button>
@@ -198,12 +280,25 @@ const RiskScores = () => {
                     <button className="recommendation-button mental">
                         View Recommendations
                     </button>
+                    <button className="recommendation-button mental">
+                        View Recommendations
+                    </button>
                 </div>
             </div>
             <NutritionRecommandationModal
                 isOpen={showNutritionModal}
                 onClose={() => setShowNutritionModal(false)}
                 recommendations={nutritionRecommendations}
+            />
+            <FeatureContributionsModal
+                isOpen={showFeatureContributions}
+                onClose={() => setShowFeatureContributions(false)}
+                contributions={featureContributions}
+            />
+            <PhysicalRiskFeatureContributionsModal
+                isOpen={showPhysicalFeatureContributions}
+                onClose={() => setShowPhysicalFeatureContributions(false)}
+                contributions={physicalFeatureContributions}
             />
         </div>
     );

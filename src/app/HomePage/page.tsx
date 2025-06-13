@@ -79,7 +79,7 @@ const HomePage = () => {
     };
 
     return (
-        <BackgroundLines svgOptions={{ duration: 15 }} >
+        <div>
             <div
                 className="hero-background"
             >               
@@ -141,7 +141,7 @@ const HomePage = () => {
                 onClose={() => setIsModalOpen(false)}
                 onPredictionComplete={handlePredictionComplete}
             />
-        </BackgroundLines>
+        </div>
     );
 };
 

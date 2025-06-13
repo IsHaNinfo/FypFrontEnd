@@ -219,65 +219,65 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose, 
                             <label className="diabetic-modal-form-label">Do any of your family members have diabetes?</label>
                             <select className="diabetic-modal-form-control" name="Family_History" onChange={handleChange} required defaultValue="">
                                 <option value="" disabled>Select an Option</option>
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                         <div className="diabetic-modal-mb-3">
                             <label className="diabetic-modal-form-label">Do you have high blood pressure ?</label>
                             <select className="diabetic-modal-form-control" name="Blood_Pressure" onChange={handleChange} required defaultValue="">
                                 <option value="" disabled>Select an Option</option>
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                         <div className="diabetic-modal-mb-3">
                             <label className="diabetic-modal-form-label">Do you have high cholesterol ?</label>
                             <select className="diabetic-modal-form-control" name="Cholesterol_Lipid_Levels" onChange={handleChange} required defaultValue="">
                                 <option value="" disabled>Select an Option</option>
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                         <div className="diabetic-modal-mb-3">
                             <label className="diabetic-modal-form-label">Do you feel unusually thirsty or hungry, even after eating?</label>
                             <select className="diabetic-modal-form-control" name="Thirst" onChange={handleChange} required defaultValue="">
                                 <option value="" disabled>Select an Option</option>
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                         <div className="diabetic-modal-mb-3">
                             <label className="diabetic-modal-form-label">Do you often feel tired or lack energy, even after a full night's sleep? </label>
                             <select className="diabetic-modal-form-control" name="Fatigue" onChange={handleChange} required defaultValue="">
                                 <option value="" disabled>Select an Option</option>
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                         <div className="diabetic-modal-mb-3">
                             <label className="diabetic-modal-form-label">Do you need to urinate more often, especially during the night? (Urination)</label>
                             <select className="diabetic-modal-form-control" name="Urination" onChange={handleChange} required defaultValue="">
                                 <option value="" disabled>Select an Option</option>
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                         <div className="diabetic-modal-mb-3">
                             <label className="diabetic-modal-form-label">Have you noticed blurry vision or any other vision problems? (Vision Changes)</label>
                             <select className="diabetic-modal-form-control" name="Vision_Changes" onChange={handleChange} required defaultValue="">
                                 <option value="" disabled>Select an Option</option>
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                         <div className="diabetic-modal-mb-3">
                             <label className="diabetic-modal-form-label">Expected Diabetic Risk (Risk Level)</label>
                             <select className="diabetic-modal-form-control" name="RiskLevel" onChange={handleChange} required defaultValue="">
                                 <option value="" disabled>Select Risk</option>
-                                <option value="0.0">Low</option>
-                                <option value="1.0">Moderate</option>
-                                <option value="2.0">High</option>
+                                <option value="Low">Low</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="High">High</option>
                             </select>
                         </div>
                         <div className="diabetic-modal-button-group">

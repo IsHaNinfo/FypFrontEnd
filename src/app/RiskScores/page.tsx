@@ -6,6 +6,18 @@ import "./styles.css";
 import NutritionRecommandationModal from '../../components/NutritionRecommandationModal';
 import FeatureContributionsModal from '../../components/NutritionFeatureContributionsModal/NutritionFeatureContributionsModal';
 import PhysicalRiskFeatureContributionsModal from '../../components/PhysicalRiskFeatureContributionsModal/PhysicalRiskFeatureContributionsModal';
+import AddSuggestionModal from '../../components/AddSuggestionModal/AddSuggestionModal';
+import ExerciseRecommendationsModal from '../../components/ExerciseRecommendationsModal/ExerciseRecommendationsModal';
+
+interface Recommendation {
+    day: string;
+    meals: {
+        breakfast: { food: string; grams: number }[];
+        lunch: { food: string; grams: number }[];
+        dinner: { food: string; grams: number }[];
+        snack: { food: string; grams: number }[];
+    };
+}
 
 const RiskScores = () => {
     const [nutritionScore, setNutritionScore] = useState<number>(0);
@@ -17,6 +29,10 @@ const RiskScores = () => {
     const [featureContributions, setFeatureContributions] = useState(null);
     const [showPhysicalFeatureContributions, setShowPhysicalFeatureContributions] = useState(false);
     const [physicalFeatureContributions, setPhysicalFeatureContributions] = useState(null);
+    const [showAddSuggestionModal, setShowAddSuggestionModal] = useState(false);
+    const [suggestionType, setSuggestionType] = useState<'nutrition' | 'physical' | 'mental'>('nutrition');
+    const [showPreviousRecommendations, setShowPreviousRecommendations] = useState(false);
+    const [previousRecommendations, setPreviousRecommendations] = useState<any>(null);
 
     const mockRecommendations = [
 
@@ -151,6 +167,65 @@ const RiskScores = () => {
         }
     };
 
+    const handleAddSuggestion = async (suggestionData: any) => {
+        try {
+            const storedUser = localStorage.getItem('userData');
+            if (storedUser) {
+                const { email } = JSON.parse(storedUser);
+                const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                if (response.data && response.data.length > 0) {
+                    const user = response.data[0];
+                    const updatedUser = {
+                        ...user,
+                        suggestions: [
+                            ...(user.suggestions || []),
+                            {
+                                goal: suggestionData.goal,
+                                suggestions: suggestionData.suggestions,
+                                date: new Date().toISOString()
+                            }
+                        ]
+                    };
+                    await axios.put(`http://localhost:8000/users/${user.id}`, updatedUser);
+                }
+            }
+        } catch (error) {
+            console.error('Error adding suggestion:', error);
+        }
+    };
+
+    // Add this function to fetch previous recommendations
+    const fetchPreviousRecommendations = async () => {
+        try {
+            const storedUser = localStorage.getItem('userData');
+            if (storedUser) {
+                const { email } = JSON.parse(storedUser);
+                const response = await fetch(getDatabaseUrl(`/users?email=${email}`));
+                const userData = await response.json();
+
+                if (userData && userData.length > 0) {
+                    const user = userData[0];
+                    if (user.physical_activity_recommendations && user.physical_activity_recommendations.length > 0) {
+                        // Filter out empty objects and get the latest recommendation
+                        const validRecommendations = user.physical_activity_recommendations.filter(
+                            (rec: any) => rec.recommendations && Object.keys(rec.recommendations).length > 0
+                        );
+
+                        if (validRecommendations.length > 0) {
+                            const latestRecommendation = validRecommendations
+                                .sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0];
+
+                            setPreviousRecommendations(latestRecommendation.recommendations);
+                            setShowPreviousRecommendations(true);
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching previous recommendations:', error);
+        }
+    };
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -241,8 +316,17 @@ const RiskScores = () => {
                     <button className="recommendation-button physical" onClick={fetchPhysicalFeatureContributions}>
                         Feature Contribution
                     </button>
-                    <button className="recommendation-button physical">
+                    <button className="recommendation-button physical" onClick={() => {
+                        setSuggestionType('physical');
+                        setShowAddSuggestionModal(true);
+                    }}>
                         View Recommendations
+                    </button>
+                    <button
+                        className="recommendation-button physical"
+                        onClick={fetchPreviousRecommendations}
+                    >
+                        Previous Recommendations
                     </button>
                 </div>
 
@@ -300,6 +384,18 @@ const RiskScores = () => {
                 onClose={() => setShowPhysicalFeatureContributions(false)}
                 contributions={physicalFeatureContributions}
             />
+            <AddSuggestionModal
+                isOpen={showAddSuggestionModal}
+                onClose={() => setShowAddSuggestionModal(false)}
+                onSubmit={handleAddSuggestion}
+            />
+            {showPreviousRecommendations && previousRecommendations && (
+                <ExerciseRecommendationsModal
+                    isOpen={showPreviousRecommendations}
+                    onClose={() => setShowPreviousRecommendations(false)}
+                    recommendations={previousRecommendations}
+                />
+            )}
         </div>
     );
 };

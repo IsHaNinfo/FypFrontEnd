@@ -361,6 +361,434 @@
             "Weight": 0.16
           }
         }
+      ],
+      "physical_activity_recommendations": [
+        {},
+        {
+          "id": "1749879523582",
+          "timestamp": "2025-06-14T05:38:43.582Z",
+          "recommendations": {
+            "bmi": 24.337479718766904,
+            "class": "class_1",
+            "goal": "weight_loss",
+            "is_novel": false,
+            "physical_activity_risk": 86.39090505221476,
+            "routine": [
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "push",
+                    "instructions": [
+                      "Stand up and extend your arms straight out by the sides. The arms should be parallel to the floor and perpendicular (90-degree angle) to your torso. This will be your starting position.",
+                      "Slowly start to make circles of about 1 foot in diameter with each outstretched arm. Breathe normally as you perform the movement.",
+                      "Continue the circular motion of the outstretched arms for about ten seconds. Then reverse the movement, going the opposite direction."
+                    ],
+                    "level": "beginner",
+                    "name": "Arm Circles",
+                    "primaryMuscles": [
+                      "shoulders"
+                    ],
+                    "reps_sets": "2x10",
+                    "secondaryMuscles": [
+                      "traps"
+                    ]
+                  }
+                ],
+                "role": "Warm-Up"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "static",
+                    "instructions": [
+                      "Position yourself on the floor on your hands and knees.",
+                      "Pull your belly in and round your spine, lower back, shoulders, and neck, letting your head drop.",
+                      "Hold for 15 seconds."
+                    ],
+                    "level": "beginner",
+                    "name": "Cat Stretch",
+                    "primaryMuscles": [
+                      "lower back"
+                    ],
+                    "reps_sets": "2x10",
+                    "secondaryMuscles": [
+                      "middle back",
+                      "traps"
+                    ]
+                  },
+                  {
+                    "equipment": "body only",
+                    "force": "static",
+                    "instructions": [
+                      "To begin, lie straight and face down on the floor or exercise mat. Your arms should be fully extended in front of you. This is the starting position.",
+                      "Simultaneously raise your arms, legs, and chest off of the floor and hold this contraction for 2 seconds. Tip: Squeeze your lower back to get the best results from this exercise. Remember to exhale during this movement. Note: When holding the contracted position, you should look like superman when he is flying.",
+                      "Slowly begin to lower your arms, legs and chest back down to the starting position while inhaling.",
+                      "Repeat for the recommended amount of repetitions prescribed in your program."
+                    ],
+                    "level": "beginner",
+                    "name": "Superman",
+                    "primaryMuscles": [
+                      "lower back"
+                    ],
+                    "reps_sets": "2x10",
+                    "secondaryMuscles": [
+                      "glutes",
+                      "hamstrings"
+                    ]
+                  }
+                ],
+                "role": "Stretching"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "body only",
+                    "force": "static",
+                    "instructions": [
+                      "To begin, lie straight and face down on the floor or exercise mat. Your arms should be fully extended in front of you. This is the starting position.",
+                      "Simultaneously raise your arms, legs, and chest off of the floor and hold this contraction for 2 seconds. Tip: Squeeze your lower back to get the best results from this exercise. Remember to exhale during this movement. Note: When holding the contracted position, you should look like superman when he is flying.",
+                      "Slowly begin to lower your arms, legs and chest back down to the starting position while inhaling.",
+                      "Repeat for the recommended amount of repetitions prescribed in your program."
+                    ],
+                    "level": "beginner",
+                    "name": "Superman",
+                    "primaryMuscles": [
+                      "lower back"
+                    ],
+                    "reps_sets": "2x10",
+                    "secondaryMuscles": [
+                      "glutes",
+                      "hamstrings"
+                    ]
+                  },
+                  {
+                    "equipment": null,
+                    "force": "pull",
+                    "instructions": [
+                      "Begin in a pushup position, with your weight supported by your hands and toes. Flexing the knee and hip, bring one leg until the knee is approximately under the hip. This will be your starting position.",
+                      "Explosively reverse the positions of your legs, extending the bent leg until the leg is straight and supported by the toe, and bringing the other foot up with the hip and knee flexed. Repeat in an alternating fashion for 20-30 seconds."
+                    ],
+                    "level": "beginner",
+                    "name": "Mountain Climbers",
+                    "primaryMuscles": [
+                      "quadriceps"
+                    ],
+                    "reps_sets": "2x10",
+                    "secondaryMuscles": [
+                      "chest",
+                      "hamstrings",
+                      "shoulders"
+                    ]
+                  }
+                ],
+                "role": "Strength"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "push",
+                    "instructions": [
+                      "Stand up and extend your arms straight out by the sides. The arms should be parallel to the floor and perpendicular (90-degree angle) to your torso. This will be your starting position.",
+                      "Slowly start to make circles of about 1 foot in diameter with each outstretched arm. Breathe normally as you perform the movement.",
+                      "Continue the circular motion of the outstretched arms for about ten seconds. Then reverse the movement, going the opposite direction."
+                    ],
+                    "level": "beginner",
+                    "name": "Arm Circles",
+                    "primaryMuscles": [
+                      "shoulders"
+                    ],
+                    "reps_sets": "2x10",
+                    "secondaryMuscles": [
+                      "traps"
+                    ]
+                  }
+                ],
+                "role": "Cardio"
+              }
+            ],
+            "sitting_time": 1
+          }
+        },
+        {
+          "id": "1749880168807",
+          "timestamp": "2025-06-14T05:49:28.807Z",
+          "recommendations": {
+            "bmi": 24.337479718766904,
+            "class": "class_2",
+            "goal": "weight_loss",
+            "is_novel": false,
+            "physical_activity_risk": 0.8639090505221476,
+            "routine": [
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "push",
+                    "instructions": [
+                      "Stand up and extend your arms straight out by the sides. The arms should be parallel to the floor and perpendicular (90-degree angle) to your torso. This will be your starting position.",
+                      "Slowly start to make circles of about 1 foot in diameter with each outstretched arm. Breathe normally as you perform the movement.",
+                      "Continue the circular motion of the outstretched arms for about ten seconds. Then reverse the movement, going the opposite direction."
+                    ],
+                    "level": "beginner",
+                    "name": "Arm Circles",
+                    "primaryMuscles": [
+                      "shoulders"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "traps"
+                    ]
+                  }
+                ],
+                "role": "Warm-Up"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "exercise ball",
+                    "force": "static",
+                    "instructions": [
+                      "Get on your hands and knees next to an exercise ball.",
+                      "Place your elbows on top of the ball, keeping your arm out to your side. This will be your starting position.",
+                      "Lower your torso towards the floor, keeping your elbow on top of the ball. Hold the stretch for 20-30 seconds, and repeat with the other arm."
+                    ],
+                    "level": "beginner",
+                    "name": "Chest Stretch on Stability Ball",
+                    "primaryMuscles": [
+                      "chest"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  },
+                  {
+                    "equipment": null,
+                    "force": "static",
+                    "instructions": [
+                      "This stretch works best standing. Cross your left arm over the midline of your body and hold the left wrist in your right hand down at the level of your hips. Start the stretch with a bent left arm.",
+                      "Slowly straighten, pull, and lift it up to shoulder height, as pictured. Feel this stretch originate in your back, not your shoulders, and don't pull too hard on the shoulders joint. Switch sides."
+                    ],
+                    "level": "beginner",
+                    "name": "Side Wrist Pull",
+                    "primaryMuscles": [
+                      "shoulders"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "forearms",
+                      "lats"
+                    ]
+                  }
+                ],
+                "role": "Stretching"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "body only",
+                    "force": "static",
+                    "instructions": [
+                      "To begin, lie straight and face down on the floor or exercise mat. Your arms should be fully extended in front of you. This is the starting position.",
+                      "Simultaneously raise your arms, legs, and chest off of the floor and hold this contraction for 2 seconds. Tip: Squeeze your lower back to get the best results from this exercise. Remember to exhale during this movement. Note: When holding the contracted position, you should look like superman when he is flying.",
+                      "Slowly begin to lower your arms, legs and chest back down to the starting position while inhaling.",
+                      "Repeat for the recommended amount of repetitions prescribed in your program."
+                    ],
+                    "level": "beginner",
+                    "name": "Superman",
+                    "primaryMuscles": [
+                      "lower back"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "glutes",
+                      "hamstrings"
+                    ]
+                  },
+                  {
+                    "equipment": "body only",
+                    "force": "static",
+                    "instructions": [
+                      "Get into a prone position on the floor, supporting your weight on your toes and your forearms. Your arms are bent and directly below the shoulder.",
+                      "Keep your body straight at all times, and hold this position as long as possible. To increase difficulty, an arm or leg can be raised."
+                    ],
+                    "level": "beginner",
+                    "name": "Plank",
+                    "primaryMuscles": [
+                      "abdominals"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  }
+                ],
+                "role": "Strength"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "push",
+                    "instructions": [
+                      "Stand up and extend your arms straight out by the sides. The arms should be parallel to the floor and perpendicular (90-degree angle) to your torso. This will be your starting position.",
+                      "Slowly start to make circles of about 1 foot in diameter with each outstretched arm. Breathe normally as you perform the movement.",
+                      "Continue the circular motion of the outstretched arms for about ten seconds. Then reverse the movement, going the opposite direction."
+                    ],
+                    "level": "beginner",
+                    "name": "Arm Circles",
+                    "primaryMuscles": [
+                      "shoulders"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "traps"
+                    ]
+                  }
+                ],
+                "role": "Cardio"
+              }
+            ],
+            "sitting_time": 1
+          }
+        },
+        {
+          "id": "1749881524221",
+          "timestamp": "2025-06-14T06:12:04.221Z",
+          "recommendations": {
+            "bmi": 24.337479718766904,
+            "class": "class_2",
+            "goal": "diabetes_management",
+            "is_novel": true,
+            "physical_activity_risk": 0.8639090505221476,
+            "routine": [
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "push",
+                    "instructions": [
+                      "Stand up and extend your arms straight out by the sides. The arms should be parallel to the floor and perpendicular (90-degree angle) to your torso. This will be your starting position.",
+                      "Slowly start to make circles of about 1 foot in diameter with each outstretched arm. Breathe normally as you perform the movement.",
+                      "Continue the circular motion of the outstretched arms for about ten seconds. Then reverse the movement, going the opposite direction."
+                    ],
+                    "level": "beginner",
+                    "name": "Arm Circles",
+                    "primaryMuscles": [
+                      "shoulders"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "traps"
+                    ]
+                  }
+                ],
+                "role": "Warm-Up"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "push",
+                    "instructions": [
+                      "Lie flat on your back, bend one knee, and put that foot flat on the floor to stabilize your spine.",
+                      "Extend the other leg in the air. If you're tight, you wont be able to straighten it. That's okay. Extend the knee so that the sole of the lifted foot faces the ceiling (or as close as you can get it).",
+                      "Slowly straighten the legs as much as possible and then pull the leg toward your nose. Switch sides."
+                    ],
+                    "level": "beginner",
+                    "name": "Leg-Up Hamstring Stretch",
+                    "primaryMuscles": [
+                      "hamstrings"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  },
+                  {
+                    "equipment": "other",
+                    "force": "static",
+                    "instructions": [
+                      "Lie on a flat bench or step, and hang one leg and arm over the side.",
+                      "Bend the knee and hold the top of the foot. As you do this, be careful not to arch your lower back.",
+                      "Pull the belly button to the spine to stay in neutral. Press your foot down and into your hand. To add the hip stretch, lift the hip of the leg you're holding up toward the ceiling.",
+                      "Switch sides."
+                    ],
+                    "level": "beginner",
+                    "name": "On-Your-Back Quad Stretch",
+                    "primaryMuscles": [
+                      "quadriceps"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  }
+                ],
+                "role": "Stretching"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "body only",
+                    "force": "static",
+                    "instructions": [
+                      "To begin, lie straight and face down on the floor or exercise mat. Your arms should be fully extended in front of you. This is the starting position.",
+                      "Simultaneously raise your arms, legs, and chest off of the floor and hold this contraction for 2 seconds. Tip: Squeeze your lower back to get the best results from this exercise. Remember to exhale during this movement. Note: When holding the contracted position, you should look like superman when he is flying.",
+                      "Slowly begin to lower your arms, legs and chest back down to the starting position while inhaling.",
+                      "Repeat for the recommended amount of repetitions prescribed in your program."
+                    ],
+                    "level": "beginner",
+                    "name": "Superman",
+                    "primaryMuscles": [
+                      "lower back"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "glutes",
+                      "hamstrings"
+                    ]
+                  },
+                  {
+                    "equipment": "body only",
+                    "force": "static",
+                    "instructions": [
+                      "Get into a prone position on the floor, supporting your weight on your toes and your forearms. Your arms are bent and directly below the shoulder.",
+                      "Keep your body straight at all times, and hold this position as long as possible. To increase difficulty, an arm or leg can be raised."
+                    ],
+                    "level": "beginner",
+                    "name": "Plank",
+                    "primaryMuscles": [
+                      "abdominals"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  }
+                ],
+                "role": "Strength"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "push",
+                    "instructions": [
+                      "Stand up and extend your arms straight out by the sides. The arms should be parallel to the floor and perpendicular (90-degree angle) to your torso. This will be your starting position.",
+                      "Slowly start to make circles of about 1 foot in diameter with each outstretched arm. Breathe normally as you perform the movement.",
+                      "Continue the circular motion of the outstretched arms for about ten seconds. Then reverse the movement, going the opposite direction."
+                    ],
+                    "level": "beginner",
+                    "name": "Arm Circles",
+                    "primaryMuscles": [
+                      "shoulders"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "traps"
+                    ]
+                  }
+                ],
+                "role": "Cardio"
+              }
+            ],
+            "sitting_time": 1
+          }
+        }
       ]
     },
     {

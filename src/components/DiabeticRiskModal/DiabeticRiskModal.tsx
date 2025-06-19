@@ -25,6 +25,7 @@ interface DiabeticAssessment {
     timestamp: string;
     formData: any;
     prediction: number;
+    validationData?: any;
 }
 
 const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose, onPredictionComplete }) => {
@@ -38,6 +39,7 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose, 
     const loadingMessages = [
         "Analyzing your health data...",
         "Calculating diabetic risk score...",
+        "Validating prediction...",
         "Saving your assessment...",
         "Almost done..."
     ];
@@ -119,30 +121,57 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose, 
                     "Content-Type": "application/json",
                 },
             });
+            console.log("response", response.data);
 
-            const predictionValue = response.data.prediction;
+            // Extract prediction and validation data from the new response structure
+            const { predictions, summary, validation_metrics, comparison, similar_cases } = response.data;
+
+            // You can choose which model's prediction to use as the main prediction
+            // Here, we use your_model's probability as the main prediction value
+            const predictionValue = predictions?.your_model?.probability ?? 0;
+
+            // Prepare validationData to store in db.json
+            const validationData = {
+                predictions,
+                summary,
+                validation_metrics,
+                comparison,
+                similar_cases
+            };
+
             setPrediction(predictionValue);
 
-            // Step 3: Saving assessment
-            setLoadingStep(2);
+            // Step 4: Saving assessment with validation data
+            setLoadingStep(3);
             const assessment: DiabeticAssessment = {
                 id: Date.now().toString(),
                 timestamp: new Date().toISOString(),
                 formData: formData,
-                prediction: predictionValue
+                prediction: predictionValue,
+                validationData: validationData
             };
 
             // Update user's assessments in db.json
             await updateUserAssessment(assessment);
 
-            // Step 4: Finalizing
-            setLoadingStep(3);
+            // Step 5: Finalizing
+            setLoadingStep(4);
             await new Promise(resolve => setTimeout(resolve, 1000));
 
             setShowResult(true);
             if (onPredictionComplete) {
                 onPredictionComplete(predictionValue);
             }
+
+            // Dispatch custom event to notify other components about the update
+            const event = new CustomEvent('diabeticAssessmentUpdated', {
+                detail: {
+                    prediction: predictionValue,
+                    validationData: validationData
+                }
+            });
+            window.dispatchEvent(event);
+
             onClose();
         } catch (error: any) {
             console.error("Error:", error);
@@ -166,7 +195,7 @@ const DiabeticRiskModal: React.FC<DiabeticRiskModalProps> = ({ isOpen, onClose, 
     return (
         <div className="diabetic-modal-overlay">
             <div className="diabetic-modal-content">
-            <button className="modal-close-icon" onClick={onClose} type="button">
+                <button className="modal-close-icon" onClick={onClose} type="button">
                     &times;
                 </button>
                 <div className="diabetic-modal-header">

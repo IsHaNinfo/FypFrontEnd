@@ -5,6 +5,7 @@ import "./styles.css"; // Import the external CSS file
 import axios from "axios";
 import NutritionRiskModal from '../../components/NutritionRiskModal/NutritionRiskModal';
 import PhysicalActivityRiskModal from '../../components/PhysicalActivityRiskModal/PhysicalRiskModal';
+import RiskValidationModal from '../../components/RiskValidationModal/RiskValidationModal';
 
 const RiskAssesment = () => {
     const [prediction, setPrediction] = useState<number>(0);
@@ -12,6 +13,8 @@ const RiskAssesment = () => {
     const [showNutritionModal, setShowNutritionModal] = useState(false);
     const [showPhysicalModal, setShowPhysicalModal] = useState(false);
     const [showMentalModal, setShowMentalModal] = useState(false);
+    const [showValidationModal, setShowValidationModal] = useState(false);
+    const [validationData, setValidationData] = useState<any>(null);
 
     const fetchUserPrediction = async () => {
         try {
@@ -25,6 +28,11 @@ const RiskAssesment = () => {
                         // Get the latest prediction
                         const latestAssessment = user.diabeticAssessments[user.diabeticAssessments.length - 1];
                         setPrediction(latestAssessment.prediction);
+
+                        // Set validation data if available
+                        if (latestAssessment.validationData) {
+                            setValidationData(latestAssessment.validationData);
+                        }
                     }
                 }
             }
@@ -45,13 +53,30 @@ const RiskAssesment = () => {
             fetchUserPrediction();
         };
 
+        const handleDiabeticAssessmentUpdate = (event: CustomEvent) => {
+            const { prediction, validationData } = event.detail;
+            setPrediction(prediction);
+            setValidationData(validationData);
+        };
+
         window.addEventListener('predictionUpdated', handlePredictionUpdate);
+        window.addEventListener('diabeticAssessmentUpdated', handleDiabeticAssessmentUpdate as EventListener);
+
         return () => {
             window.removeEventListener('predictionUpdated', handlePredictionUpdate);
+            window.removeEventListener('diabeticAssessmentUpdated', handleDiabeticAssessmentUpdate as EventListener);
         };
     }, []);
 
-    const percentage = Math.round(prediction);
+    const handleRiskValidation = () => {
+        if (validationData) {
+            setShowValidationModal(true);
+        } else {
+            alert("No validation data available. Please complete a diabetic assessment first.");
+        }
+    };
+
+    const percentage = Math.round(prediction * 100);
 
     return (
         <div className="risk-assessment-container">
@@ -121,10 +146,22 @@ const RiskAssesment = () => {
 
                 />
                 {/* Description */}
-                <p className="risk-description">
-                    Your current diabetic risk score is calculated based on your health data.
-                </p>
-
+                <div>
+                    <p className="risk-description">
+                        Your current diabetic risk score is calculated based on your health data.
+                    </p>
+                    <div className="flex justify-center mt-4">
+                        <button
+                            className="risk-validation-btn flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-blue-500 transition-all duration-300 text-lg"
+                            onClick={handleRiskValidation}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Risk Validation
+                        </button>
+                    </div>
+                </div>
                 {/* Buttons */}
                 <div className="risk-buttons-container">
                     <h3 className="risk-buttons-title">Select a Risk Category</h3>
@@ -135,7 +172,7 @@ const RiskAssesment = () => {
                         >
                             Nutrition Risk
                         </button>
-                        
+
                         <button
                             className="risk-button physical-activity-risk"
                             onClick={() => setShowPhysicalModal(true)}
@@ -171,6 +208,12 @@ const RiskAssesment = () => {
                     </div>
                 </div>
             )}
+
+            <RiskValidationModal
+                isOpen={showValidationModal}
+                onClose={() => setShowValidationModal(false)}
+                validationData={validationData}
+            />
         </div>
     );
 };

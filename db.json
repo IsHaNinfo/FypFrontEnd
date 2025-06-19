@@ -27,6 +27,132 @@
             "RiskLevel": "Low"
           },
           "prediction": 19.643967703327284
+        },
+        {
+          "id": "1750311739061",
+          "timestamp": "2025-06-19T05:42:19.061Z",
+          "formData": {
+            "age": "35",
+            "gender": "0.0",
+            "height": "169",
+            "weight": "89",
+            "Waist_Circumference": "34",
+            "Diet_Food_Habits": "5",
+            "Family_History": "Yes",
+            "Blood_Pressure": "Yes",
+            "Cholesterol_Lipid_Levels": "Yes",
+            "Fatigue": "No",
+            "Thirst": "No",
+            "Urination": "Yes",
+            "Vision_Changes": "No",
+            "RiskLevel": "Moderate"
+          }
+        },
+        {
+          "id": "1750313147481",
+          "timestamp": "2025-06-19T06:05:47.481Z",
+          "formData": {
+            "age": "36",
+            "gender": "0.0",
+            "height": "170",
+            "weight": "68",
+            "Waist_Circumference": "32",
+            "Diet_Food_Habits": "4",
+            "Family_History": "Yes",
+            "Blood_Pressure": "Yes",
+            "Cholesterol_Lipid_Levels": "Yes",
+            "Thirst": "Yes",
+            "Fatigue": "Yes",
+            "Urination": "Yes",
+            "Vision_Changes": "Yes",
+            "RiskLevel": "Low"
+          },
+          "prediction": 0.3987,
+          "validationData": {
+            "predictions": {
+              "pima_model": {
+                "percentage": 9.25,
+                "probability": 0.0925,
+                "risk_level": "Low Risk"
+              },
+              "your_model": {
+                "percentage": 39.87,
+                "probability": 0.3987,
+                "risk_level": "Moderate Risk"
+              }
+            },
+            "summary": {
+              "agreement_status": "Models disagree on risk level",
+              "benchmark_risk": "9.25% (Low Risk)",
+              "confidence": "Medium",
+              "primary_risk": "39.87% (Moderate Risk)"
+            },
+            "validation_metrics": {
+              "brier_score": 0.1691,
+              "roc_auc": 0.8129
+            },
+            "comparison": {
+              "models_agree": false,
+              "prediction_difference": 0.3062,
+              "similar_cases": {
+                "average_prediction": 0.2077,
+                "count": 80
+              }
+            }
+          }
+        },
+        {
+          "id": "1750313698144",
+          "timestamp": "2025-06-19T06:14:58.144Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "height": "172",
+            "weight": "64",
+            "Waist_Circumference": "31",
+            "Diet_Food_Habits": "3",
+            "Family_History": "No",
+            "Blood_Pressure": "No",
+            "Cholesterol_Lipid_Levels": "Yes",
+            "Thirst": "Yes",
+            "Fatigue": "Yes",
+            "Urination": "No",
+            "Vision_Changes": "Yes",
+            "RiskLevel": "Low"
+          },
+          "prediction": 0.379,
+          "validationData": {
+            "predictions": {
+              "pima_model": {
+                "percentage": 8.63,
+                "probability": 0.0863,
+                "risk_level": "Low Risk"
+              },
+              "your_model": {
+                "percentage": 37.9,
+                "probability": 0.379,
+                "risk_level": "Moderate Risk"
+              }
+            },
+            "summary": {
+              "agreement_status": "Models disagree on risk level",
+              "benchmark_risk": "8.63% (Low Risk)",
+              "confidence": "Medium",
+              "primary_risk": "37.9% (Moderate Risk)"
+            },
+            "validation_metrics": {
+              "brier_score": 0.1691,
+              "roc_auc": 0.8129
+            },
+            "comparison": {
+              "models_agree": false,
+              "prediction_difference": 0.2927,
+              "similar_cases": {
+                "average_prediction": 0.1701,
+                "count": 43
+              }
+            }
+          }
         }
       ],
       "nutritionAssessments": [

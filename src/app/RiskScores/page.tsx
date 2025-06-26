@@ -9,22 +9,14 @@ import PhysicalRiskFeatureContributionsModal from '../../components/PhysicalRisk
 import AddSuggestionModal from '../../components/AddSuggestionModal/AddSuggestionModal';
 import ExerciseRecommendationsModal from '../../components/ExerciseRecommendationsModal/ExerciseRecommendationsModal';
 
-interface Recommendation {
-    day: string;
-    meals: {
-        breakfast: { food: string; grams: number }[];
-        lunch: { food: string; grams: number }[];
-        dinner: { food: string; grams: number }[];
-        snack: { food: string; grams: number }[];
-    };
-}
+
 
 const RiskScores = () => {
     const [nutritionScore, setNutritionScore] = useState<number>(0);
     const [physicalScore, setPhysicalScore] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(true);
     const [showNutritionModal, setShowNutritionModal] = useState(false);
-    const [nutritionRecommendations, setNutritionRecommendations] = useState([]);
+    const [nutritionRecommendations, setNutritionRecommendations] = useState<any>(null);
     const [showFeatureContributions, setShowFeatureContributions] = useState(false);
     const [featureContributions, setFeatureContributions] = useState(null);
     const [showPhysicalFeatureContributions, setShowPhysicalFeatureContributions] = useState(false);
@@ -33,29 +25,8 @@ const RiskScores = () => {
     const [suggestionType, setSuggestionType] = useState<'nutrition' | 'physical' | 'mental'>('nutrition');
     const [showPreviousRecommendations, setShowPreviousRecommendations] = useState(false);
     const [previousRecommendations, setPreviousRecommendations] = useState<any>(null);
+    const [nutritionSummary, setNutritionSummary] = useState<any>(null);
 
-    const mockRecommendations = [
-
-        {
-            day: 'Monday',
-            meals: {
-                breakfast: [{ food: 'Oatmeal', grams: 50 }, { food: 'Banana', grams: 100 }],
-                lunch: [{ food: 'Grilled Chicken', grams: 120 }, { food: 'Brown Rice', grams: 80 }],
-                dinner: [{ food: 'Salmon', grams: 100 }, { food: 'Broccoli', grams: 70 }],
-                snack: [{ food: 'Almonds', grams: 30 }]
-            },
-        },
-        {
-            day: 'Tuesday',
-            meals: {
-                breakfast: [{ food: 'Oatmeal', grams: 50 }, { food: 'Banana', grams: 100 }],
-                lunch: [{ food: 'Grilled Chicken', grams: 120 }, { food: 'Brown Rice', grams: 80 }],
-                dinner: [{ food: 'Salmon', grams: 100 }, { food: 'Broccoli', grams: 70 }],
-                snack: [{ food: 'Almonds', grams: 30 }]
-            }
-        },
-        // ... add 6 more days with similar structure ...
-    ];
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -226,6 +197,100 @@ const RiskScores = () => {
         }
     };
 
+    const handleViewRecommendations = async () => {
+        try {
+            const storedUser = localStorage.getItem('userData');
+            if (storedUser) {
+                const { email } = JSON.parse(storedUser);
+                const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                if (response.data && response.data.length > 0) {
+                    const user = response.data[0];
+                    const latestNutritionAssessment = user.nutritionAssessments[user.nutritionAssessments.length - 1];
+
+                    // Prepare request data using the latest assessment
+                    const requestData = {
+                        age: parseInt(latestNutritionAssessment.formData.age),
+                        gender: parseInt(latestNutritionAssessment.formData.gender),
+                        bmi: calculateBMI(latestNutritionAssessment.formData.height, latestNutritionAssessment.formData.weight),
+                        diabetes_risk: parseFloat(latestNutritionAssessment.formData.Diabetic_Risk) / 100,
+                        nutrition_risk: latestNutritionAssessment.nutritionRiskPrediction[0] / 100,
+                        preferences: "Sri Lankan" // Default preference
+                    };
+
+                    // Send request to the specified URL
+                    const recommendationResponse = await axios.post('http://127.0.0.1:5000/generate_meal_plan', requestData);
+                    const recommendationData = recommendationResponse.data;
+
+                    // Convert updated_meal_plan to an array format
+                    const formattedRecommendations = Object.entries(recommendationData.updated_meal_plan).map(([day, meals]) => ({
+                        day,
+                        meals: Object.entries(meals).reduce((acc, [mealType, mealData]) => {
+                            acc[mealType] = Array.isArray(mealData) ? mealData : [mealData];
+                            return acc;
+                        }, {})
+                    }));
+
+                    // Save the recommendation in db.json
+                    const updatedUser = {
+                        ...user,
+                        nutritionRecommendations: [...(user.nutritionRecommendations || []), recommendationData]
+                    };
+                    await axios.put(`http://localhost:8000/users/${user.id}`, updatedUser);
+
+                    // Set the recommendation data to state
+                    setNutritionRecommendations(formattedRecommendations);
+                    setNutritionSummary(recommendationData.summary);
+                    setShowNutritionModal(true);
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching recommendations:', error);
+        }
+    };
+
+    const handleViewPreviousRecommendations = async () => {
+        try {
+            const storedUser = localStorage.getItem('userData');
+            if (storedUser) {
+                const { email } = JSON.parse(storedUser);
+                const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                if (response.data && response.data.length > 0) {
+                    const user = response.data[0];
+
+                    // Get the last saved nutrition recommendation
+                    const lastRecommendation = user.nutritionRecommendations?.slice(-1)[0];
+
+                    if (lastRecommendation) {
+                        // Convert updated_meal_plan to an array format
+                        const formattedRecommendations = Object.entries(lastRecommendation.updated_meal_plan).map(([day, meals]) => ({
+                            day,
+                            meals: Object.entries(meals).reduce((acc, [mealType, mealData]) => {
+                                acc[mealType] = Array.isArray(mealData) ? mealData : [mealData];
+                                return acc;
+                            }, {})
+                        }));
+
+                        // Set the recommendation data to state
+                        setNutritionRecommendations(formattedRecommendations);
+                        setNutritionSummary(lastRecommendation.summary);
+                        setShowNutritionModal(true);
+                    } else {
+                        alert("No previous recommendations found.");
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching previous recommendations:', error);
+        }
+    };
+
+    // Helper function to calculate BMI
+    const calculateBMI = (height: string, weight: string) => {
+        const heightInMeters = parseFloat(height) / 100;
+        const weightInKg = parseFloat(weight);
+        return weightInKg / (heightInMeters * heightInMeters);
+    };
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -274,11 +339,12 @@ const RiskScores = () => {
                     >
                         Feature Contribution
                     </button>
-                    <button className="recommendation-button nutrition" onClick={() => {
-                        setNutritionRecommendations(mockRecommendations);
-                        setShowNutritionModal(true);
-                    }}>
+                    <button className="recommendation-button nutrition" onClick={handleViewRecommendations}>
                         View Recommendations
+                    </button>
+
+                    <button className="recommendation-button nutrition" onClick={handleViewPreviousRecommendations}>
+                        Previous Recommendations
                     </button>
                 </div>
 
@@ -373,6 +439,7 @@ const RiskScores = () => {
                 isOpen={showNutritionModal}
                 onClose={() => setShowNutritionModal(false)}
                 recommendations={nutritionRecommendations}
+                summary={nutritionSummary}
             />
             <FeatureContributionsModal
                 isOpen={showFeatureContributions}

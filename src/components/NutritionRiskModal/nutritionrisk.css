@@ -112,7 +112,7 @@
 }
 
 /* Button Group */
-.button-group {
+.nbutton-group {
     display: flex;
     flex-direction: row;
     justify-content: center;

@@ -148,7 +148,7 @@
 .risk-title {
     color: #ffffff;
     margin-bottom: 20px;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 /* Description */
@@ -169,7 +169,7 @@
 .risk-buttons-title {
     color: #ffffff;
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 /* Buttons Wrapper */
@@ -220,8 +220,8 @@
 
 .circular-progress {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     margin: 0 auto;
 }
 

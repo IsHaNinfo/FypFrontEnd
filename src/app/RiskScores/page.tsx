@@ -26,6 +26,7 @@ const RiskScores = () => {
     const [showPreviousRecommendations, setShowPreviousRecommendations] = useState(false);
     const [previousRecommendations, setPreviousRecommendations] = useState<any>(null);
     const [nutritionSummary, setNutritionSummary] = useState<any>(null);
+    const [loading, setLoading] = useState(false);
 
 
     useEffect(() => {
@@ -198,6 +199,7 @@ const RiskScores = () => {
     };
 
     const handleViewRecommendations = async () => {
+        setLoading(true);
         try {
             const storedUser = localStorage.getItem('userData');
             if (storedUser) {
@@ -220,7 +222,7 @@ const RiskScores = () => {
                     // Send request to the specified URL
                     const recommendationResponse = await axios.post('http://127.0.0.1:5000/generate_meal_plan', requestData);
                     const recommendationData = recommendationResponse.data;
-
+                    console.log(recommendationData);
                     // Convert updated_meal_plan to an array format
                     const formattedRecommendations = Object.entries(recommendationData.updated_meal_plan).map(([day, meals]) => ({
                         day,
@@ -243,8 +245,8 @@ const RiskScores = () => {
                     setShowNutritionModal(true);
                 }
             }
-        } catch (error) {
-            console.error('Error fetching recommendations:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -339,8 +341,12 @@ const RiskScores = () => {
                     >
                         Feature Contribution
                     </button>
-                    <button className="recommendation-button nutrition" onClick={handleViewRecommendations}>
-                        View Recommendations
+                    <button className="recommendation-button nutrition" onClick={handleViewRecommendations} disabled={loading}>
+                        {loading ? (
+                            <span className="spinner"></span>
+                        ) : (
+                            'View Recommendations'
+                        )}
                     </button>
 
                     <button className="recommendation-button nutrition" onClick={handleViewPreviousRecommendations}>

@@ -250,6 +250,7 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
     if (!isOpen) return null;
 
     return (
+        /*
         <div className="physical-modal-overlay">
             <div className="physical-modal-content">
                 <button className="physical-modal-close-icon" onClick={onClose} type="button">
@@ -400,17 +401,197 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                             required
                         />
                     </div>
-                    <div className="physical-modal-button-group">
-                        <button className="physical-modal-btn-primary" type="submit" disabled={isLoading}>
-                            {isLoading ? 'Submitting...' : 'Submit'}
+                    <div className="diabetic-modal-button-group">
+                            <button
+                                className="diabetic-modal-btn-primary"
+                                type="submit"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? 'Predicting...' : 'Submit'}
+                            </button>
+                            <button
+                                className="diabetic-modal-close-btn"
+                                type="button"
+                                onClick={onClose}
+                                disabled={isLoading}
+                            >
+                                Close
+                            </button>
+                        </div>
+                </form>
+            </div>
+        </div>
+        */
+        <div className="physical-modal-overlay">
+        <div className="physical-modal-content">
+            <button className="modal-close-icon" onClick={onClose} type="button">
+                &times;
+            </button>
+            <div className="physical-modal-header">
+                <h2>Physical Activity Risk Assessment</h2>
+            </div>
+                <form className="physical-modal-form" onSubmit={handleSubmit}>
+                <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you feel tired or lack energy after mild activity? (1-10)</label>
+                        <select
+                            className="form-control"
+                            name="EnergyLevels"
+                            value={formData.EnergyLevels}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Energy Level</option>
+                            {[...Array(10)].map((_, i) => (
+                                <option key={i + 1} value={i + 1}>{i + 1}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">How often do you exercise or move during the day?(1-5)</label>
+                        <select
+                            className="form-control"
+                            name="PhysicalActivity"
+                            value={formData.PhysicalActivity}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Activity Level</option>
+                            {[...Array(5)].map((_, i) => (
+                                <option key={i + 1} value={i + 1}>{i + 1}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you spend most of the time sitting?</label>
+                        <select
+                            className="form-control"
+                            name="SittingTime"
+                            value={formData.SittingTime}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you feel out of breath after climbing a few stairs?</label>
+                        <select
+                            className="form-control"
+                            name="CardiovascularHealth"
+                            value={formData.CardiovascularHealth}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you find it difficult to hold or lift heavy objects?</label>
+                        <select
+                            className="form-control"
+                            name="MuscleStrength"
+                            value={formData.MuscleStrength}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Can you touch your toes during a sit-and-reach test?</label>
+                        <select
+                            className="form-control"
+                            name="Flexibility"
+                            value={formData.Flexibility}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Can you balance on one leg for more than 5 seconds?</label>
+                        <select
+                            className="form-control"
+                            name="Balance"
+                            value={formData.Balance}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">How much water do you drink daily? (1-10)</label>
+                        <select
+                            className="form-control"
+                            name="Thirsty"
+                            value={formData.Thirsty}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Thirst Level</option>
+                            {[...Array(10)].map((_, i) => (
+                                <option key={i + 1} value={i + 1}>{i + 1}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you feel pain in your joints or muscles during movement?</label>
+                        <select
+                            className="form-control"
+                            name="PainOrDiscomfort"
+                            value={formData.PainOrDiscomfort}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">How many hours do you typically spend working in the office each day?</label>
+                        <input
+                            className="form-control"
+                            type="number"
+                            name="AvailableTime"
+                            value={formData.AvailableTime}
+                            onChange={handleInputChange}
+                            placeholder="Enter available time in hours"
+                            required
+                        />
+                    </div>
+                    <div className="diabetic-modal-button-group">
+                        <button
+                            className="diabetic-modal-btn-primary"
+                            type="submit"
+                            disabled={isLoading}
+                        >
+                            {isLoading ? 'Predicting...' : 'Submit'}
                         </button>
-                        <button className="physical-modal-close-btn" onClick={onClose} type="button">
+                        <button
+                            className="diabetic-modal-close-btn"
+                            type="button"
+                            onClick={onClose}
+                            disabled={isLoading}
+                        >
                             Close
                         </button>
                     </div>
                 </form>
-            </div>
         </div>
+    </div>
     );
 };
 

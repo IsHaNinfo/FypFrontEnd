@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: linear-gradient(#0B1117, #102530, #0b1f296a);
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,30 +14,34 @@
 
 /* Modal Content */
 .nutrition-modal-content {
-    background: rgba(20, 20, 20, 0.95);
-    padding: 10px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 900px;
-    text-align: center;
-    color: white;
-    overflow-y: auto;
-    max-height: 90vh;
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    position: relative;
+    background: rgba(20, 20, 20, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
 }
-
+.nutrition-modal-header {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+}
 /* Modal Form */
 .nutrition-modal-form {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    justify-content: center;
-    color: white;
-    margin: 0 auto;
-    width: 90%;
+    padding: 40px;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .nutrition-modal-form .nutrition-modal-mb-3 {
@@ -63,6 +67,25 @@
     margin-top: 200px;
     margin-bottom: 20px;
     color: white;
+}
+.modal-close-icon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.modal-close-icon:hover {
+    color: #ff5252;
+    transform: scale(1.1);
 }
 
 .nutrition-modal-form .nutrition-modal-mb-3 input,
@@ -112,7 +135,7 @@
 }
 
 /* Button Group */
-.nbutton-group {
+.nutrition-modal-button-group {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -123,7 +146,7 @@
     background: transparent;
 }
 
-.button-group .btn-primary {
+.nutrition-modal-button-group .nutrition-modal-btn-primary {
     flex: 0 0 auto;
     width: 150px;
     background-color: #007bff;
@@ -137,23 +160,21 @@
     text-align: center;
 }
 
-.button-group .modal-close-btn {
+.nutrition-modal-button-group .nutrition-modal-close-btn {
     flex: 0 0 auto;
     width: 150px;
-    background: transparent;
+    background-color: #333;
     color: white;
-    border: 1px solid white;
+    border: none;
+    padding: 10px 10px;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-.button-group .btn-primary:hover {
-    background-color: #0056b3;
-}
+
 
 .button-group .modal-close-btn:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -176,22 +197,3 @@
     }
 }
 
-.modal-close-icon {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 2.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-    line-height: 1;
-}
-
-.modal-close-icon:hover {
-    color: #ff5252;
-    transform: scale(1.1);
-}

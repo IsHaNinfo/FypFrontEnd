@@ -153,6 +153,59 @@
               }
             }
           }
+        },
+        {
+          "id": "1751470423888",
+          "timestamp": "2025-07-02T15:33:43.888Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "height": "170",
+            "weight": "80",
+            "Waist_Circumference": "34",
+            "Diet_Food_Habits": "5",
+            "Family_History": "Yes",
+            "Blood_Pressure": "Yes",
+            "Cholesterol_Lipid_Levels": "No",
+            "Thirst": "No",
+            "Urination": "No",
+            "Vision_Changes": "No",
+            "RiskLevel": "Low",
+            "Fatigue": "Yes"
+          },
+          "prediction": 0.4604,
+          "validationData": {
+            "predictions": {
+              "pima_model": {
+                "percentage": 14.64,
+                "probability": 0.1464,
+                "risk_level": "Low Risk"
+              },
+              "your_model": {
+                "percentage": 46.04,
+                "probability": 0.4604,
+                "risk_level": "Moderate Risk"
+              }
+            },
+            "summary": {
+              "agreement_status": "Models disagree on risk level",
+              "benchmark_risk": "14.64% (Low Risk)",
+              "confidence": "Medium",
+              "primary_risk": "46.04% (Moderate Risk)"
+            },
+            "validation_metrics": {
+              "brier_score": 0.1691,
+              "roc_auc": 0.8129
+            },
+            "comparison": {
+              "models_agree": false,
+              "prediction_difference": 0.314,
+              "similar_cases": {
+                "average_prediction": 0.296,
+                "count": 142
+              }
+            }
+          }
         }
       ],
       "nutritionAssessments": [
@@ -1176,6 +1229,115 @@
                   }
                 ],
                 "role": "Cardio"
+              }
+            ],
+            "sitting_time": 1
+          }
+        },
+        {
+          "id": "1750999600309",
+          "timestamp": "2025-06-27T04:46:40.309Z",
+          "recommendations": {
+            "bmi": 24.337479718766904,
+            "class": "class_2",
+            "goal": "diabetes_management",
+            "is_novel": false,
+            "physical_activity_risk": 0.8639090505221476,
+            "routine": [
+              {
+                "exercises": [
+                  {
+                    "equipment": "other",
+                    "force": null,
+                    "instructions": [
+                      "To begin, seat yourself on the bike and adjust the seat to your height."
+                    ],
+                    "level": "beginner",
+                    "name": "Bicycling",
+                    "primaryMuscles": [
+                      "quadriceps"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "calves",
+                      "glutes",
+                      "hamstrings"
+                    ]
+                  }
+                ],
+                "role": "Warm-Up"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "static",
+                    "instructions": [
+                      "From a lying position, bend your knees and keep your feet on the floor.",
+                      "Place your ankle of one foot on your opposite knee.",
+                      "Grasp the thigh or knee of the bottom leg and pull both of your legs into the chest. Relax your neck and shoulders. Hold for 10-20 seconds and then switch sides."
+                    ],
+                    "level": "beginner",
+                    "name": "Ankle On The Knee",
+                    "primaryMuscles": [
+                      "glutes"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  },
+                  {
+                    "equipment": null,
+                    "force": "static",
+                    "instructions": [
+                      "Stand with your feet hip-distance apart, one foot slightly in front of the other.",
+                      "Bend both knees, keeping your back heel on the floor. Switch sides."
+                    ],
+                    "level": "beginner",
+                    "name": "Standing Soleus And Achilles Stretch",
+                    "primaryMuscles": [
+                      "calves"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  }
+                ],
+                "role": "Stretching"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "machine",
+                    "force": "push",
+                    "instructions": [
+                      "Load an appropriate weight onto the pins and adjust the seat for your height. The handles should be near the top of the pectorals at the beginning of the motion. Your chest and head should be up and your shoulder blades retracted. This will be your starting position.",
+                      "Press the handles forward by extending through the elbow.",
+                      "After a brief pause at the top, return the weight just above the start position, keeping tension on the muscles by not returning the weight to the stops until the set is complete."
+                    ],
+                    "level": "beginner",
+                    "name": "Leverage Incline Chest Press",
+                    "primaryMuscles": [
+                      "chest"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "shoulders",
+                      "triceps"
+                    ]
+                  },
+                  {
+                    "equipment": "body only",
+                    "force": "pull",
+                    "instructions": [],
+                    "level": "beginner",
+                    "name": "Side Jackknife",
+                    "primaryMuscles": [
+                      "abdominals"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  }
+                ],
+                "role": "Strength"
               }
             ],
             "sitting_time": 1
@@ -6327,6 +6489,3570 @@
                 "food": "Kurakkan with beef and cucumber",
                 "glycemic_index": 45,
                 "protein": 45.9
+              }
+            }
+          }
+        },
+        {
+          "summary": {
+            "final_risks": {
+              "estimated_diabetes_risk": 0,
+              "estimated_nutrition_risk": 0
+            },
+            "initial_risks": {
+              "diabetes_risk": 0.1964,
+              "nutrition_risk": 0.3716
+            },
+            "total_contributions": {
+              "diabetes_risk_reduced_by": 0.58,
+              "nutrition_risk_reduced_by": 1
+            }
+          },
+          "updated_meal_plan": {
+            "Day 1": {
+              "Breakfast": {
+                "calories": 999.0439771,
+                "carbs": 90.2,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 768,
+                "fat": 41.4,
+                "food": "Millet with beef and cucumber",
+                "glycemic_index": 59,
+                "protein": 50.2
+              },
+              "Dinner": {
+                "calories": 652.9636711,
+                "carbs": 25.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 502,
+                "fat": 40.5,
+                "food": "Kurakkan with beef and cabbage",
+                "glycemic_index": 66,
+                "protein": 40.7
+              },
+              "Lunch": {
+                "calories": 628.8240918,
+                "carbs": 77.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 484,
+                "fat": 21.8,
+                "food": "Kurakkan with lentils and onion",
+                "glycemic_index": 49,
+                "protein": 24.4
+              },
+              "Snack": {
+                "calories": 424.2351816,
+                "carbs": 22.4,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 326,
+                "fat": 11.6,
+                "food": "Kurakkan with tofu and beans",
+                "glycemic_index": 55,
+                "protein": 49.8
+              }
+            },
+            "Day 2": {
+              "Breakfast": {
+                "calories": 669.9330784,
+                "carbs": 33.5,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 515,
+                "fat": 38.1,
+                "food": "Millet with beef and beans",
+                "glycemic_index": 45,
+                "protein": 48.4
+              },
+              "Dinner": {
+                "calories": 365.917782,
+                "carbs": 22.6,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 281,
+                "fat": 15.7,
+                "food": "Kurakkan with beef and carrot",
+                "glycemic_index": 66,
+                "protein": 30.1
+              },
+              "Lunch": {
+                "calories": 844.6462715,
+                "carbs": 61,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 650,
+                "fat": 45.8,
+                "food": "Rice with fish and tomato",
+                "glycemic_index": 56,
+                "protein": 46
+              },
+              "Snack": {
+                "calories": 859.7036329,
+                "carbs": 75.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 661,
+                "fat": 40,
+                "food": "Bread with fish and beans",
+                "glycemic_index": 52,
+                "protein": 48.2
+              }
+            },
+            "Day 3": {
+              "Breakfast": {
+                "calories": 968.9292543,
+                "carbs": 120.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 745,
+                "fat": 26.9,
+                "food": "Rice with lentils and cucumber",
+                "glycemic_index": 50,
+                "protein": 54.7
+              },
+              "Dinner": {
+                "calories": 619.2638623,
+                "carbs": 62.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 476,
+                "fat": 25.3,
+                "food": "Millet with lentils and tomato",
+                "glycemic_index": 52,
+                "protein": 31.2
+              },
+              "Lunch": {
+                "calories": 796.6061185,
+                "carbs": 53.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 613,
+                "fat": 39.5,
+                "food": "Bread with tofu and cabbage",
+                "glycemic_index": 68,
+                "protein": 51.9
+              },
+              "Snack": {
+                "calories": 734.9426386,
+                "carbs": 47.3,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 565,
+                "fat": 38.3,
+                "food": "Rice with lentils and onion",
+                "glycemic_index": 65,
+                "protein": 46
+              }
+            },
+            "Day 4": {
+              "Breakfast": {
+                "calories": 583.6520076,
+                "carbs": 48.2,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 449,
+                "fat": 21.7,
+                "food": "Kurakkan with lentils and beans",
+                "glycemic_index": 50,
+                "protein": 46.2
+              },
+              "Dinner": {
+                "calories": 793.7380497,
+                "carbs": 6.3,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 611,
+                "fat": 52.2,
+                "food": "Kurakkan with tofu and carrot",
+                "glycemic_index": 47,
+                "protein": 67.2
+              },
+              "Lunch": {
+                "calories": 979.6845124,
+                "carbs": 54.3,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 754,
+                "fat": 45.7,
+                "food": "Wheat with beef and onion",
+                "glycemic_index": 54,
+                "protein": 65.5
+              },
+              "Snack": {
+                "calories": 1000.478011,
+                "carbs": 83.7,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 770,
+                "fat": 48.6,
+                "food": "Millet with mung beans and onion",
+                "glycemic_index": 64,
+                "protein": 54.8
+              }
+            },
+            "Day 5": {
+              "Breakfast": {
+                "calories": 586.998088,
+                "carbs": 73.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 452,
+                "fat": 18.2,
+                "food": "Wheat with chicken and cabbage",
+                "glycemic_index": 54,
+                "protein": 27.9
+              },
+              "Dinner": {
+                "calories": 632.4091778,
+                "carbs": 37.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 486,
+                "fat": 30,
+                "food": "Kurakkan with lentils and cabbage",
+                "glycemic_index": 56,
+                "protein": 45.6
+              },
+              "Lunch": {
+                "calories": 833.8910134,
+                "carbs": 101.1,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 641,
+                "fat": 21.9,
+                "food": "Rice with beef and carrot",
+                "glycemic_index": 57,
+                "protein": 47.7
+              },
+              "Snack": {
+                "calories": 508.3652008,
+                "carbs": 64.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 391,
+                "fat": 11.5,
+                "food": "Millet with chicken and tomato",
+                "glycemic_index": 51,
+                "protein": 31.7
+              }
+            },
+            "Day 6": {
+              "Breakfast": {
+                "calories": 611.376673,
+                "carbs": 25.5,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 470,
+                "fat": 31.6,
+                "food": "Bread with beef and carrot",
+                "glycemic_index": 50,
+                "protein": 52.7
+              },
+              "Dinner": {
+                "calories": 751.9120459,
+                "carbs": 59.4,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 578,
+                "fat": 34.7,
+                "food": "Rice with egg and carrot",
+                "glycemic_index": 52,
+                "protein": 47.6
+              },
+              "Lunch": {
+                "calories": 839.6271511,
+                "carbs": 123.1,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 646,
+                "fat": 19.9,
+                "food": "Bread with chicken and carrot",
+                "glycemic_index": 61,
+                "protein": 32
+              },
+              "Snack": {
+                "calories": 725.3824092,
+                "carbs": 97.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 558,
+                "fat": 19.3,
+                "food": "Millet with lentils and onion",
+                "glycemic_index": 52,
+                "protein": 34.3
+              }
+            },
+            "Day 7": {
+              "Breakfast": {
+                "calories": 854.4455067,
+                "carbs": 49.6,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 657,
+                "fat": 50,
+                "food": "Bread with beef and tomato",
+                "glycemic_index": 64,
+                "protein": 48.5
+              },
+              "Dinner": {
+                "calories": 952.6768642,
+                "carbs": 128.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 733,
+                "fat": 29.7,
+                "food": "Millet with beef and carrot",
+                "glycemic_index": 57,
+                "protein": 39.5
+              },
+              "Lunch": {
+                "calories": 456.2619503,
+                "carbs": 14,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 351,
+                "fat": 26.4,
+                "food": "Kurakkan with fish and beans",
+                "glycemic_index": 47,
+                "protein": 40.2
+              },
+              "Snack": {
+                "calories": 771.0325048,
+                "carbs": 99.5,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 593,
+                "fat": 21.3,
+                "food": "Wheat with chicken and beans",
+                "glycemic_index": 56,
+                "protein": 36.7
+              }
+            }
+          }
+        },
+        {
+          "summary": {
+            "final_risks": {
+              "estimated_diabetes_risk": 0,
+              "estimated_nutrition_risk": 0
+            },
+            "initial_risks": {
+              "diabetes_risk": 0.1964,
+              "nutrition_risk": 0.3716
+            },
+            "total_contributions": {
+              "diabetes_risk_reduced_by": 0.46,
+              "nutrition_risk_reduced_by": 0.96
+            }
+          },
+          "updated_meal_plan": {
+            "Day 1": {
+              "Breakfast": {
+                "calories": 498.0879541,
+                "carbs": 41,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 383,
+                "fat": 21,
+                "food": "Kurakkan with beef and beans",
+                "glycemic_index": 58,
+                "protein": 33.1
+              },
+              "Dinner": {
+                "calories": 658.9388145,
+                "carbs": 70.3,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 507,
+                "fat": 38.3,
+                "food": "Kurakkan with mung beans and onion",
+                "glycemic_index": 66,
+                "protein": 8.3
+              },
+              "Lunch": {
+                "calories": 500,
+                "carbs": 45.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 385,
+                "fat": 21.6,
+                "food": "Bread with mung beans and cucumber",
+                "glycemic_index": 61,
+                "protein": 26.6
+              },
+              "Snack": {
+                "calories": 553.5372849,
+                "carbs": 73.7,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 426,
+                "fat": 20.3,
+                "food": "Kurakkan with lentils and onion",
+                "glycemic_index": 62,
+                "protein": 15.1
+              }
+            },
+            "Day 2": {
+              "Breakfast": {
+                "calories": 614.7227533,
+                "carbs": 50.1,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 473,
+                "fat": 25,
+                "food": "Kurakkan with beef and onion",
+                "glycemic_index": 49,
+                "protein": 44.1
+              },
+              "Dinner": {
+                "calories": 822.1797323,
+                "carbs": 110.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 632,
+                "fat": 33.1,
+                "food": "Kurakkan with tofu and cabbage",
+                "glycemic_index": 46,
+                "protein": 16.8
+              },
+              "Lunch": {
+                "calories": 693.5946463,
+                "carbs": 82.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 534,
+                "fat": 13.5,
+                "food": "Wheat with beef and cucumber",
+                "glycemic_index": 52,
+                "protein": 53.6
+              },
+              "Snack": {
+                "calories": 959.6080306,
+                "carbs": 120.6,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 738,
+                "fat": 24,
+                "food": "Millet with egg and tomato",
+                "glycemic_index": 70,
+                "protein": 59.8
+              }
+            },
+            "Day 3": {
+              "Breakfast": {
+                "calories": 752.8680688,
+                "carbs": 78.8,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 579,
+                "fat": 26.1,
+                "food": "Wheat with fish and beans",
+                "glycemic_index": 62,
+                "protein": 43.3
+              },
+              "Dinner": {
+                "calories": 717.9732314,
+                "carbs": 20.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 552,
+                "fat": 46.7,
+                "food": "Kurakkan with egg and onion",
+                "glycemic_index": 70,
+                "protein": 51.6
+              },
+              "Lunch": {
+                "calories": 995.2198853,
+                "carbs": 140.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 766,
+                "fat": 31,
+                "food": "Wheat with tofu and cucumber",
+                "glycemic_index": 55,
+                "protein": 38.9
+              },
+              "Snack": {
+                "calories": 988.5277247,
+                "carbs": 43.3,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 760,
+                "fat": 68.5,
+                "food": "Millet with fish and cucumber",
+                "glycemic_index": 68,
+                "protein": 47.9
+              }
+            },
+            "Day 4": {
+              "Breakfast": {
+                "calories": 945.9847036,
+                "carbs": 116.5,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 728,
+                "fat": 28.9,
+                "food": "Bread with beef and cucumber",
+                "glycemic_index": 63,
+                "protein": 48.9
+              },
+              "Dinner": {
+                "calories": 723.709369,
+                "carbs": 56,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 557,
+                "fat": 32.1,
+                "food": "Millet with egg and cucumber",
+                "glycemic_index": 49,
+                "protein": 50.5
+              },
+              "Lunch": {
+                "calories": 710.5640535,
+                "carbs": 31,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 547,
+                "fat": 37.1,
+                "food": "Rice with beef and onion",
+                "glycemic_index": 50,
+                "protein": 59.3
+              },
+              "Snack": {
+                "calories": 540.1529637,
+                "carbs": 22.2,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 416,
+                "fat": 23.8,
+                "food": "Kurakkan with tofu and cabbage",
+                "glycemic_index": 47,
+                "protein": 54.2
+              }
+            },
+            "Day 5": {
+              "Breakfast": {
+                "calories": 980.1625239,
+                "carbs": 127.6,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 754,
+                "fat": 20.4,
+                "food": "Wheat with beef and cabbage",
+                "glycemic_index": 55,
+                "protein": 61.2
+              },
+              "Dinner": {
+                "calories": 505.9751434,
+                "carbs": 65.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 389,
+                "fat": 10.6,
+                "food": "Millet with mung beans and cabbage",
+                "glycemic_index": 55,
+                "protein": 33.7
+              },
+              "Lunch": {
+                "calories": 713.9101338,
+                "carbs": 71.1,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 549,
+                "fat": 29.4,
+                "food": "Rice with egg and carrot",
+                "glycemic_index": 57,
+                "protein": 40.2
+              },
+              "Snack": {
+                "calories": 983.0305927,
+                "carbs": 117.3,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 756,
+                "fat": 21.6,
+                "food": "Millet with lentils and beans",
+                "glycemic_index": 58,
+                "protein": 66.1
+              }
+            },
+            "Day 6": {
+              "Breakfast": {
+                "calories": 768.4034417,
+                "carbs": 59.1,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 591,
+                "fat": 31.9,
+                "food": "Rice with egg and cabbage",
+                "glycemic_index": 50,
+                "protein": 57.6
+              },
+              "Dinner": {
+                "calories": 791.1089866,
+                "carbs": 83.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 609,
+                "fat": 25.8,
+                "food": "Millet with egg and cucumber",
+                "glycemic_index": 51,
+                "protein": 50.9
+              },
+              "Lunch": {
+                "calories": 911.3288719,
+                "carbs": 130.3,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 701,
+                "fat": 30.9,
+                "food": "Bread with egg and cucumber",
+                "glycemic_index": 64,
+                "protein": 18.7
+              },
+              "Snack": {
+                "calories": 863.5277247,
+                "carbs": 74.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 664,
+                "fat": 35,
+                "food": "Wheat with beef and cabbage",
+                "glycemic_index": 53,
+                "protein": 56.8
+              }
+            },
+            "Day 7": {
+              "Breakfast": {
+                "calories": 967.7342256,
+                "carbs": 73.5,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 744,
+                "fat": 46.6,
+                "food": "Wheat with mung beans and beans",
+                "glycemic_index": 70,
+                "protein": 59.4
+              },
+              "Dinner": {
+                "calories": 794.4550669,
+                "carbs": 91.8,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 611,
+                "fat": 33.8,
+                "food": "Bread with egg and beans",
+                "glycemic_index": 68,
+                "protein": 27.2
+              },
+              "Lunch": {
+                "calories": 843.4512428,
+                "carbs": 50.7,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 649,
+                "fat": 40.4,
+                "food": "Bread with mung beans and cucumber",
+                "glycemic_index": 51,
+                "protein": 64
+              },
+              "Snack": {
+                "calories": 683.0783939,
+                "carbs": 96.5,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 525,
+                "fat": 18.9,
+                "food": "Rice with egg and carrot",
+                "glycemic_index": 70,
+                "protein": 26.9
+              }
+            }
+          }
+        },
+        {
+          "summary": {
+            "final_risks": {
+              "estimated_diabetes_risk": 0,
+              "estimated_nutrition_risk": 0
+            },
+            "initial_risks": {
+              "diabetes_risk": 0.1964,
+              "nutrition_risk": 0.3716
+            },
+            "total_contributions": {
+              "diabetes_risk_reduced_by": 0.48,
+              "nutrition_risk_reduced_by": 0.98
+            }
+          },
+          "updated_meal_plan": {
+            "Day 1": {
+              "Breakfast": {
+                "calories": 911.3288719,
+                "carbs": 127.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 701,
+                "fat": 26.6,
+                "food": "Wheat with mung beans and cucumber",
+                "glycemic_index": 54,
+                "protein": 24.6
+              },
+              "Dinner": {
+                "calories": 836.998088,
+                "carbs": 94.3,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 644,
+                "fat": 35.6,
+                "food": "Millet with fish and cabbage",
+                "glycemic_index": 53,
+                "protein": 33.1
+              },
+              "Lunch": {
+                "calories": 1022.944551,
+                "carbs": 49.6,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 787,
+                "fat": 70.5,
+                "food": "Bread with chicken and carrot",
+                "glycemic_index": 45,
+                "protein": 44.1
+              },
+              "Snack": {
+                "calories": 657.7437859,
+                "carbs": 97.2,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 506,
+                "fat": 24.1,
+                "food": "Rice with mung beans and cucumber",
+                "glycemic_index": 68,
+                "protein": 11.8
+              }
+            },
+            "Day 2": {
+              "Breakfast": {
+                "calories": 969.8852772,
+                "carbs": 88.6,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 746,
+                "fat": 51.4,
+                "food": "Rice with chicken and beans",
+                "glycemic_index": 48,
+                "protein": 32.3
+              },
+              "Dinner": {
+                "calories": 864.7227533,
+                "carbs": 95.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 665,
+                "fat": 31.6,
+                "food": "Bread with egg and cabbage",
+                "glycemic_index": 63,
+                "protein": 44.7
+              },
+              "Lunch": {
+                "calories": 606.1185468,
+                "carbs": 72.4,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 466,
+                "fat": 22.4,
+                "food": "Bread with fish and cabbage",
+                "glycemic_index": 55,
+                "protein": 23.2
+              },
+              "Snack": {
+                "calories": 764.5793499,
+                "carbs": 93.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 588,
+                "fat": 17.9,
+                "food": "Rice with mung beans and beans",
+                "glycemic_index": 51,
+                "protein": 49
+              }
+            },
+            "Day 3": {
+              "Breakfast": {
+                "calories": 903.6806883,
+                "carbs": 21,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 695,
+                "fat": 85.2,
+                "food": "Kurakkan with fish and beans",
+                "glycemic_index": 63,
+                "protein": 15.9
+              },
+              "Dinner": {
+                "calories": 1000,
+                "carbs": 116.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 769,
+                "fat": 39.5,
+                "food": "Rice with beef and onion",
+                "glycemic_index": 53,
+                "protein": 41.1
+              },
+              "Lunch": {
+                "calories": 619.7418738,
+                "carbs": 34.4,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 477,
+                "fat": 31.7,
+                "food": "Millet with beef and carrot",
+                "glycemic_index": 55,
+                "protein": 45.6
+              },
+              "Snack": {
+                "calories": 812.6195029,
+                "carbs": 60.1,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 625,
+                "fat": 45.1,
+                "food": "Rice with tofu and carrot",
+                "glycemic_index": 58,
+                "protein": 36
+              }
+            },
+            "Day 4": {
+              "Breakfast": {
+                "calories": 866.6347992,
+                "carbs": 91.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 667,
+                "fat": 27,
+                "food": "Rice with tofu and onion",
+                "glycemic_index": 48,
+                "protein": 57.8
+              },
+              "Dinner": {
+                "calories": 548.040153,
+                "carbs": 54.3,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 422,
+                "fat": 17.5,
+                "food": "Kurakkan with lentils and carrot",
+                "glycemic_index": 67,
+                "protein": 37.7
+              },
+              "Lunch": {
+                "calories": 929.7323136,
+                "carbs": 114.9,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 715,
+                "fat": 30.1,
+                "food": "Kurakkan with chicken and onion",
+                "glycemic_index": 65,
+                "protein": 43.4
+              },
+              "Snack": {
+                "calories": 469.6462715,
+                "carbs": 45.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 361,
+                "fat": 9.6,
+                "food": "Rice with chicken and carrot",
+                "glycemic_index": 69,
+                "protein": 45.1
+              }
+            },
+            "Day 5": {
+              "Breakfast": {
+                "calories": 878.1070746,
+                "carbs": 32.1,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 675,
+                "fat": 54.5,
+                "food": "Millet with fish and tomato",
+                "glycemic_index": 51,
+                "protein": 61.4
+              },
+              "Dinner": {
+                "calories": 740.4397706,
+                "carbs": 50.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 570,
+                "fat": 28.4,
+                "food": "Kurakkan with fish and cucumber",
+                "glycemic_index": 58,
+                "protein": 68.3
+              },
+              "Lunch": {
+                "calories": 583.8910134,
+                "carbs": 81.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 449,
+                "fat": 17.7,
+                "food": "Millet with chicken and cucumber",
+                "glycemic_index": 48,
+                "protein": 20.6
+              },
+              "Snack": {
+                "calories": 787.2848948,
+                "carbs": 81,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 606,
+                "fat": 31.8,
+                "food": "Bread with fish and carrot",
+                "glycemic_index": 59,
+                "protein": 39.4
+              }
+            },
+            "Day 6": {
+              "Breakfast": {
+                "calories": 540.6309751,
+                "carbs": 50.6,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 416,
+                "fat": 11.1,
+                "food": "Bread with mung beans and tomato",
+                "glycemic_index": 68,
+                "protein": 55.1
+              },
+              "Dinner": {
+                "calories": 968.4512428,
+                "carbs": 107.9,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 745,
+                "fat": 40.8,
+                "food": "Kurakkan with lentils and cucumber",
+                "glycemic_index": 66,
+                "protein": 38.1
+              },
+              "Lunch": {
+                "calories": 674.4741874,
+                "carbs": 32.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 519,
+                "fat": 34.8,
+                "food": "Rice with tofu and carrot",
+                "glycemic_index": 69,
+                "protein": 53.6
+              },
+              "Snack": {
+                "calories": 414.9139579,
+                "carbs": 19.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 319,
+                "fat": 15.9,
+                "food": "Rice with mung beans and onion",
+                "glycemic_index": 63,
+                "protein": 46.3
+              }
+            },
+            "Day 7": {
+              "Breakfast": {
+                "calories": 981.1185468,
+                "carbs": 14.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 755,
+                "fat": 92.1,
+                "food": "Kurakkan with mung beans and beans",
+                "glycemic_index": 68,
+                "protein": 20.1
+              },
+              "Dinner": {
+                "calories": 669.6940727,
+                "carbs": 72.7,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 515,
+                "fat": 22.2,
+                "food": "Kurakkan with fish and beans",
+                "glycemic_index": 67,
+                "protein": 39
+              },
+              "Lunch": {
+                "calories": 699.8087954,
+                "carbs": 107.7,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 538,
+                "fat": 14.8,
+                "food": "Kurakkan with lentils and tomato",
+                "glycemic_index": 62,
+                "protein": 26.1
+              },
+              "Snack": {
+                "calories": 715.1051625,
+                "carbs": 60,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 550,
+                "fat": 32.7,
+                "food": "Bread with beef and tomato",
+                "glycemic_index": 55,
+                "protein": 42.2
+              }
+            }
+          }
+        },
+        {
+          "summary": {
+            "final_risks": {
+              "estimated_diabetes_risk": 0,
+              "estimated_nutrition_risk": 0
+            },
+            "initial_risks": {
+              "diabetes_risk": 0.1964,
+              "nutrition_risk": 0.3716
+            },
+            "total_contributions": {
+              "diabetes_risk_reduced_by": 0.46,
+              "nutrition_risk_reduced_by": 1.02
+            }
+          },
+          "updated_meal_plan": {
+            "Day 1": {
+              "Breakfast": {
+                "calories": 543.7380497,
+                "carbs": 53.3,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 418,
+                "fat": 22,
+                "food": "Millet with lentils and cabbage",
+                "glycemic_index": 53,
+                "protein": 26
+              },
+              "Dinner": {
+                "calories": 1000,
+                "carbs": 116.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 769,
+                "fat": 39.5,
+                "food": "Rice with beef and onion",
+                "glycemic_index": 53,
+                "protein": 41.1
+              },
+              "Lunch": {
+                "calories": 983.5086042,
+                "carbs": 96,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 757,
+                "fat": 42,
+                "food": "Rice with chicken and cabbage",
+                "glycemic_index": 64,
+                "protein": 47
+              },
+              "Snack": {
+                "calories": 914.4359465,
+                "carbs": 63.1,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 703,
+                "fat": 34.6,
+                "food": "Wheat with fish and tomato",
+                "glycemic_index": 56,
+                "protein": 81.3
+              }
+            },
+            "Day 2": {
+              "Breakfast": {
+                "calories": 1006.692161,
+                "carbs": 104.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 774,
+                "fat": 39.6,
+                "food": "Kurakkan with egg and onion",
+                "glycemic_index": 49,
+                "protein": 58.8
+              },
+              "Dinner": {
+                "calories": 806.4053537,
+                "carbs": 117.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 620,
+                "fat": 26,
+                "food": "Kurakkan with egg and cucumber",
+                "glycemic_index": 46,
+                "protein": 21.2
+              },
+              "Lunch": {
+                "calories": 1022.944551,
+                "carbs": 49.6,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 787,
+                "fat": 70.5,
+                "food": "Bread with chicken and carrot",
+                "glycemic_index": 45,
+                "protein": 44.1
+              },
+              "Snack": {
+                "calories": 728.250478,
+                "carbs": 97.7,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 560,
+                "fat": 17.9,
+                "food": "Wheat with tofu and beans",
+                "glycemic_index": 64,
+                "protein": 41.7
+              }
+            },
+            "Day 3": {
+              "Breakfast": {
+                "calories": 453.6328872,
+                "carbs": 39.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 349,
+                "fat": 18.3,
+                "food": "Rice with mung beans and cucumber",
+                "glycemic_index": 65,
+                "protein": 29.5
+              },
+              "Dinner": {
+                "calories": 940.7265774,
+                "carbs": 63.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 724,
+                "fat": 50.3,
+                "food": "Bread with beef and beans",
+                "glycemic_index": 54,
+                "protein": 57.9
+              },
+              "Lunch": {
+                "calories": 850.8604207,
+                "carbs": 46.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 655,
+                "fat": 43.5,
+                "food": "Rice with fish and cucumber",
+                "glycemic_index": 57,
+                "protein": 65.3
+              },
+              "Snack": {
+                "calories": 580.5449331,
+                "carbs": 70.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 447,
+                "fat": 11.3,
+                "food": "Wheat with mung beans and cucumber",
+                "glycemic_index": 51,
+                "protein": 45.4
+              }
+            },
+            "Day 4": {
+              "Breakfast": {
+                "calories": 901.0516252,
+                "carbs": 90.2,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 693,
+                "fat": 38.7,
+                "food": "Rice with chicken and cabbage",
+                "glycemic_index": 64,
+                "protein": 44.2
+              },
+              "Dinner": {
+                "calories": 246.8929254,
+                "carbs": 29.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 190,
+                "fat": 8.5,
+                "food": "Millet with mung beans and beans",
+                "glycemic_index": 69,
+                "protein": 10
+              },
+              "Lunch": {
+                "calories": 1015.057361,
+                "carbs": 35.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 781,
+                "fat": 72.7,
+                "food": "Kurakkan with mung beans and tomato",
+                "glycemic_index": 60,
+                "protein": 51.3
+              },
+              "Snack": {
+                "calories": 221.7973231,
+                "carbs": 19.4,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 171,
+                "fat": 11.6,
+                "food": "Kurakkan with egg and carrot",
+                "glycemic_index": 67,
+                "protein": 6.8
+              }
+            },
+            "Day 5": {
+              "Breakfast": {
+                "calories": 628.585086,
+                "carbs": 71.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 484,
+                "fat": 24,
+                "food": "Bread with tofu and onion",
+                "glycemic_index": 48,
+                "protein": 23.9
+              },
+              "Dinner": {
+                "calories": 668.499044,
+                "carbs": 63.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 514,
+                "fat": 36.1,
+                "food": "Kurakkan with tofu and beans",
+                "glycemic_index": 51,
+                "protein": 20.4
+              },
+              "Lunch": {
+                "calories": 607.791587,
+                "carbs": 60.9,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 468,
+                "fat": 21.7,
+                "food": "Kurakkan with tofu and onion",
+                "glycemic_index": 63,
+                "protein": 39.2
+              },
+              "Snack": {
+                "calories": 659.8948375,
+                "carbs": 31.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 508,
+                "fat": 34.1,
+                "food": "Rice with egg and beans",
+                "glycemic_index": 66,
+                "protein": 55.2
+              }
+            },
+            "Day 6": {
+              "Breakfast": {
+                "calories": 750.9560229,
+                "carbs": 82.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 578,
+                "fat": 35.5,
+                "food": "Wheat with mung beans and beans",
+                "glycemic_index": 68,
+                "protein": 24.3
+              },
+              "Dinner": {
+                "calories": 781.3097514,
+                "carbs": 58.3,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 601,
+                "fat": 43,
+                "food": "Millet with chicken and tomato",
+                "glycemic_index": 51,
+                "protein": 38.4
+              },
+              "Lunch": {
+                "calories": 916.3479924,
+                "carbs": 96.3,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 705,
+                "fat": 29.2,
+                "food": "Wheat with fish and onion",
+                "glycemic_index": 57,
+                "protein": 59.3
+              },
+              "Snack": {
+                "calories": 928.2982792,
+                "carbs": 94.3,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 714,
+                "fat": 30.5,
+                "food": "Millet with tofu and onion",
+                "glycemic_index": 58,
+                "protein": 60.8
+              }
+            },
+            "Day 7": {
+              "Breakfast": {
+                "calories": 930.9273423,
+                "carbs": 53,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 716,
+                "fat": 70.1,
+                "food": "Rice with egg and beans",
+                "glycemic_index": 52,
+                "protein": 21.6
+              },
+              "Dinner": {
+                "calories": 492.1128107,
+                "carbs": 83.6,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 379,
+                "fat": 10,
+                "food": "Kurakkan with tofu and cucumber",
+                "glycemic_index": 63,
+                "protein": 12.9
+              },
+              "Lunch": {
+                "calories": 404.875717,
+                "carbs": 42.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 311,
+                "fat": 10.8,
+                "food": "Kurakkan with mung beans and cabbage",
+                "glycemic_index": 59,
+                "protein": 31.7
+              },
+              "Snack": {
+                "calories": 498.3269598,
+                "carbs": 25.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 383,
+                "fat": 22.6,
+                "food": "Rice with fish and carrot",
+                "glycemic_index": 63,
+                "protein": 44.6
+              }
+            }
+          }
+        },
+        {
+          "summary": {
+            "final_risks": {
+              "estimated_diabetes_risk": 0,
+              "estimated_nutrition_risk": 0
+            },
+            "initial_risks": {
+              "diabetes_risk": 0.1964,
+              "nutrition_risk": 0.3716
+            },
+            "total_contributions": {
+              "diabetes_risk_reduced_by": 0.42,
+              "nutrition_risk_reduced_by": 1.04
+            }
+          },
+          "updated_meal_plan": {
+            "Day 1": {
+              "Breakfast": {
+                "calories": 916.8260038,
+                "carbs": 130.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 705,
+                "fat": 25.8,
+                "food": "Bread with mung beans and cabbage",
+                "glycemic_index": 48,
+                "protein": 36.1
+              },
+              "Dinner": {
+                "calories": 873.0879541,
+                "carbs": 152.1,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 672,
+                "fat": 16,
+                "food": "Rice with mung beans and tomato",
+                "glycemic_index": 65,
+                "protein": 21.4
+              },
+              "Lunch": {
+                "calories": 739.9617591,
+                "carbs": 98.3,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 569,
+                "fat": 22.7,
+                "food": "Bread with tofu and beans",
+                "glycemic_index": 49,
+                "protein": 29.7
+              },
+              "Snack": {
+                "calories": 1006.931166,
+                "carbs": 92.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 775,
+                "fat": 46.9,
+                "food": "Rice with beef and tomato",
+                "glycemic_index": 52,
+                "protein": 53.4
+              }
+            },
+            "Day 2": {
+              "Breakfast": {
+                "calories": 811.1854685,
+                "carbs": 83.3,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 624,
+                "fat": 31.7,
+                "food": "Millet with chicken and tomato",
+                "glycemic_index": 66,
+                "protein": 44.9
+              },
+              "Dinner": {
+                "calories": 665.6309751,
+                "carbs": 59.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 512,
+                "fat": 19.1,
+                "food": "Bread with mung beans and beans",
+                "glycemic_index": 60,
+                "protein": 55
+              },
+              "Lunch": {
+                "calories": 628.8240918,
+                "carbs": 77.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 484,
+                "fat": 21.8,
+                "food": "Kurakkan with lentils and onion",
+                "glycemic_index": 49,
+                "protein": 24.4
+              },
+              "Snack": {
+                "calories": 342.7342256,
+                "carbs": 57.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 264,
+                "fat": 3.5,
+                "food": "Bread with mung beans and onion",
+                "glycemic_index": 67,
+                "protein": 14.8
+              }
+            },
+            "Day 3": {
+              "Breakfast": {
+                "calories": 931.4053537,
+                "carbs": 49.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 716,
+                "fat": 76.9,
+                "food": "Bread with mung beans and cucumber",
+                "glycemic_index": 63,
+                "protein": 11.4
+              },
+              "Dinner": {
+                "calories": 791.8260038,
+                "carbs": 47.3,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 609,
+                "fat": 37.4,
+                "food": "Millet with tofu and onion",
+                "glycemic_index": 47,
+                "protein": 63
+              },
+              "Lunch": {
+                "calories": 722.5143403,
+                "carbs": 62.6,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 556,
+                "fat": 32.4,
+                "food": "Bread with fish and beans",
+                "glycemic_index": 67,
+                "protein": 41.7
+              },
+              "Snack": {
+                "calories": 764.5793499,
+                "carbs": 93.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 588,
+                "fat": 17.9,
+                "food": "Rice with mung beans and beans",
+                "glycemic_index": 51,
+                "protein": 49
+              }
+            },
+            "Day 4": {
+              "Breakfast": {
+                "calories": 841.5391969,
+                "carbs": 88.5,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 647,
+                "fat": 19.6,
+                "food": "Wheat with fish and cucumber",
+                "glycemic_index": 67,
+                "protein": 67
+              },
+              "Dinner": {
+                "calories": 944.0726577,
+                "carbs": 139.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 726,
+                "fat": 26.6,
+                "food": "Wheat with lentils and onion",
+                "glycemic_index": 53,
+                "protein": 25.2
+              },
+              "Lunch": {
+                "calories": 686.1854685,
+                "carbs": 32.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 528,
+                "fat": 50.1,
+                "food": "Rice with tofu and beans",
+                "glycemic_index": 66,
+                "protein": 26.4
+              },
+              "Snack": {
+                "calories": 626.9120459,
+                "carbs": 107,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 482,
+                "fat": 8.3,
+                "food": "Millet with mung beans and tomato",
+                "glycemic_index": 64,
+                "protein": 19.1
+              }
+            },
+            "Day 5": {
+              "Breakfast": {
+                "calories": 611.376673,
+                "carbs": 25.5,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 470,
+                "fat": 31.6,
+                "food": "Bread with beef and carrot",
+                "glycemic_index": 50,
+                "protein": 52.7
+              },
+              "Dinner": {
+                "calories": 570.2676864,
+                "carbs": 35.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 439,
+                "fat": 20.5,
+                "food": "Kurakkan with chicken and cabbage",
+                "glycemic_index": 61,
+                "protein": 57.9
+              },
+              "Lunch": {
+                "calories": 652.0076482,
+                "carbs": 75.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 502,
+                "fat": 21.6,
+                "food": "Bread with egg and cabbage",
+                "glycemic_index": 47,
+                "protein": 34.3
+              },
+              "Snack": {
+                "calories": 808.7954111,
+                "carbs": 111.5,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 622,
+                "fat": 24.2,
+                "food": "Bread with beef and cucumber",
+                "glycemic_index": 66,
+                "protein": 35.4
+              }
+            },
+            "Day 6": {
+              "Breakfast": {
+                "calories": 750.7170172,
+                "carbs": 89.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 577,
+                "fat": 20.3,
+                "food": "Millet with egg and cucumber",
+                "glycemic_index": 49,
+                "protein": 44.3
+              },
+              "Dinner": {
+                "calories": 632.4091778,
+                "carbs": 37.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 486,
+                "fat": 30,
+                "food": "Kurakkan with lentils and cabbage",
+                "glycemic_index": 56,
+                "protein": 45.6
+              },
+              "Lunch": {
+                "calories": 793.499044,
+                "carbs": 88.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 610,
+                "fat": 18.1,
+                "food": "Bread with chicken and onion",
+                "glycemic_index": 55,
+                "protein": 58.9
+              },
+              "Snack": {
+                "calories": 683.7954111,
+                "carbs": 29.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 526,
+                "fat": 43.8,
+                "food": "Kurakkan with chicken and tomato",
+                "glycemic_index": 66,
+                "protein": 39.5
+              }
+            },
+            "Day 7": {
+              "Breakfast": {
+                "calories": 764.8183556,
+                "carbs": 84,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 588,
+                "fat": 25.2,
+                "food": "Rice with fish and carrot",
+                "glycemic_index": 69,
+                "protein": 45.8
+              },
+              "Dinner": {
+                "calories": 800.1912046,
+                "carbs": 87.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 616,
+                "fat": 32.5,
+                "food": "Millet with egg and beans",
+                "glycemic_index": 69,
+                "protein": 34.1
+              },
+              "Lunch": {
+                "calories": 923.9961759,
+                "carbs": 150.7,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 711,
+                "fat": 23.5,
+                "food": "Wheat with lentils and cabbage",
+                "glycemic_index": 62,
+                "protein": 21.2
+              },
+              "Snack": {
+                "calories": 917.3040153,
+                "carbs": 98.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 706,
+                "fat": 44.6,
+                "food": "Wheat with beef and beans",
+                "glycemic_index": 52,
+                "protein": 27.9
+              }
+            }
+          }
+        },
+        {
+          "summary": {
+            "final_risks": {
+              "estimated_diabetes_risk": 0,
+              "estimated_nutrition_risk": 0
+            },
+            "initial_risks": {
+              "diabetes_risk": 0.1964,
+              "nutrition_risk": 0.3716
+            },
+            "total_contributions": {
+              "diabetes_risk_reduced_by": 0.36,
+              "nutrition_risk_reduced_by": 0.88
+            }
+          },
+          "updated_meal_plan": {
+            "Day 1": {
+              "Breakfast": {
+                "calories": 1037.762906,
+                "carbs": 28.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 798,
+                "fat": 86,
+                "food": "Rice with chicken and cabbage",
+                "glycemic_index": 65,
+                "protein": 37.3
+              },
+              "Dinner": {
+                "calories": 892.6864245,
+                "carbs": 138.7,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 687,
+                "fat": 17.3,
+                "food": "Wheat with lentils and onion",
+                "glycemic_index": 57,
+                "protein": 36.3
+              },
+              "Lunch": {
+                "calories": 885.0382409,
+                "carbs": 119.4,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 681,
+                "fat": 26.3,
+                "food": "Rice with mung beans and beans",
+                "glycemic_index": 55,
+                "protein": 38.5
+              },
+              "Snack": {
+                "calories": 466.3001912,
+                "carbs": 52.3,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 359,
+                "fat": 18.7,
+                "food": "Millet with tofu and beans",
+                "glycemic_index": 65,
+                "protein": 18.5
+              }
+            },
+            "Day 2": {
+              "Breakfast": {
+                "calories": 779.6367113,
+                "carbs": 125,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 600,
+                "fat": 19.7,
+                "food": "Wheat with mung beans and tomato",
+                "glycemic_index": 52,
+                "protein": 20
+              },
+              "Dinner": {
+                "calories": 889.1013384,
+                "carbs": 80.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 684,
+                "fat": 43.3,
+                "food": "Bread with lentils and tomato",
+                "glycemic_index": 51,
+                "protein": 38.3
+              },
+              "Lunch": {
+                "calories": 839.6271511,
+                "carbs": 123.1,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 646,
+                "fat": 19.9,
+                "food": "Bread with chicken and carrot",
+                "glycemic_index": 61,
+                "protein": 32
+              },
+              "Snack": {
+                "calories": 683.7954111,
+                "carbs": 86.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 526,
+                "fat": 22.8,
+                "food": "Bread with mung beans and beans",
+                "glycemic_index": 65,
+                "protein": 29.4
+              }
+            },
+            "Day 3": {
+              "Breakfast": {
+                "calories": 999.0439771,
+                "carbs": 90.2,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 768,
+                "fat": 41.4,
+                "food": "Millet with beef and cucumber",
+                "glycemic_index": 59,
+                "protein": 50.2
+              },
+              "Dinner": {
+                "calories": 893.8814532,
+                "carbs": 98.6,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 688,
+                "fat": 43.6,
+                "food": "Kurakkan with tofu and carrot",
+                "glycemic_index": 63,
+                "protein": 26
+              },
+              "Lunch": {
+                "calories": 983.2695985,
+                "carbs": 116.3,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 756,
+                "fat": 31.5,
+                "food": "Bread with fish and tomato",
+                "glycemic_index": 59,
+                "protein": 54.2
+              },
+              "Snack": {
+                "calories": 926.3862333,
+                "carbs": 26.3,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 713,
+                "fat": 84.9,
+                "food": "Rice with chicken and tomato",
+                "glycemic_index": 45,
+                "protein": 15.3
+              }
+            },
+            "Day 4": {
+              "Breakfast": {
+                "calories": 925.9082218,
+                "carbs": 126.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 712,
+                "fat": 15.2,
+                "food": "Wheat with fish and beans",
+                "glycemic_index": 55,
+                "protein": 62.1
+              },
+              "Dinner": {
+                "calories": 540.8699809,
+                "carbs": 41.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 416,
+                "fat": 25.5,
+                "food": "Kurakkan with egg and cabbage",
+                "glycemic_index": 56,
+                "protein": 32.2
+              },
+              "Lunch": {
+                "calories": 800.6692161,
+                "carbs": 108.3,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 616,
+                "fat": 23.4,
+                "food": "Wheat with egg and carrot",
+                "glycemic_index": 46,
+                "protein": 34.1
+              },
+              "Snack": {
+                "calories": 859.2256214,
+                "carbs": 89.6,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 661,
+                "fat": 31.5,
+                "food": "Rice with lentils and beans",
+                "glycemic_index": 70,
+                "protein": 50.6
+              }
+            },
+            "Day 5": {
+              "Breakfast": {
+                "calories": 906.5487572,
+                "carbs": 91.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 697,
+                "fat": 30,
+                "food": "Bread with beef and carrot",
+                "glycemic_index": 67,
+                "protein": 60.8
+              },
+              "Dinner": {
+                "calories": 709.1300191,
+                "carbs": 92.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 545,
+                "fat": 22.3,
+                "food": "Wheat with chicken and cabbage",
+                "glycemic_index": 47,
+                "protein": 28.9
+              },
+              "Lunch": {
+                "calories": 994.0248566,
+                "carbs": 78.5,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 765,
+                "fat": 59.1,
+                "food": "Millet with mung beans and carrot",
+                "glycemic_index": 68,
+                "protein": 32
+              },
+              "Snack": {
+                "calories": 804.0152964,
+                "carbs": 75,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 618,
+                "fat": 36.7,
+                "food": "Bread with lentils and carrot",
+                "glycemic_index": 66,
+                "protein": 37
+              }
+            },
+            "Day 6": {
+              "Breakfast": {
+                "calories": 1032.743786,
+                "carbs": 86.3,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 794,
+                "fat": 54.5,
+                "food": "Bread with lentils and cucumber",
+                "glycemic_index": 65,
+                "protein": 39.5
+              },
+              "Dinner": {
+                "calories": 788.2409178,
+                "carbs": 114.5,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 606,
+                "fat": 15,
+                "food": "Wheat with beef and tomato",
+                "glycemic_index": 61,
+                "protein": 39.4
+              },
+              "Lunch": {
+                "calories": 796.6061185,
+                "carbs": 53.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 613,
+                "fat": 39.5,
+                "food": "Bread with tofu and cabbage",
+                "glycemic_index": 68,
+                "protein": 51.9
+              },
+              "Snack": {
+                "calories": 621.1759082,
+                "carbs": 58.7,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 478,
+                "fat": 21.2,
+                "food": "Kurakkan with mung beans and onion",
+                "glycemic_index": 54,
+                "protein": 46.3
+              }
+            },
+            "Day 7": {
+              "Breakfast": {
+                "calories": 682.3613767,
+                "carbs": 71.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 525,
+                "fat": 23,
+                "food": "Millet with mung beans and cucumber",
+                "glycemic_index": 57,
+                "protein": 40.7
+              },
+              "Dinner": {
+                "calories": 791.8260038,
+                "carbs": 47.3,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 609,
+                "fat": 37.4,
+                "food": "Millet with tofu and onion",
+                "glycemic_index": 47,
+                "protein": 63
+              },
+              "Lunch": {
+                "calories": 875.7170172,
+                "carbs": 55,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 674,
+                "fat": 50.3,
+                "food": "Bread with chicken and carrot",
+                "glycemic_index": 62,
+                "protein": 46.3
+              },
+              "Snack": {
+                "calories": 917.3040153,
+                "carbs": 98.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 706,
+                "fat": 44.6,
+                "food": "Wheat with beef and beans",
+                "glycemic_index": 52,
+                "protein": 27.9
+              }
+            }
+          }
+        },
+        {
+          "summary": {
+            "final_risks": {
+              "estimated_diabetes_risk": 0,
+              "estimated_nutrition_risk": 0
+            },
+            "initial_risks": {
+              "diabetes_risk": 0.1964,
+              "nutrition_risk": 0.3716
+            },
+            "total_contributions": {
+              "diabetes_risk_reduced_by": 0.42,
+              "nutrition_risk_reduced_by": 1.02
+            }
+          },
+          "updated_meal_plan": {
+            "Day 1": {
+              "Breakfast": {
+                "calories": 685.9464627,
+                "carbs": 85.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 528,
+                "fat": 21.5,
+                "food": "Wheat with egg and cucumber",
+                "glycemic_index": 47,
+                "protein": 31.8
+              },
+              "Dinner": {
+                "calories": 397.7055449,
+                "carbs": 44.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 306,
+                "fat": 11.5,
+                "food": "Millet with fish and cabbage",
+                "glycemic_index": 64,
+                "protein": 24
+              },
+              "Lunch": {
+                "calories": 611.376673,
+                "carbs": 75,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 470,
+                "fat": 19.2,
+                "food": "Bread with lentils and cucumber",
+                "glycemic_index": 67,
+                "protein": 28.2
+              },
+              "Snack": {
+                "calories": 770.5544933,
+                "carbs": 87,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 593,
+                "fat": 13.1,
+                "food": "Wheat with beef and cabbage",
+                "glycemic_index": 59,
+                "protein": 67.4
+              }
+            },
+            "Day 2": {
+              "Breakfast": {
+                "calories": 774.6175908,
+                "carbs": 105.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 596,
+                "fat": 17.6,
+                "food": "Wheat with fish and tomato",
+                "glycemic_index": 47,
+                "protein": 38.7
+              },
+              "Dinner": {
+                "calories": 822.1797323,
+                "carbs": 110.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 632,
+                "fat": 33.1,
+                "food": "Kurakkan with tofu and cabbage",
+                "glycemic_index": 46,
+                "protein": 16.8
+              },
+              "Lunch": {
+                "calories": 673.040153,
+                "carbs": 75,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 518,
+                "fat": 20.3,
+                "food": "Kurakkan with egg and tomato",
+                "glycemic_index": 57,
+                "protein": 43.9
+              },
+              "Snack": {
+                "calories": 1000.478011,
+                "carbs": 118.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 770,
+                "fat": 44.1,
+                "food": "Rice with chicken and cabbage",
+                "glycemic_index": 47,
+                "protein": 28.1
+              }
+            },
+            "Day 3": {
+              "Breakfast": {
+                "calories": 728.4894837,
+                "carbs": 82.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 560,
+                "fat": 31.4,
+                "food": "Millet with fish and tomato",
+                "glycemic_index": 48,
+                "protein": 27.1
+              },
+              "Dinner": {
+                "calories": 745.2198853,
+                "carbs": 86.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 573,
+                "fat": 31.5,
+                "food": "Millet with mung beans and tomato",
+                "glycemic_index": 46,
+                "protein": 20.5
+              },
+              "Lunch": {
+                "calories": 758.8432122,
+                "carbs": 56.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 584,
+                "fat": 42.6,
+                "food": "Kurakkan with lentils and carrot",
+                "glycemic_index": 56,
+                "protein": 32.4
+              },
+              "Snack": {
+                "calories": 943.5946463,
+                "carbs": 154.3,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 726,
+                "fat": 23.7,
+                "food": "Kurakkan with tofu and carrot",
+                "glycemic_index": 61,
+                "protein": 23.9
+              }
+            },
+            "Day 4": {
+              "Breakfast": {
+                "calories": 273.1835564,
+                "carbs": 28,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 210,
+                "fat": 8.4,
+                "food": "Kurakkan with egg and cabbage",
+                "glycemic_index": 60,
+                "protein": 18.2
+              },
+              "Dinner": {
+                "calories": 911.0898662,
+                "carbs": 97.6,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 701,
+                "fat": 32.2,
+                "food": "Wheat with lentils and onion",
+                "glycemic_index": 62,
+                "protein": 51.9
+              },
+              "Lunch": {
+                "calories": 611.8546845,
+                "carbs": 46.9,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 471,
+                "fat": 36.7,
+                "food": "Kurakkan with chicken and beans",
+                "glycemic_index": 51,
+                "protein": 23.5
+              },
+              "Snack": {
+                "calories": 428.2982792,
+                "carbs": 36.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 329,
+                "fat": 13.6,
+                "food": "Kurakkan with lentils and onion",
+                "glycemic_index": 59,
+                "protein": 37.1
+              }
+            },
+            "Day 5": {
+              "Breakfast": {
+                "calories": 770.5544933,
+                "carbs": 134.7,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 593,
+                "fat": 9.8,
+                "food": "Millet with fish and cucumber",
+                "glycemic_index": 68,
+                "protein": 26.7
+              },
+              "Dinner": {
+                "calories": 874.2829828,
+                "carbs": 80.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 673,
+                "fat": 38.2,
+                "food": "Rice with lentils and cabbage",
+                "glycemic_index": 68,
+                "protein": 47.4
+              },
+              "Lunch": {
+                "calories": 796.6061185,
+                "carbs": 53.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 613,
+                "fat": 39.5,
+                "food": "Bread with tofu and cabbage",
+                "glycemic_index": 68,
+                "protein": 51.9
+              },
+              "Snack": {
+                "calories": 990.4397706,
+                "carbs": 21.5,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 762,
+                "fat": 89.8,
+                "food": "Kurakkan with mung beans and carrot",
+                "glycemic_index": 53,
+                "protein": 24.2
+              }
+            },
+            "Day 6": {
+              "Breakfast": {
+                "calories": 934.9904398,
+                "carbs": 50,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 719,
+                "fat": 58.8,
+                "food": "Wheat with beef and onion",
+                "glycemic_index": 57,
+                "protein": 51.3
+              },
+              "Dinner": {
+                "calories": 828.6328872,
+                "carbs": 95.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 637,
+                "fat": 27.7,
+                "food": "Wheat with tofu and cucumber",
+                "glycemic_index": 50,
+                "protein": 39.2
+              },
+              "Lunch": {
+                "calories": 639.5793499,
+                "carbs": 65.2,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 492,
+                "fat": 32.1,
+                "food": "Kurakkan with mung beans and onion",
+                "glycemic_index": 65,
+                "protein": 21.4
+              },
+              "Snack": {
+                "calories": 859.2256214,
+                "carbs": 89.6,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 661,
+                "fat": 31.5,
+                "food": "Rice with lentils and beans",
+                "glycemic_index": 70,
+                "protein": 50.6
+              }
+            },
+            "Day 7": {
+              "Breakfast": {
+                "calories": 398.1835564,
+                "carbs": 34.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 306,
+                "fat": 23.3,
+                "food": "Kurakkan with lentils and carrot",
+                "glycemic_index": 63,
+                "protein": 8.7
+              },
+              "Dinner": {
+                "calories": 786.3288719,
+                "carbs": 112.6,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 605,
+                "fat": 20.8,
+                "food": "Millet with egg and carrot",
+                "glycemic_index": 46,
+                "protein": 29.5
+              },
+              "Lunch": {
+                "calories": 303.7762906,
+                "carbs": 42.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 234,
+                "fat": 8.9,
+                "food": "Kurakkan with mung beans and cucumber",
+                "glycemic_index": 57,
+                "protein": 9.4
+              },
+              "Snack": {
+                "calories": 786.5678776,
+                "carbs": 51.1,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 605,
+                "fat": 27.7,
+                "food": "Millet with beef and tomato",
+                "glycemic_index": 59,
+                "protein": 80
+              }
+            }
+          }
+        },
+        {
+          "summary": {
+            "final_risks": {
+              "estimated_diabetes_risk": 0,
+              "estimated_nutrition_risk": 0
+            },
+            "initial_risks": {
+              "diabetes_risk": 0.1964,
+              "nutrition_risk": 0.3716
+            },
+            "total_contributions": {
+              "diabetes_risk_reduced_by": 0.32,
+              "nutrition_risk_reduced_by": 1.04
+            }
+          },
+          "updated_meal_plan": {
+            "Day 1": {
+              "Breakfast": {
+                "calories": 981.1185468,
+                "carbs": 14.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 755,
+                "fat": 92.1,
+                "food": "Kurakkan with mung beans and beans",
+                "glycemic_index": 68,
+                "protein": 20.1
+              },
+              "Dinner": {
+                "calories": 562.6195029,
+                "carbs": 76.7,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 433,
+                "fat": 13,
+                "food": "Wheat with mung beans and onion",
+                "glycemic_index": 60,
+                "protein": 25.9
+              },
+              "Lunch": {
+                "calories": 601.5774379,
+                "carbs": 70,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 463,
+                "fat": 19.9,
+                "food": "Millet with lentils and tomato",
+                "glycemic_index": 66,
+                "protein": 30.3
+              },
+              "Snack": {
+                "calories": 686.4244742,
+                "carbs": 89.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 528,
+                "fat": 13.2,
+                "food": "Rice with mung beans and beans",
+                "glycemic_index": 50,
+                "protein": 51.4
+              }
+            },
+            "Day 2": {
+              "Breakfast": {
+                "calories": 816.2045889,
+                "carbs": 25.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 628,
+                "fat": 50.9,
+                "food": "Kurakkan with fish and tomato",
+                "glycemic_index": 58,
+                "protein": 58.8
+              },
+              "Dinner": {
+                "calories": 892.6864245,
+                "carbs": 138.7,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 687,
+                "fat": 17.3,
+                "food": "Wheat with lentils and onion",
+                "glycemic_index": 57,
+                "protein": 36.3
+              },
+              "Lunch": {
+                "calories": 803.7762906,
+                "carbs": 81.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 618,
+                "fat": 31.7,
+                "food": "Rice with egg and tomato",
+                "glycemic_index": 52,
+                "protein": 43.9
+              },
+              "Snack": {
+                "calories": 869.2638623,
+                "carbs": 111.3,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 669,
+                "fat": 33.8,
+                "food": "Kurakkan with beef and onion",
+                "glycemic_index": 46,
+                "protein": 28
+              }
+            },
+            "Day 3": {
+              "Breakfast": {
+                "calories": 398.1835564,
+                "carbs": 34.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 306,
+                "fat": 23.3,
+                "food": "Kurakkan with lentils and carrot",
+                "glycemic_index": 63,
+                "protein": 8.7
+              },
+              "Dinner": {
+                "calories": 685.9464627,
+                "carbs": 87.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 528,
+                "fat": 17.9,
+                "food": "Rice with fish and tomato",
+                "glycemic_index": 66,
+                "protein": 39.1
+              },
+              "Lunch": {
+                "calories": 554.7323136,
+                "carbs": 45.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 427,
+                "fat": 21,
+                "food": "Rice with lentils and cucumber",
+                "glycemic_index": 60,
+                "protein": 41.3
+              },
+              "Snack": {
+                "calories": 966.0611855,
+                "carbs": 110.3,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 743,
+                "fat": 42.8,
+                "food": "Millet with chicken and tomato",
+                "glycemic_index": 65,
+                "protein": 34.3
+              }
+            },
+            "Day 4": {
+              "Breakfast": {
+                "calories": 1039.674952,
+                "carbs": 129.8,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 800,
+                "fat": 39.9,
+                "food": "Bread with lentils and carrot",
+                "glycemic_index": 70,
+                "protein": 33.1
+              },
+              "Dinner": {
+                "calories": 617.8298279,
+                "carbs": 92.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 475,
+                "fat": 17.7,
+                "food": "Millet with lentils and onion",
+                "glycemic_index": 47,
+                "protein": 15.9
+              },
+              "Lunch": {
+                "calories": 1016.25239,
+                "carbs": 57.4,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 782,
+                "fat": 60.3,
+                "food": "Kurakkan with egg and beans",
+                "glycemic_index": 68,
+                "protein": 57.9
+              },
+              "Snack": {
+                "calories": 787.2848948,
+                "carbs": 81,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 606,
+                "fat": 31.8,
+                "food": "Bread with fish and carrot",
+                "glycemic_index": 59,
+                "protein": 39.4
+              }
+            },
+            "Day 5": {
+              "Breakfast": {
+                "calories": 1018.642447,
+                "carbs": 91.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 784,
+                "fat": 40,
+                "food": "Rice with beef and cucumber",
+                "glycemic_index": 70,
+                "protein": 67.5
+              },
+              "Dinner": {
+                "calories": 659.6558317,
+                "carbs": 88.8,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 507,
+                "fat": 17.8,
+                "food": "Millet with beef and beans",
+                "glycemic_index": 64,
+                "protein": 35.1
+              },
+              "Lunch": {
+                "calories": 744.7418738,
+                "carbs": 60.3,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 573,
+                "fat": 29.6,
+                "food": "Bread with egg and cucumber",
+                "glycemic_index": 55,
+                "protein": 56.3
+              },
+              "Snack": {
+                "calories": 805.9273423,
+                "carbs": 98,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 620,
+                "fat": 25.9,
+                "food": "Wheat with chicken and beans",
+                "glycemic_index": 54,
+                "protein": 41.7
+              }
+            },
+            "Day 6": {
+              "Breakfast": {
+                "calories": 586.998088,
+                "carbs": 73.8,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 452,
+                "fat": 18.2,
+                "food": "Wheat with chicken and cabbage",
+                "glycemic_index": 54,
+                "protein": 27.9
+              },
+              "Dinner": {
+                "calories": 397.7055449,
+                "carbs": 44.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 306,
+                "fat": 11.5,
+                "food": "Millet with fish and cabbage",
+                "glycemic_index": 64,
+                "protein": 24
+              },
+              "Lunch": {
+                "calories": 901.7686424,
+                "carbs": 96.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 694,
+                "fat": 30.8,
+                "food": "Bread with lentils and beans",
+                "glycemic_index": 49,
+                "protein": 54.5
+              },
+              "Snack": {
+                "calories": 533.2217973,
+                "carbs": 51.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 410,
+                "fat": 12.8,
+                "food": "Rice with fish and tomato",
+                "glycemic_index": 64,
+                "protein": 50.2
+              }
+            },
+            "Day 7": {
+              "Breakfast": {
+                "calories": 813.3365201,
+                "carbs": 39.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 626,
+                "fat": 59.7,
+                "food": "Millet with chicken and cabbage",
+                "glycemic_index": 66,
+                "protein": 27.7
+              },
+              "Dinner": {
+                "calories": 825.0478011,
+                "carbs": 91.1,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 635,
+                "fat": 27.9,
+                "food": "Millet with mung beans and tomato",
+                "glycemic_index": 60,
+                "protein": 46.2
+              },
+              "Lunch": {
+                "calories": 936.9024857,
+                "carbs": 125.5,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 721,
+                "fat": 25.7,
+                "food": "Millet with egg and cabbage",
+                "glycemic_index": 65,
+                "protein": 41.3
+              },
+              "Snack": {
+                "calories": 850.3824092,
+                "carbs": 129.3,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 654,
+                "fat": 22.5,
+                "food": "Bread with egg and cabbage",
+                "glycemic_index": 66,
+                "protein": 29.4
+              }
+            }
+          }
+        },
+        {
+          "summary": {
+            "final_risks": {
+              "estimated_diabetes_risk": 0,
+              "estimated_nutrition_risk": 0
+            },
+            "initial_risks": {
+              "diabetes_risk": 0.1964,
+              "nutrition_risk": 0.3716
+            },
+            "total_contributions": {
+              "diabetes_risk_reduced_by": 0.4,
+              "nutrition_risk_reduced_by": 0.96
+            }
+          },
+          "updated_meal_plan": {
+            "Day 1": {
+              "Breakfast": {
+                "calories": 904.1586998,
+                "carbs": 110.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 696,
+                "fat": 26.9,
+                "food": "Wheat with fish and cabbage",
+                "glycemic_index": 51,
+                "protein": 52.7
+              },
+              "Dinner": {
+                "calories": 952.6768642,
+                "carbs": 128.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 733,
+                "fat": 29.7,
+                "food": "Millet with beef and carrot",
+                "glycemic_index": 57,
+                "protein": 39.5
+              },
+              "Lunch": {
+                "calories": 631.9311663,
+                "carbs": 70.6,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 486,
+                "fat": 16.1,
+                "food": "Wheat with fish and beans",
+                "glycemic_index": 50,
+                "protein": 47.7
+              },
+              "Snack": {
+                "calories": 522.9445507,
+                "carbs": 36.4,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 402,
+                "fat": 20.5,
+                "food": "Wheat with beef and cabbage",
+                "glycemic_index": 59,
+                "protein": 44.6
+              }
+            },
+            "Day 2": {
+              "Breakfast": {
+                "calories": 916.5869981,
+                "carbs": 98.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 705,
+                "fat": 32.7,
+                "food": "Wheat with egg and beans",
+                "glycemic_index": 46,
+                "protein": 51.1
+              },
+              "Dinner": {
+                "calories": 825.0478011,
+                "carbs": 91.1,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 635,
+                "fat": 27.9,
+                "food": "Millet with mung beans and tomato",
+                "glycemic_index": 60,
+                "protein": 46.2
+              },
+              "Lunch": {
+                "calories": 1016.25239,
+                "carbs": 57.4,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 782,
+                "fat": 60.3,
+                "food": "Kurakkan with egg and beans",
+                "glycemic_index": 68,
+                "protein": 57.9
+              },
+              "Snack": {
+                "calories": 469.6462715,
+                "carbs": 45.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 361,
+                "fat": 9.6,
+                "food": "Rice with chicken and carrot",
+                "glycemic_index": 69,
+                "protein": 45.1
+              }
+            },
+            "Day 3": {
+              "Breakfast": {
+                "calories": 1004.541109,
+                "carbs": 72,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 773,
+                "fat": 65,
+                "food": "Rice with lentils and carrot",
+                "glycemic_index": 56,
+                "protein": 26.9
+              },
+              "Dinner": {
+                "calories": 838.9101338,
+                "carbs": 114.2,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 645,
+                "fat": 34.2,
+                "food": "Kurakkan with lentils and cucumber",
+                "glycemic_index": 48,
+                "protein": 14.8
+              },
+              "Lunch": {
+                "calories": 713.9101338,
+                "carbs": 71.1,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 549,
+                "fat": 29.4,
+                "food": "Rice with egg and carrot",
+                "glycemic_index": 57,
+                "protein": 40.2
+              },
+              "Snack": {
+                "calories": 528.2026769,
+                "carbs": 19.6,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 406,
+                "fat": 34.7,
+                "food": "Kurakkan with chicken and beans",
+                "glycemic_index": 66,
+                "protein": 31.9
+              }
+            },
+            "Day 4": {
+              "Breakfast": {
+                "calories": 896.5105163,
+                "carbs": 111.5,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 690,
+                "fat": 32.8,
+                "food": "Millet with fish and onion",
+                "glycemic_index": 58,
+                "protein": 36.4
+              },
+              "Dinner": {
+                "calories": 828.6328872,
+                "carbs": 95.7,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 637,
+                "fat": 27.7,
+                "food": "Wheat with tofu and cucumber",
+                "glycemic_index": 50,
+                "protein": 39.2
+              },
+              "Lunch": {
+                "calories": 885.5162524,
+                "carbs": 124.5,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 681,
+                "fat": 26.8,
+                "food": "Bread with egg and carrot",
+                "glycemic_index": 58,
+                "protein": 29.3
+              },
+              "Snack": {
+                "calories": 449.0917782,
+                "carbs": 30.4,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 345,
+                "fat": 28,
+                "food": "Kurakkan with fish and cabbage",
+                "glycemic_index": 59,
+                "protein": 17.1
+              }
+            },
+            "Day 5": {
+              "Breakfast": {
+                "calories": 595.124283,
+                "carbs": 23.3,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 458,
+                "fat": 33.3,
+                "food": "Kurakkan with fish and beans",
+                "glycemic_index": 46,
+                "protein": 49.8
+              },
+              "Dinner": {
+                "calories": 601.8164436,
+                "carbs": 44.3,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 463,
+                "fat": 16.5,
+                "food": "Kurakkan with chicken and cucumber",
+                "glycemic_index": 68,
+                "protein": 66.4
+              },
+              "Lunch": {
+                "calories": 654.3977055,
+                "carbs": 83.6,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 503,
+                "fat": 20.6,
+                "food": "Rice with egg and cucumber",
+                "glycemic_index": 59,
+                "protein": 28
+              },
+              "Snack": {
+                "calories": 626.9120459,
+                "carbs": 107,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 482,
+                "fat": 8.3,
+                "food": "Millet with mung beans and tomato",
+                "glycemic_index": 64,
+                "protein": 19.1
+              }
+            },
+            "Day 6": {
+              "Breakfast": {
+                "calories": 874.0439771,
+                "carbs": 103.2,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 672,
+                "fat": 26.1,
+                "food": "Wheat with lentils and tomato",
+                "glycemic_index": 68,
+                "protein": 46.9
+              },
+              "Dinner": {
+                "calories": 709.6080306,
+                "carbs": 88.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 546,
+                "fat": 22.1,
+                "food": "Wheat with tofu and beans",
+                "glycemic_index": 53,
+                "protein": 30.6
+              },
+              "Lunch": {
+                "calories": 1027.246654,
+                "carbs": 151.8,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 790,
+                "fat": 24.5,
+                "food": "Millet with lentils and onion",
+                "glycemic_index": 59,
+                "protein": 38.7
+              },
+              "Snack": {
+                "calories": 990.4397706,
+                "carbs": 21.5,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 762,
+                "fat": 89.8,
+                "food": "Kurakkan with mung beans and carrot",
+                "glycemic_index": 53,
+                "protein": 24.2
+              }
+            },
+            "Day 7": {
+              "Breakfast": {
+                "calories": 857.791587,
+                "carbs": 107.5,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.04
+                },
+                "estimated_weight_g": 660,
+                "fat": 19.3,
+                "food": "Bread with egg and cabbage",
+                "glycemic_index": 47,
+                "protein": 59
+              },
+              "Dinner": {
+                "calories": 246.8929254,
+                "carbs": 29.9,
+                "contribution": {
+                  "diabetes_reduction": 0.02,
+                  "nutrition_reduction": 0.06
+                },
+                "estimated_weight_g": 190,
+                "fat": 8.5,
+                "food": "Millet with mung beans and beans",
+                "glycemic_index": 69,
+                "protein": 10
+              },
+              "Lunch": {
+                "calories": 945.5066922,
+                "carbs": 8.8,
+                "contribution": {
+                  "diabetes_reduction": 0.04,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 727,
+                "fat": 95.5,
+                "food": "Kurakkan with egg and cabbage",
+                "glycemic_index": 52,
+                "protein": 13.2
+              },
+              "Snack": {
+                "calories": 995.6978967,
+                "carbs": 61.4,
+                "contribution": {
+                  "diabetes_reduction": 0,
+                  "nutrition_reduction": 0.02
+                },
+                "estimated_weight_g": 766,
+                "fat": 48.1,
+                "food": "Wheat with beef and cucumber",
+                "glycemic_index": 65,
+                "protein": 73
               }
             }
           }

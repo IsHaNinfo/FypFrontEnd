@@ -112,7 +112,7 @@ const RiskAssesment = () => {
                     <p className="diagnostic-text">Diagnostic Accuracy</p>
                 </div>
                 <div className="diagnostic-card">
-                    <h2 className="diagnostic-percentage">5 Minute</h2>
+                    <h2 className="diagnostic-percentage">2 Minute</h2>
                     <p className="diagnostic-text">To Get a Result</p>
                 </div>
                 <div className="diagnostic-card image-card">
@@ -123,15 +123,28 @@ const RiskAssesment = () => {
                     <h2 className="diagnostic-percentage">90%</h2>
                     <p className="diagnostic-text">Type 2 Diabetes Cases</p>
                 </div>
-                <div className="diagnostic-card ">
-                    <h2 className="diagnostic-percentage">18.3%</h2>
-                    <p className="diagnostic-text">
-                        Adults in Sri Lanka with Diabetes
-                    </p>
-                </div>
-                <div className="diagnostic-card">
-                    <h2 className="diagnostic-percentage">40–50%</h2>
-                    <p className="diagnostic-text">Undiagnosed Diabetic Cases</p>
+                <div className="risk-buttons-container">
+                    <h3 className="risk-buttons-title">Select a Risk Category</h3>
+                    <div className="risk-buttons">
+                        <button
+                            className="risk-button nutrition-risk px-4 py-2 rounded-md"
+                            onClick={() => setShowNutritionModal(true)}
+                        >
+                            Nutrition Risk
+                        </button>
+                        <button
+                            className="risk-button physical-activity-risk px-4 py-2 rounded-md"
+                            onClick={() => setShowPhysicalModal(true)}
+                        >
+                            Physical Activity Risk
+                        </button>
+                        <button
+                            className="risk-button mental-risk px-4 py-2 rounded-md"
+                            onClick={() => setShowMentalModal(true)}
+                        >
+                            Mental Risk
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -149,7 +162,7 @@ const RiskAssesment = () => {
                     showValue={true}
                     sx={{
                         strokeColor: "#ff5722", // Purple progress bar color
-                        barWidth: 10, // Increase bar width
+                        barWidth: 8, // Increase bar width
                         bgStrokeColor: "#2d3748", // Dark grey background circle
                         bgColor: { value: "#000000", transparency: "20" },
                         shape: "full",
@@ -182,9 +195,6 @@ const RiskAssesment = () => {
                                 className="risk-validation-btn flex items-center gap-2 px-6 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-blue-500 transition-all duration-300 text-lg"
                                 onClick={handleRiskValidation}
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
                                 Risk Validation
                             </button>
                         </div>
@@ -193,9 +203,6 @@ const RiskAssesment = () => {
                                 className="risk-validation-btn flex items-center gap-2 px-6 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-blue-500 transition-all duration-300 text-lg"
                                 onClick={handleShowCurrentStatus}
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
                                 Current Diabetic Status
                             </button>
                         </div>
@@ -203,29 +210,7 @@ const RiskAssesment = () => {
                 </div>
 
                 {/* Buttons */}
-                <div className="risk-buttons-container">
-                    <h3 className="risk-buttons-title">Select a Risk Category</h3>
-                    <div className="risk-buttons">
-                        <button
-                            className="risk-button nutrition-risk px-4 py-2 rounded-md"
-                            onClick={() => setShowNutritionModal(true)}
-                        >
-                            Nutrition Risk
-                        </button>
-                        <button
-                            className="risk-button physical-activity-risk px-4 py-2 rounded-md"
-                            onClick={() => setShowPhysicalModal(true)}
-                        >
-                            Physical Activity Risk
-                        </button>
-                        <button
-                            className="risk-button mental-risk px-4 py-2 rounded-md"
-                            onClick={() => setShowMentalModal(true)}
-                        >
-                            Mental Risk
-                        </button>
-                    </div>
-                </div>
+
             </div>
 
             <NutritionRiskModal

@@ -80,7 +80,7 @@ const NutritionRecommandationModal: React.FC<Props> = ({ isOpen, onClose, recomm
                                         <ul className="ml-2 list-disc text-white">
                                             {(foods as FoodItem[]).map((item, i) => (
                                                 <li key={i} className="text-base">
-                                                    <span className="font-semibold">{item.food}</span> - <span className="font-mono">{item.grams}g</span>
+                                                    <span className="font-semibold">{item.food}</span><span className="font-mono"></span>
                                                     <div className="text-sm mt-1">
                                                         <span>Calories: {item.calories}</span>,
                                                         <span> Carbs: {item.carbs}g</span>,

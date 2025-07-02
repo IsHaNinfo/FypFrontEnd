@@ -79,12 +79,7 @@ const CurrentDiabeticStatusModal: React.FC<CurrentDiabeticStatusModalProps> = ({
                             ))}
                         </tbody>
                     </table>
-                    {validationData && (
-                        <>
-                            <h3>Validation Data:</h3>
-                            <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all', background: '#f3f3f3', padding: '8px', borderRadius: '4px' }}>{JSON.stringify(validationData, null, 2)}</pre>
-                        </>
-                    )}
+                  
                 </div>
             </div>
         </div>

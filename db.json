@@ -454,6 +454,31 @@
             "ML_Output": "Moderate",
             "Scenario": "Scenario 03"
           }
+        },
+        {
+          "id": "1752174108302",
+          "timestamp": "2025-07-10T19:01:48.302Z",
+          "formData": {
+            "age": "47",
+            "gender": "1.0",
+            "Perceived_Control": "1",
+            "Stress_Freq_Intensity": "Rarely  (0-1 times)",
+            "Emotional_Reg": "Not at all",
+            "Physical_Stress": "Not at all",
+            "Cognitive_Stress": "Never",
+            "Behavioral_Response": "Rarely",
+            "Work_Stress": "3",
+            "Productivity": "Several days",
+            "Suicidal_Thoughts": "Not at all",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "86.49314837022601"
+          },
+          "prediction": {
+            "DL_Output": "Stable",
+            "ML_Output": "Moderate",
+            "Scenario": "Scenario 03"
+          }
         }
       ]
     }

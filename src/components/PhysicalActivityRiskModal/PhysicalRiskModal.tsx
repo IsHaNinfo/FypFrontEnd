@@ -32,7 +32,22 @@ interface PhysicalAssessment {
     id: string;
     timestamp: string;
     formData: FormData;
-    prediction: number;
+    physicalRiskPrediction: number[];
+    feature_contributions: {
+        Age: number;
+        BMI: number;
+        EnergyLevels: number;
+        Physical_Activity: number;
+        Sitting_Time: number;
+        Cardiovascular_Health: number;
+        Muscle_Strength: number;
+        Flexibility: number;
+        Balance: number;
+        Thirsty: number;
+        Pain_or_Discomfort: number;
+        Available_Time: number;
+        DiabetesRisk: number;
+    };
 }
 
 const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }) => {
@@ -130,7 +145,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                     ...formData,
                     Diabetic_Risk: diabeticRisk
                 },
-                physicalRiskPrediction: assessment.prediction
+                physicalRiskPrediction: [assessment.physicalRiskPrediction],
+                feature_contributions: assessment.feature_contributions
             };
 
             const updatedUser = {
@@ -186,6 +202,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
             });
 
             const predictionValue = response.data.prediction;
+            const featureContributions = response.data.feature_contributions;
+            console.log("featureContributions", featureContributions);
             setPrediction(predictionValue);
 
             const assessment: PhysicalAssessment = {
@@ -195,10 +213,20 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                     ...formData,
                     Diabetic_Risk: formData.Diabetic_Risk
                 },
-                prediction: predictionValue
+                physicalRiskPrediction: [predictionValue],
+                feature_contributions: featureContributions
             };
 
             await updateUserAssessment(assessment);
+
+            // Dispatch event to notify other components
+            window.dispatchEvent(new CustomEvent('physicalAssessmentUpdated', {
+                detail: {
+                    prediction: predictionValue,
+                    featureContributions: featureContributions
+                }
+            }));
+
             setShowResult(true);
             onClose();
         } catch (error: any) {
@@ -222,17 +250,18 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
     if (!isOpen) return null;
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <button className="modal-close-icon" onClick={onClose} type="button">
+        /*
+        <div className="physical-modal-overlay">
+            <div className="physical-modal-content">
+                <button className="physical-modal-close-icon" onClick={onClose} type="button">
                     &times;
                 </button>
-                <div className='modal-header'>
+                <div className='physical-modal-header'>
                     <h2>Physical Risk Assessment</h2>
                 </div>
-                <form className="modal-form" onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label className="form-label">Do you feel tired or lack energy after mild activity? (1-10)</label>
+                <form className="physical-modal-form" onSubmit={handleSubmit}>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you feel tired or lack energy after mild activity? (1-10)</label>
                         <select
                             className="form-control"
                             name="EnergyLevels"
@@ -246,8 +275,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                             ))}
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">How often do you exercise or move during the day?(1-5)</label>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">How often do you exercise or move during the day?(1-5)</label>
                         <select
                             className="form-control"
                             name="PhysicalActivity"
@@ -261,8 +290,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                             ))}
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Do you spend most of the time sitting?</label>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you spend most of the time sitting?</label>
                         <select
                             className="form-control"
                             name="SittingTime"
@@ -275,8 +304,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                             <option value="No">No</option>
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Do you feel out of breath after climbing a few stairs?</label>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you feel out of breath after climbing a few stairs?</label>
                         <select
                             className="form-control"
                             name="CardiovascularHealth"
@@ -289,8 +318,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                             <option value="No">No</option>
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Do you find it difficult to hold or lift heavy objects?</label>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you find it difficult to hold or lift heavy objects?</label>
                         <select
                             className="form-control"
                             name="MuscleStrength"
@@ -303,8 +332,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                             <option value="No">No</option>
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Can you touch your toes during a sit-and-reach test?</label>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Can you touch your toes during a sit-and-reach test?</label>
                         <select
                             className="form-control"
                             name="Flexibility"
@@ -317,8 +346,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                             <option value="No">No</option>
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Can you balance on one leg for more than 5 seconds?</label>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Can you balance on one leg for more than 5 seconds?</label>
                         <select
                             className="form-control"
                             name="Balance"
@@ -331,8 +360,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                             <option value="No">No</option>
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">How much water do you drink daily? (1-10)</label>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">How much water do you drink daily? (1-10)</label>
                         <select
                             className="form-control"
                             name="Thirsty"
@@ -346,8 +375,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                             ))}
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Do you feel pain in your joints or muscles during movement?</label>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you feel pain in your joints or muscles during movement?</label>
                         <select
                             className="form-control"
                             name="PainOrDiscomfort"
@@ -360,8 +389,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                             <option value="No">No</option>
                         </select>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">How many hours do you typically spend working in the office each day?</label>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">How many hours do you typically spend working in the office each day?</label>
                         <input
                             className="form-control"
                             type="number"
@@ -372,17 +401,197 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                             required
                         />
                     </div>
-                    <div className="button-group">
-                        <button className="btn btn-primary" type="submit" disabled={isLoading}>
-                            {isLoading ? 'Submitting...' : 'Submit'}
+                    <div className="diabetic-modal-button-group">
+                            <button
+                                className="diabetic-modal-btn-primary"
+                                type="submit"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? 'Predicting...' : 'Submit'}
+                            </button>
+                            <button
+                                className="diabetic-modal-close-btn"
+                                type="button"
+                                onClick={onClose}
+                                disabled={isLoading}
+                            >
+                                Close
+                            </button>
+                        </div>
+                </form>
+            </div>
+        </div>
+        */
+        <div className="physical-modal-overlay">
+        <div className="physical-modal-content">
+            <button className="modal-close-icon" onClick={onClose} type="button">
+                &times;
+            </button>
+            <div className="physical-modal-header">
+                <h2>Physical Activity Risk Assessment</h2>
+            </div>
+                <form className="physical-modal-form" onSubmit={handleSubmit}>
+                <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you feel tired or lack energy after mild activity? (1-10)</label>
+                        <select
+                            className="form-control"
+                            name="EnergyLevels"
+                            value={formData.EnergyLevels}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Energy Level</option>
+                            {[...Array(10)].map((_, i) => (
+                                <option key={i + 1} value={i + 1}>{i + 1}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">How often do you exercise or move during the day?(1-5)</label>
+                        <select
+                            className="form-control"
+                            name="PhysicalActivity"
+                            value={formData.PhysicalActivity}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Activity Level</option>
+                            {[...Array(5)].map((_, i) => (
+                                <option key={i + 1} value={i + 1}>{i + 1}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you spend most of the time sitting?</label>
+                        <select
+                            className="form-control"
+                            name="SittingTime"
+                            value={formData.SittingTime}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you feel out of breath after climbing a few stairs?</label>
+                        <select
+                            className="form-control"
+                            name="CardiovascularHealth"
+                            value={formData.CardiovascularHealth}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you find it difficult to hold or lift heavy objects?</label>
+                        <select
+                            className="form-control"
+                            name="MuscleStrength"
+                            value={formData.MuscleStrength}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Can you touch your toes during a sit-and-reach test?</label>
+                        <select
+                            className="form-control"
+                            name="Flexibility"
+                            value={formData.Flexibility}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Can you balance on one leg for more than 5 seconds?</label>
+                        <select
+                            className="form-control"
+                            name="Balance"
+                            value={formData.Balance}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">How much water do you drink daily? (1-10)</label>
+                        <select
+                            className="form-control"
+                            name="Thirsty"
+                            value={formData.Thirsty}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Thirst Level</option>
+                            {[...Array(10)].map((_, i) => (
+                                <option key={i + 1} value={i + 1}>{i + 1}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">Do you feel pain in your joints or muscles during movement?</label>
+                        <select
+                            className="form-control"
+                            name="PainOrDiscomfort"
+                            value={formData.PainOrDiscomfort}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div className="physical-modal-mb-3">
+                        <label className="physical-modal-form-label">How many hours do you typically spend working in the office each day?</label>
+                        <input
+                            className="form-control"
+                            type="number"
+                            name="AvailableTime"
+                            value={formData.AvailableTime}
+                            onChange={handleInputChange}
+                            placeholder="Enter available time in hours"
+                            required
+                        />
+                    </div>
+                    <div className="diabetic-modal-button-group">
+                        <button
+                            className="diabetic-modal-btn-primary"
+                            type="submit"
+                            disabled={isLoading}
+                        >
+                            {isLoading ? 'Predicting...' : 'Submit'}
                         </button>
-                        <button className="modal-close-btn" onClick={onClose} type="button">
+                        <button
+                            className="diabetic-modal-close-btn"
+                            type="button"
+                            onClick={onClose}
+                            disabled={isLoading}
+                        >
                             Close
                         </button>
                     </div>
                 </form>
-            </div>
         </div>
+    </div>
     );
 };
 

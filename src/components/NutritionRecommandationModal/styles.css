@@ -1,0 +1,119 @@
+/* Overlay and modal container styles */
+.nutrition-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.nutrition-modal-content {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.nutrition-modal-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+/* Header styles */
+.nutrition-modal-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Day section styles */
+.nutrition-day-section {
+    margin-bottom: 20px;
+}
+
+.day-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.meals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.meal-card {
+    background: #2a2a2a;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.meal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.meal-title {
+    margin-left: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.food-list {
+    list-style: none;
+    padding: 0;
+}
+
+.food-name {
+    font-weight: bold;
+}
+
+.food-grams {
+    font-style: italic;
+}
+
+/* Summary styles */
+.nutrition-modal-summary {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #444;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.summary-item {
+    background: #2a2a2a;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+
+.summary-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.summary-value {
+    font-size: 18px;
+    color: #4caf50;
+}

@@ -8,7 +8,12 @@ import FeatureContributionsModal from '../../components/NutritionFeatureContribu
 import PhysicalRiskFeatureContributionsModal from '../../components/PhysicalRiskFeatureContributionsModal/PhysicalRiskFeatureContributionsModal';
 import AddSuggestionModal from '../../components/AddSuggestionModal/AddSuggestionModal';
 import ExerciseRecommendationsModal from '../../components/ExerciseRecommendationsModal/ExerciseRecommendationsModal';
-
+import MentalRecommandationModal from "@/components/MentalRecommandationModal/MentalRecommandationModal";
+export interface MentalRiskData {
+    DL_Output: string;
+    ML_Output: string;
+    Scenario: string;
+}
 
 
 const RiskScores = () => {
@@ -27,6 +32,22 @@ const RiskScores = () => {
     const [previousRecommendations, setPreviousRecommendations] = useState<any>(null);
     const [nutritionSummary, setNutritionSummary] = useState<any>(null);
     const [loading, setLoading] = useState(false);
+    const [mentalRiskData, setMentalRiskData] = useState<MentalRiskData | null>(
+        null
+    );
+    const [showMentalModal, setShowMentalModal] = useState(false);
+
+    // Function to get the color based on the risk level
+    const getMentalRiskColor = (level: string | undefined) => {
+        if (!level) return "#2196F3"; // Default blue
+
+        const lowerLevel = level.toLowerCase();
+        if (lowerLevel.includes("low")) return "#4CAF50"; // Green
+        if (lowerLevel.includes("moderate")) return "#2196F3"; // Blue
+        if (lowerLevel.includes("high")) return "#FFA500"; // Orange
+        if (lowerLevel.includes("severe")) return "#f44336"; // Red
+        return "#2196F3"; // Default blue
+    };
 
 
     useEffect(() => {
@@ -61,6 +82,17 @@ const RiskScores = () => {
                         setPhysicalFeatureContributions(latestPhysicalAssessment.feature_contributions);
                     }
                 }
+
+                if (
+                    userResponseData &&
+                    userResponseData[0]?.mentalAssessments?.length > 0
+                ) {
+                    const latestMentalAssessment =
+                        userResponseData[0].mentalAssessments[
+                        userResponseData[0].mentalAssessments.length - 1
+                        ];
+                    setMentalRiskData(latestMentalAssessment.prediction);
+                }
                 setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -69,6 +101,9 @@ const RiskScores = () => {
         };
 
         fetchUserData();
+
+        // Define scenario here
+        const scenario = mentalRiskData?.Scenario || "No assessment available";
 
         // Listen for nutrition assessment updates
         const handleNutritionUpdate = (event: CustomEvent) => {
@@ -91,7 +126,7 @@ const RiskScores = () => {
             window.removeEventListener('nutritionAssessmentUpdated', handleNutritionUpdate as EventListener);
             window.removeEventListener('physicalAssessmentUpdated', handlePhysicalUpdate as EventListener);
         };
-    }, []);
+    }, [mentalRiskData]); // Add mentalRiskData as a dependency
 
     // Add this function to fetch feature contributions
     const fetchFeatureContributions = async () => {
@@ -404,39 +439,28 @@ const RiskScores = () => {
 
                 {/* Mental Health Risk Score Card */}
                 <div className="risk-score-card">
-                    <h2 className="risk-score-title mental">Mental Health Risk Score</h2>
-                    <Flat
-                        progress={85}
-                        range={{ from: 0, to: 100 }}
-                        sign={{ value: "%", position: "end" }}
-                        showMiniCircle={false}
-                        showValue={true}
-                        sx={{
-                            strokeColor: "#2196F3",
-                            barWidth: 8,
-                            bgStrokeColor: "#2d3748",
-                            bgColor: { value: "#000000", transparency: "20" },
-                            shape: "full",
-                            strokeLinecap: "round",
-                            valueSize: 18,
-                            valueWeight: "bold",
-                            valueColor: "#2196F3",
-                            valueFamily: "Trebuchet MS",
-                            textSize: 14,
-                            textWeight: "bold",
-                            textColor: "#2196F3",
-                            textFamily: "Trebuchet MS",
-                            loadingTime: 1000,
-                            miniCircleColor: "#a78bfa",
-                            miniCircleSize: 5,
-                            valueAnimation: true,
-                            intersectionEnabled: true,
-                        }}
-                    />
-                    <button className="recommendation-button mental">
-                        View Recommendations
-                    </button>
-                    <button className="recommendation-button mental">
+                    <h2 className="risk-score-title mental">Mental Health Risk</h2>
+                    <div className="mental-risk-display">
+                        <div
+                            className="mental-risk-circle"
+                            style={{
+                                border: `20px solid ${getMentalRiskColor(mentalRiskData?.ML_Output)}`,
+                                color: getMentalRiskColor(mentalRiskData?.ML_Output),
+                                backgroundColor: `${getMentalRiskColor(mentalRiskData?.ML_Output)}20`,
+                            }}
+                        >
+                            <div className="mental-label">Stress Level</div>
+                            <div className="mental-value">{mentalRiskData?.ML_Output || "Not Assessed"}</div>
+                            <div className="mental-label">Mood</div>
+                            <div className="mental-value">
+                                {mentalRiskData?.DL_Output || "N/A"}
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        className="recommendation-button mental"
+                        onClick={() => setShowMentalModal(true)}
+                    >
                         View Recommendations
                     </button>
                 </div>
@@ -461,6 +485,11 @@ const RiskScores = () => {
                 isOpen={showAddSuggestionModal}
                 onClose={() => setShowAddSuggestionModal(false)}
                 onSubmit={handleAddSuggestion}
+            />
+            <MentalRecommandationModal
+                show={showMentalModal}
+                onClose={() => setShowMentalModal(false)}
+                scenario={mentalRiskData?.Scenario || "No assessment available"} // Use scenario here
             />
             {showPreviousRecommendations && previousRecommendations && (
                 <ExerciseRecommendationsModal

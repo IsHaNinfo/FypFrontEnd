@@ -7,6 +7,7 @@ import NutritionRiskModal from '../../components/NutritionRiskModal/NutritionRis
 import PhysicalActivityRiskModal from '../../components/PhysicalActivityRiskModal/PhysicalRiskModal';
 import RiskValidationModal from '../../components/RiskValidationModal/RiskValidationModal';
 import CurrentDiabeticStatusModal from '../../components/DiabeticRiskModal/CurrentDiabeticStatusModal';
+import MentalRiskModal from "@/components/MentalRiskModal/MentalRiskModal";
 
 const RiskAssesment = () => {
     const [prediction, setPrediction] = useState<number>(0);
@@ -223,15 +224,10 @@ const RiskAssesment = () => {
                 onClose={() => setShowPhysicalModal(false)}
             />
 
-            {showMentalModal && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h2>Mental Risk Assessment</h2>
-                        <p>This feature is coming soon!</p>
-                        <button onClick={() => setShowMentalModal(false)}>Close</button>
-                    </div>
-                </div>
-            )}
+            <MentalRiskModal
+                isOpen={showMentalModal}
+                onClose={() => setShowMentalModal(false)}
+            />
 
             <RiskValidationModal
                 isOpen={showValidationModal}

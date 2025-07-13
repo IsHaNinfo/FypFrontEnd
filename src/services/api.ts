@@ -16,7 +16,8 @@ const API_CONFIG = {
         ENDPOINTS: {
             NUTRITION_RISK_PREDICTION: '/nutritionriskprediction',
             DIABETIC_RISK_PREDICTION: '/predictdata',
-            PHYSICAL_RISK_PREDICTION: '/physicalriskprediction'
+            PHYSICAL_RISK_PREDICTION: '/physicalriskprediction',
+            MENTAL_RISK_PREDICTION: '/menatalrecommendations',
         }
     }
 };

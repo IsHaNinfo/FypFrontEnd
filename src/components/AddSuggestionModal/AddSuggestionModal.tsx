@@ -49,14 +49,30 @@ const AddSuggestionModal: React.FC<AddSuggestionModalProps> = ({ isOpen, onClose
     const [userData, setUserData] = useState<UserData | null>(null);
     const [showRecommendations, setShowRecommendations] = useState(false);
     const [recommendations, setRecommendations] = useState<any>(null);
-    const goals = [
-        { value: 'weight_loss', label: 'Weight Loss' },
-        { value: 'muscle_gain', label: 'Muscle Gain' },
-        { value: 'flexibility', label: 'Flexibility' },
-        { value: 'endurance', label: 'Endurance' },
-        { value: 'general_fitness', label: 'General Fitness' },
-        { value: 'diabetes_management', label: 'Diabetes Management' }
-    ];
+
+    const determineGoal = (userData: UserData): string => {
+        const { weight, EnergyLevels, PhysicalActivity, Diabetic_Risk } = userData.formData;
+
+        // Example conditions for different goals
+        if (parseInt(weight) > 80 && parseFloat(EnergyLevels) < 5) {
+            return 'weight_loss';
+        }
+        if (parseInt(weight) < 60 && parseFloat(EnergyLevels) > 7) {
+            return 'muscle_gain';
+        }
+        if (parseFloat(PhysicalActivity) < 3) {
+            return 'flexibility';
+        }
+        if (parseFloat(PhysicalActivity) > 7) {
+            return 'endurance';
+        }
+        if (parseFloat(Diabetic_Risk) > 0.5) {
+            return 'diabetes_management';
+        }
+
+        // Default goal if no specific conditions are met
+        return 'general_fitness';
+    };
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -71,16 +87,17 @@ const AddSuggestionModal: React.FC<AddSuggestionModalProps> = ({ isOpen, onClose
                 if (userResponseData && userResponseData.length > 0) {
                     const user = userResponseData[0];
                     console.log(user);
-                    // Get the latest physical assessment
                     if (user.physicalAssessments && user.physicalAssessments.length > 0) {
-                        // Sort by timestamp in descending order and get the first one
                         const latestAssessment = user.physicalAssessments
                             .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0];
 
-                        setUserData({
+                        const userData = {
                             formData: latestAssessment.formData,
                             physicalRiskPrediction: latestAssessment.physicalRiskPrediction
-                        });
+                        };
+
+                        setUserData(userData);
+                        setGoal(determineGoal(userData)); // Set the goal based on user data
                     }
                 }
             } catch (error) {
@@ -192,23 +209,6 @@ const AddSuggestionModal: React.FC<AddSuggestionModalProps> = ({ isOpen, onClose
                     <h2>Get Exercise Recommendations</h2>
                 </div>
                 <form className="suggestion-modal-form" onSubmit={handleSubmit}>
-                    <div className="suggestion-modal-mb-3">
-                        <label className="suggestion-modal-form-label">Select Goal</label>
-                        <select
-                            className="suggestion-modal-form-control"
-                            value={goal}
-                            onChange={(e) => setGoal(e.target.value)}
-                            required
-                        >
-                            <option value="">Select a goal</option>
-                            {goals.map((g) => (
-                                <option key={g.value} value={g.value}>
-                                    {g.label}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
                     <div className="suggestion-modal-mb-3">
                         <label className="suggestion-modal-form-label">Additional Information</label>
                         <input

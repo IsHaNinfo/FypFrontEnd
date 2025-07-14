@@ -8,6 +8,7 @@ type FoodItem = {
     fat: number;
     protein: number;
     glycemic_index: number;
+    estimated_weight_g: number;
     contribution: { diabetes_reduction: number; nutrition_reduction: number; };
 };
 
@@ -80,18 +81,20 @@ const NutritionRecommandationModal: React.FC<Props> = ({ isOpen, onClose, recomm
                                         <ul className="ml-2 list-disc text-white">
                                             {(foods as FoodItem[]).map((item, i) => (
                                                 <li key={i} className="text-base">
-                                                    <span className="font-semibold">{item.food}</span><span className="font-mono"></span>
+                                                    <span className="font-semibold">{item.food}</span><span className="font-mono">({item.estimated_weight_g}g)</span>
                                                     <div className="text-sm mt-1">
-                                                        <span>Calories: {item.calories}</span>,
+                                                        <span>Calories: {item.calories.toFixed(2)}</span>,
                                                         <span> Carbs: {item.carbs}g</span>,
                                                         <span> Fat: {item.fat}g</span>,
                                                         <span> Protein: {item.protein}g</span>,
-                                                        <span> GI: {item.glycemic_index}</span>
+                                                        <span> Glycemic Index: {item.glycemic_index}</span>
                                                     </div>
+                                                    {/*
                                                     <div className="text-sm mt-1">
                                                         <span>Diabetes Reduction: {item.contribution.diabetes_reduction}</span>,
                                                         <span> Nutrition Reduction: {item.contribution.nutrition_reduction}</span>
                                                     </div>
+                                                    */}
                                                 </li>
                                             ))}
                                         </ul>
@@ -101,6 +104,7 @@ const NutritionRecommandationModal: React.FC<Props> = ({ isOpen, onClose, recomm
                         </div>
                     ))}
                 </div>
+                {/*}
                 <div className="mt-8 p-6 bg-white/10 rounded-xl shadow-lg">
                     <h3 className="text-2xl font-bold text-white mb-4">Summary</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -122,6 +126,7 @@ const NutritionRecommandationModal: React.FC<Props> = ({ isOpen, onClose, recomm
                         </div>
                     </div>
                 </div>
+                */}
             </div>
         </div>
     );

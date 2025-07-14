@@ -131,6 +131,42 @@
     margin-bottom: 8px;
 }
 
+.button-date {
+    background-color: #000000;
+    /* Black */
+    border: none;
+    color: white;
+    /* White text for contrast */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.button-date:hover {
+    background-color: #333333;
+    /* Darker gray for hover effect */
+}
+
+.date-message {
+    background-color: #000000;
+    /* Black */
+    border-left: 6px solid #ffffff;
+    /* White border for contrast */
+    margin: 10px 0;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white;
+    /* White text for contrast */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);

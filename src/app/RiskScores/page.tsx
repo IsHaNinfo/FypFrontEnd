@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Flat } from "@alptugidin/react-circular-progress-bar";
+import { Flat } from '@alptugidin/react-circular-progress-bar';
 import API_CONFIG, { getDatabaseUrl, getAiModelUrl } from '../../services/api';
 import axios from 'axios';
 import "./styles.css";
@@ -9,12 +9,26 @@ import PhysicalRiskFeatureContributionsModal from '../../components/PhysicalRisk
 import AddSuggestionModal from '../../components/AddSuggestionModal/AddSuggestionModal';
 import ExerciseRecommendationsModal from '../../components/ExerciseRecommendationsModal/ExerciseRecommendationsModal';
 import MentalRecommandationModal from "@/components/MentalRecommandationModal/MentalRecommandationModal";
+
+// Function to format timestamp to a readable date
+const formatDate = (timestamp: string) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+    });
+};
+
 export interface MentalRiskData {
     DL_Output: string;
     ML_Output: string;
     Scenario: string;
 }
-
 
 const RiskScores = () => {
     const [nutritionScore, setNutritionScore] = useState<number>(0);
@@ -36,6 +50,13 @@ const RiskScores = () => {
         null
     );
     const [showMentalModal, setShowMentalModal] = useState(false);
+    const [lastRecommendation, setLastRecommendation] = useState<any>(null);
+    const [showDateMessage, setShowDateMessage] = useState(false);
+    const [showPhysicalDateMessage, setShowPhysicalDateMessage] = useState(false);
+    const [showMentalDateMessage, setShowMentalDateMessage] = useState(false);
+    const [lastPhysicalRecommendation, setLastPhysicalRecommendation] = useState<any>(null);
+
+    // Define the latestRecommendationDate variable
 
     // Function to get the color based on the risk level
     const getMentalRiskColor = (level: string | undefined) => {
@@ -128,6 +149,56 @@ const RiskScores = () => {
         };
     }, [mentalRiskData]); // Add mentalRiskData as a dependency
 
+    useEffect(() => {
+        const fetchLastRecommendation = async () => {
+            try {
+                const storedUser = localStorage.getItem('userData');
+                if (storedUser) {
+                    const { email } = JSON.parse(storedUser);
+                    const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                    if (response.data && response.data.length > 0) {
+                        const user = response.data[0];
+
+                        // Get the last saved nutrition recommendation
+                        const lastRec = user.nutritionRecommendations?.slice(-1)[0];
+
+                        if (lastRec) {
+                            setLastRecommendation(lastRec);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching last recommendation:', error);
+            }
+        };
+
+        fetchLastRecommendation();
+    }, []);
+
+    useEffect(() => {
+        const fetchLastPhysicalRecommendation = async () => {
+            try {
+                const storedUser = localStorage.getItem('userData');
+                if (storedUser) {
+                    const { email } = JSON.parse(storedUser);
+                    const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                    if (response.data && response.data.length > 0) {
+                        const user = response.data[0];
+                        const lastPhysicalRec = user.physicalRecommendations?.slice(-1)[0];
+
+                        if (lastPhysicalRec) {
+                            setLastPhysicalRecommendation(lastPhysicalRec);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching last physical recommendation:', error);
+            }
+        };
+
+        fetchLastPhysicalRecommendation();
+    }, []);
+
     // Add this function to fetch feature contributions
     const fetchFeatureContributions = async () => {
         try {
@@ -189,7 +260,7 @@ const RiskScores = () => {
                             {
                                 goal: suggestionData.goal,
                                 suggestions: suggestionData.suggestions,
-                                date: new Date().toISOString()
+                                date: new Date().toISOString() // Save timestamp
                             }
                         ]
                     };
@@ -223,6 +294,8 @@ const RiskScores = () => {
                                 .sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0];
 
                             setPreviousRecommendations(latestRecommendation.recommendations);
+                            setLastPhysicalRecommendation(latestRecommendation.timestamp); // Update the state
+                            console.log("last recommendation date", lastPhysicalRecommendation);
                             setShowPreviousRecommendations(true);
                         }
                     }
@@ -267,10 +340,13 @@ const RiskScores = () => {
                         }, {})
                     }));
 
-                    // Save the recommendation in db.json
+                    // Save the recommendation in db.json with timestamp
                     const updatedUser = {
                         ...user,
-                        nutritionRecommendations: [...(user.nutritionRecommendations || []), recommendationData]
+                        nutritionRecommendations: [...(user.nutritionRecommendations || []), {
+                            ...recommendationData,
+                            timestamp: new Date().toISOString()
+                        }]
                     };
                     await axios.put(`http://localhost:8000/users/${user.id}`, updatedUser);
 
@@ -306,7 +382,7 @@ const RiskScores = () => {
                                 return acc;
                             }, {})
                         }));
-
+                        console.log(lastRecommendation.timestamp);
                         // Set the recommendation data to state
                         setNutritionRecommendations(formattedRecommendations);
                         setNutritionSummary(lastRecommendation.summary);
@@ -342,34 +418,54 @@ const RiskScores = () => {
                 {/* Nutrition Risk Score Card */}
                 <div className="risk-score-card">
                     <h2 className="risk-score-title nutrition">Nutrition Risk Score</h2>
-                    <Flat
-                        progress={nutritionScore}
-                        range={{ from: 0, to: 100 }}
-                        sign={{ value: "%", position: "end" }}
-                        showMiniCircle={false}
-                        showValue={true}
-                        sx={{
-                            strokeColor: "#ff5722",
-                            barWidth: 8,
-                            bgStrokeColor: "#2d3748",
-                            bgColor: { value: "#000000", transparency: "20" },
-                            shape: "full",
-                            strokeLinecap: "round",
-                            valueSize: 18,
-                            valueWeight: "bold",
-                            valueColor: "#ff5722",
-                            valueFamily: "Trebuchet MS",
-                            textSize: 14,
-                            textWeight: "bold",
-                            textColor: "#ff5722",
-                            textFamily: "Trebuchet MS",
-                            loadingTime: 1000,
-                            miniCircleColor: "#a78bfa",
-                            miniCircleSize: 5,
-                            valueAnimation: true,
-                            intersectionEnabled: true,
-                        }}
-                    />
+                    <div style={{ position: 'relative' }}>
+                        <Flat
+                            progress={nutritionScore}
+                            range={{ from: 0, to: 100 }}
+                            sign={{ value: "%", position: "end" }}
+                            showMiniCircle={false}
+                            showValue={true}
+                            sx={{
+                                strokeColor: "#ff5722",
+                                barWidth: 8,
+                                bgStrokeColor: "#2d3748",
+                                bgColor: { value: "#000000", transparency: "20" },
+                                shape: "full",
+                                strokeLinecap: "round",
+                                valueSize: 18,
+                                valueWeight: "bold",
+                                valueColor: "#ff5722",
+                                valueFamily: "Trebuchet MS",
+                                textSize: 14,
+                                textWeight: "bold",
+                                textColor: "#ff5722",
+                                textFamily: "Trebuchet MS",
+                                loadingTime: 1000,
+                                miniCircleColor: "#a78bfa",
+                                miniCircleSize: 5,
+                                valueAnimation: true,
+                                intersectionEnabled: true,
+                            }}
+                        />
+
+                    </div>
+                    <button className="button-date" onClick={() => {
+                        setShowDateMessage(prevState => !prevState); // Toggle visibility
+                        if (!showDateMessage) {
+                            setTimeout(() => setShowDateMessage(false), 2000); // Hide after 2 seconds if it was just shown
+                        }
+                    }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-week" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
+                            <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5zM11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                    </button>
+                    {showDateMessage && (
+                        <div className="date-message">
+                            Latest recommendation date: {formatDate(lastRecommendation?.timestamp)}
+                        </div>
+                    )}
+
                     <button
                         className="recommendation-button nutrition"
                         onClick={fetchFeatureContributions}
@@ -420,6 +516,21 @@ const RiskScores = () => {
                             intersectionEnabled: true,
                         }}
                     />
+                    <button className="button-date" onClick={() => {
+                        setShowPhysicalDateMessage(prevState => !prevState); // Toggle visibility
+                        if (!showPhysicalDateMessage) {
+                            setTimeout(() => setShowPhysicalDateMessage(false), 2000); // Hide after 2 seconds if it was just shown
+                        }
+                    }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-week" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
+                            <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5zM11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                        </svg>                    </button>
+                    {showPhysicalDateMessage && (
+                        <div className="date-message">
+                            Latest  recommendation date: {formatDate(lastPhysicalRecommendation)}
+                        </div>
+                    )}
                     <button className="recommendation-button physical" onClick={fetchPhysicalFeatureContributions}>
                         Feature Contribution
                     </button>
@@ -457,6 +568,22 @@ const RiskScores = () => {
                             </div>
                         </div>
                     </div>
+                    <button className="button-date" onClick={() => {
+                        setShowMentalDateMessage(prevState => !prevState); // Toggle visibility
+                        if (!showMentalDateMessage) {
+                            setTimeout(() => setShowMentalDateMessage(false), 2000); // Hide after 2 seconds if it was just shown
+                        }
+                    }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-week" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
+                            <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5zM11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                    </button>
+                    {showMentalDateMessage && (
+                        <div className="date-message">
+                            Latest recommendation date: {formatDate(lastRecommendation?.timestamp)}
+                        </div>
+                    )}
                     <button
                         className="recommendation-button mental"
                         onClick={() => setShowMentalModal(true)}

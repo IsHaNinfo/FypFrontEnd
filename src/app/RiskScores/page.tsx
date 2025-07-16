@@ -315,47 +315,84 @@ const RiskScores = () => {
                 const response = await axios.get(`http://localhost:8000/users?email=${email}`);
                 if (response.data && response.data.length > 0) {
                     const user = response.data[0];
-                    const latestNutritionAssessment = user.nutritionAssessments[user.nutritionAssessments.length - 1];
+                    const latestNutritionAssessment = user.nutritionAssessments?.[user.nutritionAssessments.length - 1];
 
-                    // Prepare request data using the latest assessment
-                    const requestData = {
-                        age: parseInt(latestNutritionAssessment.formData.age),
-                        gender: parseInt(latestNutritionAssessment.formData.gender),
-                        bmi: calculateBMI(latestNutritionAssessment.formData.height, latestNutritionAssessment.formData.weight),
-                        diabetes_risk: parseFloat(latestNutritionAssessment.formData.Diabetic_Risk) / 100,
-                        nutrition_risk: latestNutritionAssessment.nutritionRiskPrediction[0] / 100,
-                        preferences: "Sri Lankan" // Default preference
-                    };
+                    if (latestNutritionAssessment) {
+                        // Prepare request data using the latest assessment
+                        const requestData = {
+                            age: parseInt(latestNutritionAssessment.formData.age),
+                            gender: parseInt(latestNutritionAssessment.formData.gender),
+                            bmi: calculateBMI(latestNutritionAssessment.formData.height, latestNutritionAssessment.formData.weight),
+                            diabetes_risk: parseFloat(latestNutritionAssessment.formData.Diabetic_Risk) / 100,
+                            nutrition_risk: latestNutritionAssessment.nutritionRiskPrediction[0] / 100,
+                            preferences: "Sri Lankan" // Default preference
+                        };
 
-                    // Send request to the specified URL
-                    const recommendationResponse = await axios.post('http://127.0.0.1:5000/generate_meal_plan', requestData);
-                    const recommendationData = recommendationResponse.data;
-                    console.log(recommendationData);
-                    // Convert updated_meal_plan to an array format
-                    const formattedRecommendations = Object.entries(recommendationData.updated_meal_plan).map(([day, meals]) => ({
-                        day,
-                        meals: Object.entries(meals).reduce((acc, [mealType, mealData]) => {
-                            acc[mealType] = Array.isArray(mealData) ? mealData : [mealData];
-                            return acc;
-                        }, {})
-                    }));
+                        // Send request to the specified URL
+                        const recommendationResponse = await axios.post('http://127.0.0.1:5000/generate_meal_plan', requestData);
+                        const recommendationData = recommendationResponse.data;
+                        console.log(recommendationData);
 
-                    // Save the recommendation in db.json with timestamp
-                    const updatedUser = {
-                        ...user,
-                        nutritionRecommendations: [...(user.nutritionRecommendations || []), {
-                            ...recommendationData,
-                            timestamp: new Date().toISOString()
-                        }]
-                    };
-                    await axios.put(`http://localhost:8000/users/${user.id}`, updatedUser);
+                        if (recommendationData) {
+                            // Define the type for recommendation data
+                            interface RecommendationData {
+                                day: string;
+                                food_id: string;
+                                food_item: string;
+                                meal: string;
+                                nutrients: {
+                                    calories: number;
+                                    carbs: number;
+                                    fat: number;
+                                    glycemic_index: number;
+                                    protein: number;
+                                };
+                                portion_g: number;
+                            }
 
-                    // Set the recommendation data to state
-                    setNutritionRecommendations(formattedRecommendations);
-                    setNutritionSummary(recommendationData.summary);
-                    setShowNutritionModal(true);
+                            // Update the formattedRecommendations logic
+                            const formattedRecommendations = recommendationData.map((item: RecommendationData) => ({
+                                day: item.day,
+                                meals: {
+                                    [item.meal]: [{
+                                        food_id: item.food_id,
+                                        food_item: item.food_item,
+                                        portion_g: item.portion_g,
+                                        nutrients: {
+                                            calories: item.nutrients?.calories || 'N/A',
+                                            carbs: item.nutrients?.carbs || 'N/A',
+                                            fat: item.nutrients?.fat || 'N/A',
+                                            protein: item.nutrients?.protein || 'N/A',
+                                            glycemic_index: item.nutrients?.glycemic_index || 'N/A',
+                                        }
+                                    }]
+                                }
+                            }));
+
+                            // Save the recommendation in db.json with timestamp
+                            const updatedUser = {
+                                ...user,
+                                nutritionRecommendations: [...(user.nutritionRecommendations || []), {
+                                    ...recommendationData,
+                                    timestamp: new Date().toISOString()
+                                }]
+                            };
+                            await axios.put(`http://localhost:8000/users/${user.id}`, updatedUser);
+
+                            // Set the recommendation data to state
+                            setNutritionRecommendations(formattedRecommendations);
+                            setNutritionSummary(recommendationData.summary);
+                            setShowNutritionModal(true);
+                        } else {
+                            console.error('No updated meal plan found in the response.');
+                        }
+                    } else {
+                        console.error('No latest nutrition assessment found.');
+                    }
                 }
             }
+        } catch (error) {
+            console.error('Error fetching recommendations:', error);
         } finally {
             setLoading(false);
         }
@@ -374,17 +411,34 @@ const RiskScores = () => {
                     const lastRecommendation = user.nutritionRecommendations?.slice(-1)[0];
 
                     if (lastRecommendation) {
-                        // Convert updated_meal_plan to an array format
-                        const formattedRecommendations = Object.entries(lastRecommendation.updated_meal_plan).map(([day, meals]) => ({
-                            day,
-                            meals: Object.entries(meals).reduce((acc, [mealType, mealData]) => {
-                                acc[mealType] = Array.isArray(mealData) ? mealData : [mealData];
-                                return acc;
-                            }, {})
-                        }));
-                        console.log(lastRecommendation.timestamp);
+                        // Format the previous recommendations
+                        const formattedRecommendations = Object.values(lastRecommendation).reduce((acc: any, item: any) => {
+                            if (!acc[item.day]) {
+                                acc[item.day] = { day: item.day, meals: {} };
+                            }
+                            if (!acc[item.day].meals[item.meal]) {
+                                acc[item.day].meals[item.meal] = [];
+                            }
+                            acc[item.day].meals[item.meal].push({
+                                food_id: item.food_id,
+                                food_item: item.food_item,
+                                portion_g: item.portion_g,
+                                nutrients: {
+                                    calories: item.nutrients?.calories || 'N/A',
+                                    carbs: item.nutrients?.carbs || 'N/A',
+                                    fat: item.nutrients?.fat || 'N/A',
+                                    protein: item.nutrients?.protein || 'N/A',
+                                    glycemic_index: item.nutrients?.glycemic_index || 'N/A',
+                                }
+                            });
+                            return acc;
+                        }, {});
+
+                        // Convert the object to an array
+                        const recommendationsArray = Object.values(formattedRecommendations);
+
                         // Set the recommendation data to state
-                        setNutritionRecommendations(formattedRecommendations);
+                        setNutritionRecommendations(recommendationsArray);
                         setNutritionSummary(lastRecommendation.summary);
                         setShowNutritionModal(true);
                     } else {
@@ -455,7 +509,7 @@ const RiskScores = () => {
                             setTimeout(() => setShowDateMessage(false), 2000); // Hide after 2 seconds if it was just shown
                         }
                     }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-week" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-calendar2-week" viewBox="0 0 16 16">
                             <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
                             <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5zM11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                         </svg>
@@ -522,7 +576,7 @@ const RiskScores = () => {
                             setTimeout(() => setShowPhysicalDateMessage(false), 2000); // Hide after 2 seconds if it was just shown
                         }
                     }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-week" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-calendar2-week" viewBox="0 0 16 16">
                             <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
                             <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5zM11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                         </svg>                    </button>
@@ -574,7 +628,7 @@ const RiskScores = () => {
                             setTimeout(() => setShowMentalDateMessage(false), 2000); // Hide after 2 seconds if it was just shown
                         }
                     }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-week" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-calendar2-week" viewBox="0 0 16 16">
                             <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
                             <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5zM11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                         </svg>

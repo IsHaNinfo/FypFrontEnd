@@ -9,6 +9,7 @@ import PhysicalRiskFeatureContributionsModal from "../../components/PhysicalRisk
 import AddSuggestionModal from "../../components/AddSuggestionModal/AddSuggestionModal";
 import ExerciseRecommendationsModal from "../../components/ExerciseRecommendationsModal/ExerciseRecommendationsModal";
 import MentalRecommandationModal from "@/components/MentalRecommandationModal/MentalRecommandationModal";
+import { HelpfulToolsModal } from "@/components/HelpfulToolsModal/HelpfulToolsModal";
 export interface MentalRiskData {
   DL_Output: string;
   ML_Output: string;
@@ -45,12 +46,8 @@ const RiskScores = () => {
     null
   );
   const [showMentalModal, setShowMentalModal] = useState(false);
-  const [
-    showMentalPreviousRecommendations,
-    setShowMentalPreviousRecommendations,
-  ] = useState(false);
-  const [mentalPreviousRecommendations, setMentalPreviousRecommendations] =
-    useState<any>(null);
+    const [showHelpfulTools, setShowHelpfulTools] = useState(false);
+
 
   // Function to get the color based on the risk level
   const getMentalRiskColor = (level: string | undefined) => {
@@ -578,6 +575,12 @@ const RiskScores = () => {
           >
             View Recommendations
           </button>
+          <button
+            className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200"
+            onClick={() => setShowHelpfulTools(true)}
+          >
+            Helpful Tools to Reduce Stress
+          </button>
         </div>
       </div>
       <NutritionRecommandationModal
@@ -602,10 +605,10 @@ const RiskScores = () => {
         onSubmit={handleAddSuggestion}
       />
       <MentalRecommandationModal
-    show={showMentalModal}
-    onClose={() => setShowMentalModal(false)}
-    scenario={mentalRiskData?.Scenario || "Current recommendations"}
-/>
+        show={showMentalModal}
+        onClose={() => setShowMentalModal(false)}
+        scenario={mentalRiskData?.Scenario || "Current recommendations"}
+      />
       {showPreviousRecommendations && previousRecommendations && (
         <ExerciseRecommendationsModal
           isOpen={showPreviousRecommendations}
@@ -613,7 +616,8 @@ const RiskScores = () => {
           recommendations={previousRecommendations}
         />
       )}
-     
+      <HelpfulToolsModal show={showHelpfulTools} onClose={() => setShowHelpfulTools(false)} />
+
     </div>
   );
 };

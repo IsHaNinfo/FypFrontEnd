@@ -616,7 +616,7 @@ const RiskScores = () => {
           recommendations={previousRecommendations}
         />
       )}
-      <HelpfulToolsModal show={showHelpfulTools} onClose={() => setShowHelpfulTools(false)} />
+      <HelpfulToolsModal show={showHelpfulTools} onClose={() => setShowHelpfulTools(false)} scenario={mentalRiskData?.Scenario} />
 
     </div>
   );

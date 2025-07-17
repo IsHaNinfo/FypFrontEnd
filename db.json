@@ -10608,6 +10608,56 @@
             "ML_Output": "Severe",
             "Scenario": "Scenario 07"
           }
+        },
+        {
+          "id": "1752733523684",
+          "timestamp": "2025-07-17T06:25:23.684Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "Perceived_Control": "1",
+            "Stress_Freq_Intensity": "Rarely  (0-1 times)",
+            "Emotional_Reg": "Not at all",
+            "Physical_Stress": "Not at all",
+            "Cognitive_Stress": "Never",
+            "Behavioral_Response": "Never",
+            "Work_Stress": "1",
+            "Productivity": "Not at all",
+            "Suicidal_Thoughts": "Not at all",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "0.4604"
+          },
+          "prediction": {
+            "DL_Output": "Stable",
+            "ML_Output": "Low",
+            "Scenario": "Scenario 01"
+          }
+        },
+        {
+          "id": "1752734511021",
+          "timestamp": "2025-07-17T06:41:51.021Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "Perceived_Control": "2",
+            "Stress_Freq_Intensity": "Rarely  (0-1 times)",
+            "Emotional_Reg": "Not at all",
+            "Physical_Stress": "Not at all",
+            "Cognitive_Stress": "Sometimes",
+            "Behavioral_Response": "Sometimes",
+            "Work_Stress": "1",
+            "Productivity": "Not at all",
+            "Suicidal_Thoughts": "Not at all",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "0.4604"
+          },
+          "prediction": {
+            "DL_Output": "Stable",
+            "ML_Output": "Moderate",
+            "Scenario": "Scenario 03"
+          }
         }
       ],
       "mental_health_recommendations": [

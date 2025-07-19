@@ -46,11 +46,11 @@ const DiseaseSelectionModal: React.FC<DiseaseSelectionModalProps> = ({ isOpen, o
 
     const handleSubmit = () => {
         console.log("Submitting selected diseases:", selectedDiseases);
-        setLoading(true);
+        setLoading(true); // Set loading to true before the request
         onSubmit(selectedDiseases);
         setSelectedDiseases([]); // Clear selected diseases
         setTimeout(() => {
-            setLoading(false);
+            setLoading(false); // Set loading to false after the request
             onClose();
         }, 2000);
     };

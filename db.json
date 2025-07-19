@@ -19603,6 +19603,796 @@
             "portion_g": 217.8
           },
           "timestamp": "2025-07-19T07:11:15.327Z"
+        },
+        {
+          "0": {
+            "day": "Day 1",
+            "food_id": "f3006",
+            "food_item": "Kurakkan with mung beans and carrot",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 196.7017208,
+              "carbs": 14.8,
+              "fat": 4.5,
+              "glycemic_index": 65,
+              "protein": 23.7
+            },
+            "portion_g": 135.9
+          },
+          "1": {
+            "day": "Day 1",
+            "food_id": "f1805",
+            "food_item": "Rice with tofu and beans",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 546.1281071,
+              "carbs": 37.8,
+              "fat": 19.3,
+              "glycemic_index": 59,
+              "protein": 53.4
+            },
+            "portion_g": 378
+          },
+          "2": {
+            "day": "Day 1",
+            "food_id": "f2374",
+            "food_item": "Bread with mung beans and cabbage",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 583.6520076,
+              "carbs": 58.1,
+              "fat": 16.8,
+              "glycemic_index": 63,
+              "protein": 46.7
+            },
+            "portion_g": 404.1
+          },
+          "3": {
+            "day": "Day 1",
+            "food_id": "f2028",
+            "food_item": "Millet with fish and carrot",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 845.124283,
+              "carbs": 99.5,
+              "fat": 19,
+              "glycemic_index": 52,
+              "protein": 56.2
+            },
+            "portion_g": 585
+          },
+          "4": {
+            "day": "Day 2",
+            "food_id": "f1552",
+            "food_item": "Rice with tofu and cabbage",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 391.9694073,
+              "carbs": 23.7,
+              "fat": 16.1,
+              "glycemic_index": 64,
+              "protein": 32.2
+            },
+            "portion_g": 271.8
+          },
+          "5": {
+            "day": "Day 2",
+            "food_id": "f1701",
+            "food_item": "Kurakkan with tofu and onion",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 373.3269598,
+              "carbs": 5.2,
+              "fat": 13.3,
+              "glycemic_index": 62,
+              "protein": 55.9
+            },
+            "portion_g": 258.3
+          },
+          "6": {
+            "day": "Day 2",
+            "food_id": "f1815",
+            "food_item": "Kurakkan with chicken and carrot",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 384.7992352,
+              "carbs": 29.1,
+              "fat": 10.3,
+              "glycemic_index": 69,
+              "protein": 36.7
+            },
+            "portion_g": 266.4
+          },
+          "7": {
+            "day": "Day 2",
+            "food_id": "f2897",
+            "food_item": "Kurakkan with chicken and cabbage",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 424.4741874,
+              "carbs": 54,
+              "fat": 5.9,
+              "glycemic_index": 64,
+              "protein": 35.2
+            },
+            "portion_g": 294.3
+          },
+          "8": {
+            "day": "Day 3",
+            "food_id": "f1101",
+            "food_item": "Rice with fish and tomato",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 533.2217973,
+              "carbs": 51.9,
+              "fat": 12.8,
+              "glycemic_index": 64,
+              "protein": 50.2
+            },
+            "portion_g": 369
+          },
+          "9": {
+            "day": "Day 3",
+            "food_id": "f2897",
+            "food_item": "Kurakkan with chicken and cabbage",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 424.4741874,
+              "carbs": 54,
+              "fat": 5.9,
+              "glycemic_index": 64,
+              "protein": 35.2
+            },
+            "portion_g": 294.3
+          },
+          "10": {
+            "day": "Day 3",
+            "food_id": "f1701",
+            "food_item": "Kurakkan with tofu and onion",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 373.3269598,
+              "carbs": 5.2,
+              "fat": 13.3,
+              "glycemic_index": 62,
+              "protein": 55.9
+            },
+            "portion_g": 258.3
+          },
+          "11": {
+            "day": "Day 3",
+            "food_id": "f1552",
+            "food_item": "Rice with tofu and cabbage",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 391.9694073,
+              "carbs": 23.7,
+              "fat": 16.1,
+              "glycemic_index": 64,
+              "protein": 32.2
+            },
+            "portion_g": 271.8
+          },
+          "12": {
+            "day": "Day 4",
+            "food_id": "f2374",
+            "food_item": "Bread with mung beans and cabbage",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 583.6520076,
+              "carbs": 58.1,
+              "fat": 16.8,
+              "glycemic_index": 63,
+              "protein": 46.7
+            },
+            "portion_g": 404.1
+          },
+          "13": {
+            "day": "Day 4",
+            "food_id": "f1470",
+            "food_item": "Rice with mung beans and cucumber",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 453.6328872,
+              "carbs": 39.9,
+              "fat": 18.3,
+              "glycemic_index": 65,
+              "protein": 29.5
+            },
+            "portion_g": 314.1
+          },
+          "14": {
+            "day": "Day 4",
+            "food_id": "f1998",
+            "food_item": "Rice with fish and beans",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 945.5066922,
+              "carbs": 114.5,
+              "fat": 18.3,
+              "glycemic_index": 48,
+              "protein": 76.9
+            },
+            "portion_g": 654.3
+          },
+          "15": {
+            "day": "Day 4",
+            "food_id": "f1466",
+            "food_item": "Kurakkan with tofu and beans",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 424.2351816,
+              "carbs": 22.4,
+              "fat": 11.6,
+              "glycemic_index": 55,
+              "protein": 49.8
+            },
+            "portion_g": 293.4
+          },
+          "16": {
+            "day": "Day 5",
+            "food_id": "f2890",
+            "food_item": "Wheat with fish and beans",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 631.9311663,
+              "carbs": 70.6,
+              "fat": 16.1,
+              "glycemic_index": 50,
+              "protein": 47.7
+            },
+            "portion_g": 437.4
+          },
+          "17": {
+            "day": "Day 5",
+            "food_id": "f2636",
+            "food_item": "Millet with tofu and onion",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 513.1453155,
+              "carbs": 30.7,
+              "fat": 17.4,
+              "glycemic_index": 58,
+              "protein": 54.5
+            },
+            "portion_g": 355.5
+          },
+          "18": {
+            "day": "Day 5",
+            "food_id": "f1470",
+            "food_item": "Rice with mung beans and cucumber",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 453.6328872,
+              "carbs": 39.9,
+              "fat": 18.3,
+              "glycemic_index": 65,
+              "protein": 29.5
+            },
+            "portion_g": 314.1
+          },
+          "19": {
+            "day": "Day 5",
+            "food_id": "f2897",
+            "food_item": "Kurakkan with chicken and cabbage",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 424.4741874,
+              "carbs": 54,
+              "fat": 5.9,
+              "glycemic_index": 64,
+              "protein": 35.2
+            },
+            "portion_g": 294.3
+          },
+          "20": {
+            "day": "Day 6",
+            "food_id": "f1281",
+            "food_item": "Bread with tofu and beans",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 633.3652008,
+              "carbs": 55.4,
+              "fat": 19.1,
+              "glycemic_index": 52,
+              "protein": 55.3
+            },
+            "portion_g": 438.3
+          },
+          "21": {
+            "day": "Day 6",
+            "food_id": "f1101",
+            "food_item": "Rice with fish and tomato",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 533.2217973,
+              "carbs": 51.9,
+              "fat": 12.8,
+              "glycemic_index": 64,
+              "protein": 50.2
+            },
+            "portion_g": 369
+          },
+          "22": {
+            "day": "Day 6",
+            "food_id": "f3362",
+            "food_item": "Rice with fish and onion",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 441.9216061,
+              "carbs": 31.6,
+              "fat": 14.2,
+              "glycemic_index": 53,
+              "protein": 42.6
+            },
+            "portion_g": 306
+          },
+          "23": {
+            "day": "Day 6",
+            "food_id": "f1805",
+            "food_item": "Rice with tofu and beans",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 546.1281071,
+              "carbs": 37.8,
+              "fat": 19.3,
+              "glycemic_index": 59,
+              "protein": 53.4
+            },
+            "portion_g": 378
+          },
+          "24": {
+            "day": "Day 7",
+            "food_id": "f1281",
+            "food_item": "Bread with tofu and beans",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 633.3652008,
+              "carbs": 55.4,
+              "fat": 19.1,
+              "glycemic_index": 52,
+              "protein": 55.3
+            },
+            "portion_g": 438.3
+          },
+          "25": {
+            "day": "Day 7",
+            "food_id": "f1552",
+            "food_item": "Rice with tofu and cabbage",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 391.9694073,
+              "carbs": 23.7,
+              "fat": 16.1,
+              "glycemic_index": 64,
+              "protein": 32.2
+            },
+            "portion_g": 271.8
+          },
+          "26": {
+            "day": "Day 7",
+            "food_id": "f1998",
+            "food_item": "Rice with fish and beans",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 945.5066922,
+              "carbs": 114.5,
+              "fat": 18.3,
+              "glycemic_index": 48,
+              "protein": 76.9
+            },
+            "portion_g": 654.3
+          },
+          "27": {
+            "day": "Day 7",
+            "food_id": "f2374",
+            "food_item": "Bread with mung beans and cabbage",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 583.6520076,
+              "carbs": 58.1,
+              "fat": 16.8,
+              "glycemic_index": 63,
+              "protein": 46.7
+            },
+            "portion_g": 404.1
+          },
+          "timestamp": "2025-07-19T15:54:19.892Z"
+        },
+        {
+          "0": {
+            "day": "Day 1",
+            "food_id": "f2231",
+            "food_item": "Rice with beef and beans",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 876.4340344,
+              "carbs": 86.2,
+              "fat": 31.1,
+              "glycemic_index": 66,
+              "protein": 62.2
+            },
+            "portion_g": 674
+          },
+          "1": {
+            "day": "Day 1",
+            "food_id": "f3282",
+            "food_item": "Bread with chicken and cabbage",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 1396.988528,
+              "carbs": 75.2,
+              "fat": 101.3,
+              "glycemic_index": 63,
+              "protein": 41.5
+            },
+            "portion_g": 1075
+          },
+          "2": {
+            "day": "Day 1",
+            "food_id": "f2909",
+            "food_item": "Wheat with fish and onion",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 881.2141491,
+              "carbs": 93.9,
+              "fat": 28.6,
+              "glycemic_index": 54,
+              "protein": 53.3
+            },
+            "portion_g": 678
+          },
+          "3": {
+            "day": "Day 1",
+            "food_id": "f3183",
+            "food_item": "Kurakkan with beef and cabbage",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 335.8030593,
+              "carbs": 5.8,
+              "fat": 9.3,
+              "glycemic_index": 52,
+              "protein": 54.6
+            },
+            "portion_g": 258
+          },
+          "4": {
+            "day": "Day 2",
+            "food_id": "f3046",
+            "food_item": "Bread with chicken and carrot",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 1878.585086,
+              "carbs": 154.8,
+              "fat": 126.5,
+              "glycemic_index": 64,
+              "protein": 33.4
+            },
+            "portion_g": 1445
+          },
+          "5": {
+            "day": "Day 2",
+            "food_id": "f3163",
+            "food_item": "Bread with fish and onion",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 1303.537285,
+              "carbs": 60,
+              "fat": 102.4,
+              "glycemic_index": 67,
+              "protein": 33.5
+            },
+            "portion_g": 1003
+          },
+          "6": {
+            "day": "Day 2",
+            "food_id": "f1171",
+            "food_item": "Bread with lentils and cucumber",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 1032.743786,
+              "carbs": 86.3,
+              "fat": 54.5,
+              "glycemic_index": 65,
+              "protein": 39.5
+            },
+            "portion_g": 794
+          },
+          "7": {
+            "day": "Day 2",
+            "food_id": "f1176",
+            "food_item": "Bread with lentils and tomato",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 1099.18738,
+              "carbs": 118.5,
+              "fat": 38.1,
+              "glycemic_index": 52,
+              "protein": 64.8
+            },
+            "portion_g": 846
+          },
+          "8": {
+            "day": "Day 3",
+            "food_id": "f2111",
+            "food_item": "Millet with fish and beans",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 1959.130019,
+              "carbs": 93.1,
+              "fat": 149.2,
+              "glycemic_index": 61,
+              "protein": 57.8
+            },
+            "portion_g": 1507
+          },
+          "9": {
+            "day": "Day 3",
+            "food_id": "f1767",
+            "food_item": "Bread with beef and beans",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 818.1166348,
+              "carbs": 62.6,
+              "fat": 32.2,
+              "glycemic_index": 61,
+              "protein": 65.8
+            },
+            "portion_g": 629
+          },
+          "10": {
+            "day": "Day 3",
+            "food_id": "f3424",
+            "food_item": "Rice with chicken and beans",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 1357.313576,
+              "carbs": 42.4,
+              "fat": 119.4,
+              "glycemic_index": 66,
+              "protein": 30
+            },
+            "portion_g": 1044
+          },
+          "11": {
+            "day": "Day 3",
+            "food_id": "f1085",
+            "food_item": "Bread with chicken and onion",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 845.3632887,
+              "carbs": 70.3,
+              "fat": 33,
+              "glycemic_index": 63,
+              "protein": 61.5
+            },
+            "portion_g": 650
+          },
+          "12": {
+            "day": "Day 4",
+            "food_id": "f1111",
+            "food_item": "Rice with lentils and beans",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 1652.724665,
+              "carbs": 104.5,
+              "fat": 123.7,
+              "glycemic_index": 69,
+              "protein": 27.4
+            },
+            "portion_g": 1271
+          },
+          "13": {
+            "day": "Day 4",
+            "food_id": "f2552",
+            "food_item": "Wheat with fish and cucumber",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 915.6309751,
+              "carbs": 76.3,
+              "fat": 47.1,
+              "glycemic_index": 63,
+              "protein": 42.8
+            },
+            "portion_g": 704
+          },
+          "14": {
+            "day": "Day 4",
+            "food_id": "f2670",
+            "food_item": "Rice with lentils and cabbage",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 948.374761,
+              "carbs": 105.5,
+              "fat": 27.9,
+              "glycemic_index": 69,
+              "protein": 57.2
+            },
+            "portion_g": 730
+          },
+          "15": {
+            "day": "Day 4",
+            "food_id": "f1977",
+            "food_item": "Wheat with fish and tomato",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 2362.810707,
+              "carbs": 81.5,
+              "fat": 218.3,
+              "glycemic_index": 54,
+              "protein": 20.9
+            },
+            "portion_g": 1818
+          },
+          "16": {
+            "day": "Day 5",
+            "food_id": "f1174",
+            "food_item": "Millet with lentils and cucumber",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 823.6137667,
+              "carbs": 93.5,
+              "fat": 20.6,
+              "glycemic_index": 63,
+              "protein": 58.2
+            },
+            "portion_g": 634
+          },
+          "17": {
+            "day": "Day 5",
+            "food_id": "f1152",
+            "food_item": "Bread with fish and tomato",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 1408.221797,
+              "carbs": 65.3,
+              "fat": 110.6,
+              "glycemic_index": 65,
+              "protein": 31.5
+            },
+            "portion_g": 1083
+          },
+          "18": {
+            "day": "Day 5",
+            "food_id": "f2541",
+            "food_item": "Millet with egg and tomato",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 1680.449331,
+              "carbs": 67.7,
+              "fat": 142.3,
+              "glycemic_index": 63,
+              "protein": 34
+            },
+            "portion_g": 1293
+          },
+          "19": {
+            "day": "Day 5",
+            "food_id": "f2078",
+            "food_item": "Bread with mung beans and tomato",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 1304.254302,
+              "carbs": 52.7,
+              "fat": 101.7,
+              "glycemic_index": 70,
+              "protein": 37.3
+            },
+            "portion_g": 1003
+          },
+          "20": {
+            "day": "Day 6",
+            "food_id": "f3226",
+            "food_item": "Kurakkan with beef and onion",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 1301.864245,
+              "carbs": 64.2,
+              "fat": 93.1,
+              "glycemic_index": 69,
+              "protein": 51.4
+            },
+            "portion_g": 1001
+          },
+          "21": {
+            "day": "Day 6",
+            "food_id": "f1844",
+            "food_item": "Rice with beef and onion",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 1015.296367,
+              "carbs": 91.1,
+              "fat": 46.9,
+              "glycemic_index": 52,
+              "protein": 54.9
+            },
+            "portion_g": 781
+          },
+          "22": {
+            "day": "Day 6",
+            "food_id": "f2587",
+            "food_item": "Bread with tofu and cabbage",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 1349.904398,
+              "carbs": 66.4,
+              "fat": 101.9,
+              "glycemic_index": 68,
+              "protein": 37.6
+            },
+            "portion_g": 1038
+          },
+          "23": {
+            "day": "Day 6",
+            "food_id": "f1974",
+            "food_item": "Rice with chicken and carrot",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 469.6462715,
+              "carbs": 45.2,
+              "fat": 9.6,
+              "glycemic_index": 69,
+              "protein": 45.1
+            },
+            "portion_g": 361
+          },
+          "24": {
+            "day": "Day 7",
+            "food_id": "f1148",
+            "food_item": "Wheat with fish and onion",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 1746.414914,
+              "carbs": 128.2,
+              "fat": 119.1,
+              "glycemic_index": 58,
+              "protein": 38.4
+            },
+            "portion_g": 1343
+          },
+          "25": {
+            "day": "Day 7",
+            "food_id": "f2142",
+            "food_item": "Bread with tofu and carrot",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 1559.034417,
+              "carbs": 90.2,
+              "fat": 113.3,
+              "glycemic_index": 62,
+              "protein": 31
+            },
+            "portion_g": 1199
+          },
+          "26": {
+            "day": "Day 7",
+            "food_id": "f1552",
+            "food_item": "Rice with tofu and cabbage",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 391.9694073,
+              "carbs": 23.7,
+              "fat": 16.1,
+              "glycemic_index": 64,
+              "protein": 32.2
+            },
+            "portion_g": 302
+          },
+          "27": {
+            "day": "Day 7",
+            "food_id": "f2670",
+            "food_item": "Rice with lentils and cabbage",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 948.374761,
+              "carbs": 105.5,
+              "fat": 27.9,
+              "glycemic_index": 69,
+              "protein": 57.2
+            },
+            "portion_g": 730
+          },
+          "timestamp": "2025-07-19T15:54:38.176Z"
         }
       ],
       "mentalAssessments": [

@@ -11,6 +11,7 @@ import ExerciseRecommendationsModal from "../../components/ExerciseRecommendatio
 import MentalRecommandationModal from "@/components/MentalRecommandationModal/MentalRecommandationModal";
 import { HelpfulToolsModal } from "@/components/HelpfulToolsModal/HelpfulToolsModal";
 import MentalHealthHistoryModal from "@/components/MentalHealthHistoryModal/MentalHealthHistoryModal ";
+import DiseaseSelectionModal from '../../components/DiseaseSelectionModal/DiseaseSelectionModal';
 export interface MentalRiskData {
   DL_Output: string;
   ML_Output: string;
@@ -51,7 +52,99 @@ const RiskScores = () => {
   const [showMentalHistory, setShowMentalHistory] = useState(false);
   const [userData, setUserData] = useState<any>(null);
 
+  const [showDiseaseModal, setShowDiseaseModal] = useState(false);
+  const [selectedDiseases, setSelectedDiseases] = useState<string[]>([]);
 
+  const handleDiseaseSubmit = (diseases: string[]) => {
+      console.log("Diseases submitted:", diseases);
+      setSelectedDiseases(diseases);
+  };
+
+  useEffect(() => {
+      if (selectedDiseases.length > 0) {
+          console.log("Selected diseases updated:", selectedDiseases);
+          handleViewRecommendations();
+      }
+  }, [selectedDiseases]);
+
+  const diseases: Disease[] = [
+    { id: 'd1', name: 'Diabetes' },
+    { id: 'd2', name: 'Obesity' },
+    { id: 'd3', name: 'Hypertension' },
+    { id: 'd4', name: 'Heart Disease' },
+    { id: 'd5', name: 'Coronary Artery Disease' },
+    { id: 'd6', name: 'Stroke' },
+    { id: 'd7', name: 'Chronic Kidney Disease' },
+    { id: 'd8', name: 'Non-Alcoholic Fatty Liver Disease' },
+    { id: 'd9', name: 'Polycystic Ovary Syndrome (PCOS)' },
+    { id: 'd10', name: 'Hyperlipidemia' },
+    { id: 'd11', name: 'Insulin Resistance' },
+    { id: 'd12', name: 'Metabolic Syndrome' },
+    { id: 'd13', name: 'Sleep Apnea' },
+    { id: 'd14', name: 'Gout' },
+    { id: 'd15', name: 'Thyroid Disorders' },
+    { id: 'd16', name: 'Pancreatitis' },
+    { id: 'd17', name: 'Depression' },
+    { id: 'd18', name: 'Anxiety' },
+    { id: 'd19', name: 'Chronic Inflammation' },
+    { id: 'd20', name: 'Hypoglycemia' },
+    { id: 'd21', name: 'Peripheral Neuropathy' },
+    { id: 'd22', name: 'Retinopathy' },
+    { id: 'd23', name: 'Nephropathy' },
+    { id: 'd24', name: 'Foot Ulcers' },
+    { id: 'd25', name: 'Periodontal Disease' },
+    { id: 'd26', name: 'Cognitive Decline' },
+    { id: 'd27', name: 'Alzheimer’s Disease' },
+    { id: 'd28', name: 'Osteoporosis' },
+    { id: 'd29', name: 'Vitamin D Deficiency' },
+    { id: 'd30', name: 'Insomnia' },
+    { id: 'd31', name: 'Chronic Stress' },
+    { id: 'd32', name: 'Erectile Dysfunction' },
+    { id: 'd33', name: 'PCOS-related Infertility' },
+    { id: 'd34', name: 'Gallbladder Disease' },
+    { id: 'd35', name: 'Hemochromatosis' },
+    { id: 'd36', name: 'Autonomic Neuropathy' },
+    { id: 'd37', name: 'Gastroesophageal Reflux Disease (GERD)' },
+    { id: 'd38', name: 'Fatigue Syndrome' },
+    { id: 'd39', name: 'Glaucoma' },
+    { id: 'd40', name: 'Macular Degeneration' },
+    { id: 'd41', name: 'Chronic Migraines' },
+    { id: 'd42', name: 'Chronic Fatigue Syndrome' },
+    { id: 'd43', name: 'Increased Blood Clotting Risk' },
+    { id: 'd44', name: 'Reactive Hypoglycemia' },
+    { id: 'd45', name: 'Diabetic Dermopathy' },
+    { id: 'd46', name: 'Acanthosis Nigricans' },
+    { id: 'd47', name: 'Chronic Pain' },
+    { id: 'd48', name: 'Skin Infections' },
+    { id: 'd49', name: 'Bacterial Infections' },
+    { id: 'd50', name: 'Urinary Tract Infections' },
+    { id: 'd51', name: 'Yeast Infections' },
+    { id: 'd52', name: 'Fungal Infections' },
+    { id: 'd53', name: 'ADHD' },
+    { id: 'd54', name: 'Liver Cirrhosis' },
+    { id: 'd55', name: 'Insulinoma' },
+    { id: 'd56', name: 'Cushing’s Syndrome' },
+    { id: 'd57', name: 'Addison’s Disease' },
+    { id: 'd58', name: 'Anemia' },
+    { id: 'd59', name: 'Asthma' },
+    { id: 'd60', name: 'COPD' },
+    { id: 'd61', name: 'High Cholesterol' },
+    { id: 'd62', name: 'IBS' },
+    { id: 'd63', name: 'Lactose Intolerance' },
+    { id: 'd64', name: 'Chronic Constipation' },
+    { id: 'd65', name: 'Nut Allergy' },
+    { id: 'd66', name: 'Shellfish Allergy' },
+    { id: 'd67', name: 'Egg Allergy' },
+    { id: 'd68', name: 'Soy Allergy' },
+    { id: 'd69', name: 'Gluten Sensitivity' },
+    { id: 'd70', name: 'Lactose Intolerance' },
+    { id: 'd71', name: 'Celiac Disease' },
+    { id: 'd72', name: 'Peanut Allergy' },
+    { id: 'd73', name: 'Obesity' },
+    { id: 'd74', name: 'Gout' },
+    { id: 'd75', name: 'Hypertension' },
+    { id: 'd76', name: 'Cardiovascular Disease' }
+];
   // Function to get the color based on the risk level
   const getMentalRiskColor = (level: string | undefined) => {
     if (!level) return "#2196F3"; // Default blue
@@ -64,99 +157,99 @@ const RiskScores = () => {
     return "#2196F3"; // Default blue
   };
 
- useEffect(() => {
-  const fetchUserData = async () => {
-    try {
-      const userData = localStorage.getItem("userData");
-      if (!userData) return;
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userData = localStorage.getItem("userData");
+        if (!userData) return;
 
-      const { email } = JSON.parse(userData);
-      const response = await fetch(getDatabaseUrl(`/users?email=${email}`));
-      const userResponseData = await response.json();
+        const { email } = JSON.parse(userData);
+        const response = await fetch(getDatabaseUrl(`/users?email=${email}`));
+        const userResponseData = await response.json();
 
-      if (userResponseData && userResponseData.length > 0) {
-        setUserData(userResponseData[0]);
+        if (userResponseData && userResponseData.length > 0) {
+          setUserData(userResponseData[0]);
 
-        if (userResponseData[0]?.nutritionAssessments?.length > 0) {
-          const latestAssessment =
-            userResponseData[0].nutritionAssessments[
+          if (userResponseData[0]?.nutritionAssessments?.length > 0) {
+            const latestAssessment =
+              userResponseData[0].nutritionAssessments[
               userResponseData[0].nutritionAssessments.length - 1
-            ];
-          const score = latestAssessment.nutritionRiskPrediction[0];
-          setNutritionScore(Math.round(score));
+              ];
+            const score = latestAssessment.nutritionRiskPrediction[0];
+            setNutritionScore(Math.round(score));
 
-          if (latestAssessment.feature_contributions) {
-            setFeatureContributions(latestAssessment.feature_contributions);
+            if (latestAssessment.feature_contributions) {
+              setFeatureContributions(latestAssessment.feature_contributions);
+            }
           }
-        }
 
-        if (userResponseData[0]?.physicalAssessments?.length > 0) {
-          const latestPhysicalAssessment =
-            userResponseData[0].physicalAssessments[
+          if (userResponseData[0]?.physicalAssessments?.length > 0) {
+            const latestPhysicalAssessment =
+              userResponseData[0].physicalAssessments[
               userResponseData[0].physicalAssessments.length - 1
-            ];
-          const physicalScore =
-            latestPhysicalAssessment.physicalRiskPrediction[0];
-          setPhysicalScore(Math.round(physicalScore));
+              ];
+            const physicalScore =
+              latestPhysicalAssessment.physicalRiskPrediction[0];
+            setPhysicalScore(Math.round(physicalScore));
 
-          if (latestPhysicalAssessment.feature_contributions) {
-            setPhysicalFeatureContributions(
-              latestPhysicalAssessment.feature_contributions
-            );
+            if (latestPhysicalAssessment.feature_contributions) {
+              setPhysicalFeatureContributions(
+                latestPhysicalAssessment.feature_contributions
+              );
+            }
+          }
+
+          if (userResponseData[0]?.mentalAssessments?.length > 0) {
+            const latestMentalAssessment =
+              userResponseData[0].mentalAssessments[
+              userResponseData[0].mentalAssessments.length - 1
+              ];
+            setMentalRiskData(latestMentalAssessment.prediction);
           }
         }
-
-        if (userResponseData[0]?.mentalAssessments?.length > 0) {
-          const latestMentalAssessment =
-            userResponseData[0].mentalAssessments[
-              userResponseData[0].mentalAssessments.length - 1
-            ];
-          setMentalRiskData(latestMentalAssessment.prediction);
-        }
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setIsLoading(false);
       }
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      setIsLoading(false);
-    }
-  };
+    };
 
-  fetchUserData();
+    fetchUserData();
 
-  const scenario = mentalRiskData?.Scenario || "No assessment available";
+    const scenario = mentalRiskData?.Scenario || "No assessment available";
 
-  const handleNutritionUpdate = (event: CustomEvent) => {
-    const { prediction, featureContributions } = event.detail;
-    setNutritionScore(Math.round(prediction));
-    setFeatureContributions(featureContributions);
-  };
+    const handleNutritionUpdate = (event: CustomEvent) => {
+      const { prediction, featureContributions } = event.detail;
+      setNutritionScore(Math.round(prediction));
+      setFeatureContributions(featureContributions);
+    };
 
-  const handlePhysicalUpdate = (event: CustomEvent) => {
-    const { prediction, featureContributions } = event.detail;
-    setPhysicalScore(Math.round(prediction));
-    setPhysicalFeatureContributions(featureContributions);
-  };
+    const handlePhysicalUpdate = (event: CustomEvent) => {
+      const { prediction, featureContributions } = event.detail;
+      setPhysicalScore(Math.round(prediction));
+      setPhysicalFeatureContributions(featureContributions);
+    };
 
-  window.addEventListener(
-    "nutritionAssessmentUpdated",
-    handleNutritionUpdate as EventListener
-  );
-  window.addEventListener(
-    "physicalAssessmentUpdated",
-    handlePhysicalUpdate as EventListener
-  );
-
-  return () => {
-    window.removeEventListener(
+    window.addEventListener(
       "nutritionAssessmentUpdated",
       handleNutritionUpdate as EventListener
     );
-    window.removeEventListener(
+    window.addEventListener(
       "physicalAssessmentUpdated",
       handlePhysicalUpdate as EventListener
     );
-  };
-}, [mentalRiskData]);
+
+    return () => {
+      window.removeEventListener(
+        "nutritionAssessmentUpdated",
+        handleNutritionUpdate as EventListener
+      );
+      window.removeEventListener(
+        "physicalAssessmentUpdated",
+        handlePhysicalUpdate as EventListener
+      );
+    };
+  }, [mentalRiskData]);
 
   // Add this function to fetch feature contributions
   const fetchFeatureContributions = async () => {
@@ -289,122 +382,150 @@ const RiskScores = () => {
   };
 
   const handleViewRecommendations = async () => {
-    setLoading(true);
+    setLoading(true); // Start loading
     try {
-      const storedUser = localStorage.getItem("userData");
-      if (storedUser) {
-        const { email } = JSON.parse(storedUser);
-        const response = await axios.get(
-          `http://localhost:8000/users?email=${email}`
-        );
-        if (response.data && response.data.length > 0) {
-          const user = response.data[0];
-          const latestNutritionAssessment =
-            user.nutritionAssessments[user.nutritionAssessments.length - 1];
+        const storedUser = localStorage.getItem('userData');
+        if (storedUser) {
+            const { email } = JSON.parse(storedUser);
+            const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+            if (response.data && response.data.length > 0) {
+                const user = response.data[0];
+                const latestNutritionAssessment = user.nutritionAssessments?.[user.nutritionAssessments.length - 1];
+                console.log("selected diseases", selectedDiseases);
+                if (latestNutritionAssessment) {
+                    const requestData = {
+                        age: parseInt(latestNutritionAssessment.formData.age),
+                        gender: parseInt(latestNutritionAssessment.formData.gender),
+                        bmi: calculateBMI(latestNutritionAssessment.formData.height, latestNutritionAssessment.formData.weight),
+                        diabetes_risk: parseFloat(latestNutritionAssessment.formData.Diabetic_Risk),
+                        nutrition_risk: parseFloat(latestNutritionAssessment.nutritionRiskPrediction[0]),
+                        preferences: "Sri Lankan",
+                        diseases: selectedDiseases // Ensure this is passed correctly
+                    };
 
-          // Prepare request data using the latest assessment
-          const requestData = {
-            age: parseInt(latestNutritionAssessment.formData.age),
-            gender: parseInt(latestNutritionAssessment.formData.gender),
-            bmi: calculateBMI(
-              latestNutritionAssessment.formData.height,
-              latestNutritionAssessment.formData.weight
-            ),
-            diabetes_risk:
-              parseFloat(latestNutritionAssessment.formData.Diabetic_Risk) /
-              100,
-            nutrition_risk:
-              latestNutritionAssessment.nutritionRiskPrediction[0] / 100,
-            preferences: "Sri Lankan", // Default preference
-          };
+                    console.log("Request data:", requestData);
 
-          // Send request to the specified URL
-          const recommendationResponse = await axios.post(
-            "http://127.0.0.1:5000/generate_meal_plan",
-            requestData
-          );
-          const recommendationData = recommendationResponse.data;
-          console.log(recommendationData);
-          // Convert updated_meal_plan to an array format
-          const formattedRecommendations = Object.entries(
-            recommendationData.updated_meal_plan
-          ).map(([day, meals]) => ({
-            day,
-            meals: Object.entries(meals).reduce((acc, [mealType, mealData]) => {
-              acc[mealType] = Array.isArray(mealData) ? mealData : [mealData];
-              return acc;
-            }, {}),
-          }));
+                    const recommendationResponse = await axios.post('http://127.0.0.1:5000/generate_meal_plan', requestData);
+                    const recommendationData = recommendationResponse.data;
+                    console.log(recommendationData);
 
-          // Save the recommendation in db.json
-          const updatedUser = {
-            ...user,
-            nutritionRecommendations: [
-              ...(user.nutritionRecommendations || []),
-              recommendationData,
-            ],
-          };
-          await axios.put(
-            `http://localhost:8000/users/${user.id}`,
-            updatedUser
-          );
+                    if (recommendationData) {
+                        // Define the type for recommendation data
+                        interface RecommendationData {
+                            day: string;
+                            food_id: string;
+                            food_item: string;
+                            meal: string;
+                            nutrients: {
+                                calories: number;
+                                carbs: number;
+                                fat: number;
+                                glycemic_index: number;
+                                protein: number;
+                            };
+                            portion_g: number;
+                        }
 
-          // Set the recommendation data to state
-          setNutritionRecommendations(formattedRecommendations);
-          setNutritionSummary(recommendationData.summary);
-          setShowNutritionModal(true);
+                        // Update the formattedRecommendations logic
+                        const formattedRecommendations = recommendationData.map((item: RecommendationData) => ({
+                            day: item.day,
+                            meals: {
+                                [item.meal]: [{
+                                    food_id: item.food_id,
+                                    food_item: item.food_item,
+                                    portion_g: item.portion_g,
+                                    nutrients: {
+                                        calories: item.nutrients?.calories || 'N/A',
+                                        carbs: item.nutrients?.carbs || 'N/A',
+                                        fat: item.nutrients?.fat || 'N/A',
+                                        protein: item.nutrients?.protein || 'N/A',
+                                        glycemic_index: item.nutrients?.glycemic_index || 'N/A',
+                                    }
+                                }]
+                            }
+                        }));
+
+                        // Save the recommendation in db.json with timestamp
+                        const updatedUser = {
+                            ...user,
+                            nutritionRecommendations: [...(user.nutritionRecommendations || []), {
+                                ...recommendationData,
+                                timestamp: new Date().toISOString()
+                            }]
+                        };
+                        await axios.put(`http://localhost:8000/users/${user.id}`, updatedUser);
+
+                        // Set the recommendation data to state
+                        setNutritionRecommendations(formattedRecommendations);
+                        setNutritionSummary(recommendationData.summary);
+                        setShowNutritionModal(true);
+                    } else {
+                        console.error('No updated meal plan found in the response.');
+                    }
+                } else {
+                    console.error('No latest nutrition assessment found.');
+                }
+            }
         }
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleViewPreviousRecommendations = async () => {
-    try {
-      const storedUser = localStorage.getItem("userData");
-      if (storedUser) {
-        const { email } = JSON.parse(storedUser);
-        const response = await axios.get(
-          `http://localhost:8000/users?email=${email}`
-        );
-        if (response.data && response.data.length > 0) {
-          const user = response.data[0];
-
-          // Get the last saved nutrition recommendation
-          const lastRecommendation =
-            user.nutritionRecommendations?.slice(-1)[0];
-
-          if (lastRecommendation) {
-            // Convert updated_meal_plan to an array format
-            const formattedRecommendations = Object.entries(
-              lastRecommendation.updated_meal_plan
-            ).map(([day, meals]) => ({
-              day,
-              meals: Object.entries(meals).reduce(
-                (acc, [mealType, mealData]) => {
-                  acc[mealType] = Array.isArray(mealData)
-                    ? mealData
-                    : [mealData];
-                  return acc;
-                },
-                {}
-              ),
-            }));
-
-            // Set the recommendation data to state
-            setNutritionRecommendations(formattedRecommendations);
-            setNutritionSummary(lastRecommendation.summary);
-            setShowNutritionModal(true);
-          } else {
-            alert("No previous recommendations found.");
-          }
-        }
-      }
     } catch (error) {
-      console.error("Error fetching previous recommendations:", error);
+        console.error('Error fetching recommendations:', error);
+    } finally {
+        setLoading(false); // Stop loading
     }
-  };
+};
+
+const handleViewPreviousRecommendations = async () => {
+    try {
+        const storedUser = localStorage.getItem('userData');
+        if (storedUser) {
+            const { email } = JSON.parse(storedUser);
+            const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+            if (response.data && response.data.length > 0) {
+                const user = response.data[0];
+
+                // Get the last saved nutrition recommendation
+                const lastRecommendation = user.nutritionRecommendations?.slice(-1)[0];
+
+                if (lastRecommendation) {
+                    // Format the previous recommendations
+                    const formattedRecommendations = Object.values(lastRecommendation).reduce((acc: any, item: any) => {
+                        if (!acc[item.day]) {
+                            acc[item.day] = { day: item.day, meals: {} };
+                        }
+                        if (!acc[item.day].meals[item.meal]) {
+                            acc[item.day].meals[item.meal] = [];
+                        }
+                        acc[item.day].meals[item.meal].push({
+                            food_id: item.food_id,
+                            food_item: item.food_item,
+                            portion_g: item.portion_g,
+                            nutrients: {
+                                calories: item.nutrients?.calories || 'N/A',
+                                carbs: item.nutrients?.carbs || 'N/A',
+                                fat: item.nutrients?.fat || 'N/A',
+                                protein: item.nutrients?.protein || 'N/A',
+                                glycemic_index: item.nutrients?.glycemic_index || 'N/A',
+                            }
+                        });
+                        return acc;
+                    }, {});
+
+                    // Convert the object to an array
+                    const recommendationsArray = Object.values(formattedRecommendations);
+
+                    // Set the recommendation data to state
+                    setNutritionRecommendations(recommendationsArray);
+                    setNutritionSummary(lastRecommendation.summary);
+                    setShowNutritionModal(true);
+                } else {
+                    alert("No previous recommendations found.");
+                }
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching previous recommendations:', error);
+    }
+};
 
   // Helper function to calculate BMI
   const calculateBMI = (height: string, weight: string) => {
@@ -453,24 +574,9 @@ const RiskScores = () => {
               intersectionEnabled: true,
             }}
           />
-          <button
-            className="recommendation-button nutrition"
-            onClick={fetchFeatureContributions}
-          >
-            Feature Contribution
+          <button className="recommendation-button nutrition" onClick={() => setShowDiseaseModal(true)}>
+            View Recommendations
           </button>
-          <button
-            className="recommendation-button nutrition"
-            onClick={handleViewRecommendations}
-            disabled={loading}
-          >
-            {loading ? (
-              <span className="spinner"></span>
-            ) : (
-              "View Recommendations"
-            )}
-          </button>
-
           <button
             className="recommendation-button nutrition"
             onClick={handleViewPreviousRecommendations}
@@ -512,12 +618,7 @@ const RiskScores = () => {
               intersectionEnabled: true,
             }}
           />
-          <button
-            className="recommendation-button physical"
-            onClick={fetchPhysicalFeatureContributions}
-          >
-            Feature Contribution
-          </button>
+
           <button
             className="recommendation-button physical"
             onClick={() => {
@@ -607,6 +708,11 @@ const RiskScores = () => {
         onClose={() => setShowMentalModal(false)}
         scenario={mentalRiskData?.Scenario || "Current recommendations"}
       />
+      <DiseaseSelectionModal
+        isOpen={showDiseaseModal}
+        onClose={() => setShowDiseaseModal(false)}
+        onSubmit={handleDiseaseSubmit}
+      />
       {showPreviousRecommendations && previousRecommendations && (
         <ExerciseRecommendationsModal
           isOpen={showPreviousRecommendations}
@@ -620,10 +726,10 @@ const RiskScores = () => {
         scenario={mentalRiskData?.Scenario}
       />
       <MentalHealthHistoryModal
-  show={showMentalHistory}
-  onClose={() => setShowMentalHistory(false)}
-  assessments={userData?.mentalAssessments || []}
-/>
+        show={showMentalHistory}
+        onClose={() => setShowMentalHistory(false)}
+        assessments={userData?.mentalAssessments || []}
+      />
     </div>
   );
 };

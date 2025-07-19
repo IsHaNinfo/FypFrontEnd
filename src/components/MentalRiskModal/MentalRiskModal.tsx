@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import API_CONFIG, { getDatabaseUrl, getAiModelUrl } from "../../services/api";
-import FaceCapture from "../FaceCapture/FaceCapture";
 import "./mentalrisk.css";
 
 interface MentalRiskModalProps {
   isOpen: boolean;
   onClose: () => void;
+  
 }
 
 interface FormData {

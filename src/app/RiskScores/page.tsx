@@ -9,6 +9,12 @@ import PhysicalRiskFeatureContributionsModal from '../../components/PhysicalRisk
 import AddSuggestionModal from '../../components/AddSuggestionModal/AddSuggestionModal';
 import ExerciseRecommendationsModal from '../../components/ExerciseRecommendationsModal/ExerciseRecommendationsModal';
 import MentalRecommandationModal from "@/components/MentalRecommandationModal/MentalRecommandationModal";
+import DiseaseSelectionModal from '../../components/DiseaseSelectionModal/DiseaseSelectionModal';
+
+interface Disease {
+    id: string;
+    name: string;
+}
 
 // Function to format timestamp to a readable date
 const formatDate = (timestamp: string) => {
@@ -57,7 +63,99 @@ const RiskScores = () => {
     const [lastPhysicalRecommendation, setLastPhysicalRecommendation] = useState<any>(null);
 
     // Define the latestRecommendationDate variable
+    const [showDiseaseModal, setShowDiseaseModal] = useState(false);
+    const [selectedDiseases, setSelectedDiseases] = useState<string[]>([]);
 
+    const handleDiseaseSubmit = (diseases: string[]) => {
+        console.log("Diseases submitted:", diseases);
+        setSelectedDiseases(diseases);
+    };
+
+    useEffect(() => {
+        if (selectedDiseases.length > 0) {
+            console.log("Selected diseases updated:", selectedDiseases);
+            handleViewRecommendations();
+        }
+    }, [selectedDiseases]);
+
+    const diseases: Disease[] = [
+        { id: 'd1', name: 'Diabetes' },
+        { id: 'd2', name: 'Obesity' },
+        { id: 'd3', name: 'Hypertension' },
+        { id: 'd4', name: 'Heart Disease' },
+        { id: 'd5', name: 'Coronary Artery Disease' },
+        { id: 'd6', name: 'Stroke' },
+        { id: 'd7', name: 'Chronic Kidney Disease' },
+        { id: 'd8', name: 'Non-Alcoholic Fatty Liver Disease' },
+        { id: 'd9', name: 'Polycystic Ovary Syndrome (PCOS)' },
+        { id: 'd10', name: 'Hyperlipidemia' },
+        { id: 'd11', name: 'Insulin Resistance' },
+        { id: 'd12', name: 'Metabolic Syndrome' },
+        { id: 'd13', name: 'Sleep Apnea' },
+        { id: 'd14', name: 'Gout' },
+        { id: 'd15', name: 'Thyroid Disorders' },
+        { id: 'd16', name: 'Pancreatitis' },
+        { id: 'd17', name: 'Depression' },
+        { id: 'd18', name: 'Anxiety' },
+        { id: 'd19', name: 'Chronic Inflammation' },
+        { id: 'd20', name: 'Hypoglycemia' },
+        { id: 'd21', name: 'Peripheral Neuropathy' },
+        { id: 'd22', name: 'Retinopathy' },
+        { id: 'd23', name: 'Nephropathy' },
+        { id: 'd24', name: 'Foot Ulcers' },
+        { id: 'd25', name: 'Periodontal Disease' },
+        { id: 'd26', name: 'Cognitive Decline' },
+        { id: 'd27', name: 'Alzheimer’s Disease' },
+        { id: 'd28', name: 'Osteoporosis' },
+        { id: 'd29', name: 'Vitamin D Deficiency' },
+        { id: 'd30', name: 'Insomnia' },
+        { id: 'd31', name: 'Chronic Stress' },
+        { id: 'd32', name: 'Erectile Dysfunction' },
+        { id: 'd33', name: 'PCOS-related Infertility' },
+        { id: 'd34', name: 'Gallbladder Disease' },
+        { id: 'd35', name: 'Hemochromatosis' },
+        { id: 'd36', name: 'Autonomic Neuropathy' },
+        { id: 'd37', name: 'Gastroesophageal Reflux Disease (GERD)' },
+        { id: 'd38', name: 'Fatigue Syndrome' },
+        { id: 'd39', name: 'Glaucoma' },
+        { id: 'd40', name: 'Macular Degeneration' },
+        { id: 'd41', name: 'Chronic Migraines' },
+        { id: 'd42', name: 'Chronic Fatigue Syndrome' },
+        { id: 'd43', name: 'Increased Blood Clotting Risk' },
+        { id: 'd44', name: 'Reactive Hypoglycemia' },
+        { id: 'd45', name: 'Diabetic Dermopathy' },
+        { id: 'd46', name: 'Acanthosis Nigricans' },
+        { id: 'd47', name: 'Chronic Pain' },
+        { id: 'd48', name: 'Skin Infections' },
+        { id: 'd49', name: 'Bacterial Infections' },
+        { id: 'd50', name: 'Urinary Tract Infections' },
+        { id: 'd51', name: 'Yeast Infections' },
+        { id: 'd52', name: 'Fungal Infections' },
+        { id: 'd53', name: 'ADHD' },
+        { id: 'd54', name: 'Liver Cirrhosis' },
+        { id: 'd55', name: 'Insulinoma' },
+        { id: 'd56', name: 'Cushing’s Syndrome' },
+        { id: 'd57', name: 'Addison’s Disease' },
+        { id: 'd58', name: 'Anemia' },
+        { id: 'd59', name: 'Asthma' },
+        { id: 'd60', name: 'COPD' },
+        { id: 'd61', name: 'High Cholesterol' },
+        { id: 'd62', name: 'IBS' },
+        { id: 'd63', name: 'Lactose Intolerance' },
+        { id: 'd64', name: 'Chronic Constipation' },
+        { id: 'd65', name: 'Nut Allergy' },
+        { id: 'd66', name: 'Shellfish Allergy' },
+        { id: 'd67', name: 'Egg Allergy' },
+        { id: 'd68', name: 'Soy Allergy' },
+        { id: 'd69', name: 'Gluten Sensitivity' },
+        { id: 'd70', name: 'Lactose Intolerance' },
+        { id: 'd71', name: 'Celiac Disease' },
+        { id: 'd72', name: 'Peanut Allergy' },
+        { id: 'd73', name: 'Obesity' },
+        { id: 'd74', name: 'Gout' },
+        { id: 'd75', name: 'Hypertension' },
+        { id: 'd76', name: 'Cardiovascular Disease' }
+    ];
     // Function to get the color based on the risk level
     const getMentalRiskColor = (level: string | undefined) => {
         if (!level) return "#2196F3"; // Default blue
@@ -307,7 +405,7 @@ const RiskScores = () => {
     };
 
     const handleViewRecommendations = async () => {
-        setLoading(true);
+        setLoading(true); // Start loading
         try {
             const storedUser = localStorage.getItem('userData');
             if (storedUser) {
@@ -316,19 +414,20 @@ const RiskScores = () => {
                 if (response.data && response.data.length > 0) {
                     const user = response.data[0];
                     const latestNutritionAssessment = user.nutritionAssessments?.[user.nutritionAssessments.length - 1];
-
+                    console.log("selected diseases", selectedDiseases);
                     if (latestNutritionAssessment) {
-                        // Prepare request data using the latest assessment
                         const requestData = {
                             age: parseInt(latestNutritionAssessment.formData.age),
                             gender: parseInt(latestNutritionAssessment.formData.gender),
                             bmi: calculateBMI(latestNutritionAssessment.formData.height, latestNutritionAssessment.formData.weight),
-                            diabetes_risk: parseFloat(latestNutritionAssessment.formData.Diabetic_Risk) / 100,
-                            nutrition_risk: latestNutritionAssessment.nutritionRiskPrediction[0] / 100,
-                            preferences: "Sri Lankan" // Default preference
+                            diabetes_risk: parseFloat(latestNutritionAssessment.formData.Diabetic_Risk),
+                            nutrition_risk: parseFloat(latestNutritionAssessment.nutritionRiskPrediction[0]),
+                            preferences: "Sri Lankan",
+                            diseases: selectedDiseases // Ensure this is passed correctly
                         };
 
-                        // Send request to the specified URL
+                        console.log("Request data:", requestData);
+
                         const recommendationResponse = await axios.post('http://127.0.0.1:5000/generate_meal_plan', requestData);
                         const recommendationData = recommendationResponse.data;
                         console.log(recommendationData);
@@ -394,7 +493,7 @@ const RiskScores = () => {
         } catch (error) {
             console.error('Error fetching recommendations:', error);
         } finally {
-            setLoading(false);
+            setLoading(false); // Stop loading
         }
     };
 
@@ -520,19 +619,18 @@ const RiskScores = () => {
                         </div>
                     )}
 
-                    <button
+                    {/*<button
                         className="recommendation-button nutrition"
                         onClick={fetchFeatureContributions}
                     >
                         Feature Contribution
+                    </button>*/}
+
+                    <button className="recommendation-button nutrition" onClick={() => setShowDiseaseModal(true)}>
+                        View Recommendations
                     </button>
-                    <button className="recommendation-button nutrition" onClick={handleViewRecommendations} disabled={loading}>
-                        {loading ? (
-                            <span className="spinner"></span>
-                        ) : (
-                            'View Recommendations'
-                        )}
-                    </button>
+
+
 
                     <button className="recommendation-button nutrition" onClick={handleViewPreviousRecommendations}>
                         Previous Recommendations
@@ -671,6 +769,11 @@ const RiskScores = () => {
                 show={showMentalModal}
                 onClose={() => setShowMentalModal(false)}
                 scenario={mentalRiskData?.Scenario || "No assessment available"} // Use scenario here
+            />
+            <DiseaseSelectionModal
+                isOpen={showDiseaseModal}
+                onClose={() => setShowDiseaseModal(false)}
+                onSubmit={handleDiseaseSubmit}
             />
             {showPreviousRecommendations && previousRecommendations && (
                 <ExerciseRecommendationsModal

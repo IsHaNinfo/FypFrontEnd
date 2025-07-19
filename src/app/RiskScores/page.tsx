@@ -683,9 +683,7 @@ const RiskScores = () => {
                             Latest  recommendation date: {formatDate(lastPhysicalRecommendation)}
                         </div>
                     )}
-                    <button className="recommendation-button physical" onClick={fetchPhysicalFeatureContributions}>
-                        Feature Contribution
-                    </button>
+                    
                     <button className="recommendation-button physical" onClick={() => {
                         setSuggestionType('physical');
                         setShowAddSuggestionModal(true);

@@ -6,13 +6,16 @@ import UserMenu from '../../components/UserMenu/index';
 import DiabeticRiskModal from '../../components/DiabeticRiskModal/DiabeticRiskModal';
 import Link from 'next/link';
 import { BackgroundLines } from "@/components/ui/background-lines";
-
+import BlogsModal from './BlogsModal';
+import AboutUsModal from './AboutUsModal';
 const HomePage = () => {
     const [avatarUrl, setAvatarUrl] = useState("https://avatar.iran.liara.run/public");
     const router = useRouter();
     const [userData, setUserData] = useState<{ firstName: string; lastName: string; email: string } | null>(null);
     const [showMenu, setShowMenu] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isBlogsModalOpen, setIsBlogsModalOpen] = useState(false);
+    const [isAboutUsModalOpen, setIsAboutUsModalOpen] = useState(false);
 
     const guidelines = [
         "Maintain a balanced diet with low sugar intake.",
@@ -82,17 +85,17 @@ const HomePage = () => {
         <div>
             <div
                 className="hero-background"
-            >               
+            >
 
                 <nav className="navbar flex justify-between items-center max-w-7xl mx-auto px-6 py-4">
                     <span className="text-white text-2xl font-bold">DRS</span>
                     <div className="flex space-x-2 bg-white/80 rounded-full px-2 py-1 backdrop-blur-md shadow-md">
-                        <a href="#" className="px-4 py-2 text-gray-800 font-medium rounded-full hover:bg-green-100 transition">
+                        <button onClick={() => setIsAboutUsModalOpen(true)} className="px-4 py-2 text-gray-800 font-medium rounded-full hover:bg-green-100 transition">
                             About Us
-                        </a>
-                        <a href="#" className="px-4 py-2 text-gray-800 font-medium rounded-full hover:bg-green-100 transition">
+                        </button>
+                        <button onClick={() => setIsBlogsModalOpen(true)} className="px-4 py-2 text-gray-800 font-medium rounded-full hover:bg-green-100 transition">
                             Blogs
-                        </a>
+                        </button>
                     </div>
                 </nav>
 
@@ -140,6 +143,14 @@ const HomePage = () => {
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onPredictionComplete={handlePredictionComplete}
+            />
+            <BlogsModal
+                isOpen={isBlogsModalOpen}
+                onClose={() => setIsBlogsModalOpen(false)}
+            />
+            <AboutUsModal
+                isOpen={isAboutUsModalOpen}
+                onClose={() => setIsAboutUsModalOpen(false)}
             />
         </div>
     );

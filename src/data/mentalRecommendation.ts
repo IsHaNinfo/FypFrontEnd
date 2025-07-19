@@ -13,15 +13,15 @@ export const mentalRecommendationsMap: Record<string, MentalScenarioRecommendati
         stress: "Low",
         mood: "Stable",
         recommendation: "📝 Gratitude Journaling",
-        how: "Use a notebook or app. Write 3 specific things you’re grateful for each morning or night.",
+        how: "Use a physical journal, mobile app like Gratitude, Day One, or Five Minute Journal. Set a daily reminder. Write 3 specific things you’re grateful for — avoid general terms like “family” or “health”.",
         when: "Morning or before bed",
-        why: "Reinforces positive mindset, builds resilience.",
+        why: "Journaling helps shift attention from what's lacking to what's working well. Furthermore, practicing gratitude can rewire the brain over time to notice positive events more frequently.",
     },
     "Scenario 02": {
         stress: "Low",
         mood: "Unstable",
         recommendation: "🔊 Positive Affirmation Practice",
-        how: "Stand in front of a mirror and say affirmations like “I am doing my best.”",
+        how: "Stand before a mirror; hands on heart; say 2–3 affirmations (e.g. “I deserve calm”",
         when: "First thing in the morning or before a stressful task.",
         why: "Rewires self-talk to be more supportive."
     },
@@ -39,7 +39,7 @@ export const mentalRecommendationsMap: Record<string, MentalScenarioRecommendati
         stress: "Moderate",
         mood: "Unstable",
         recommendation: "🎧 Desk Stretches + Music Therapy",
-        how: "Do neck rolls, shoulder shrugs, and spinal twists with calming music.",
+        how: "Do neck rolls(10× each direction), shoulder shrugs(15×), and spinal twists with calming music(hold 10 sec × 2).",
         when: "10 mins mid-workday.",
         why: "Releases tension and calms the nervous system.",
             followUp: "If no improvement in mood or stress control within 2 weeks, consult a doctor."
@@ -83,3 +83,24 @@ export const mentalRecommendationsMap: Record<string, MentalScenarioRecommendati
         followUp: "Strongly recommend visiting a doctor, even if improvements are noticed, due to risk of burnout or hidden depression."
     }
 };
+
+export const resources = [
+  {
+    title: "Calm Music for Work & Study",
+    description: "Lo-fi or ambient music to reduce stress during tasks.",
+    link: "https://youtu.be/n61ULEU7CO0?si=eAPRQH_pZvdlVx0t",
+    type: "🎵",
+  },
+  {
+    title: "Box Breathing Timer",
+    description: "Simple tool to follow 4-4-4-4 breathing pattern.",
+    link: "https://xhalr.com",
+    type: "⏱️",
+  },
+  {
+    title: "Nature Sounds (Rain, Ocean, Forest)",
+    description: "Relaxing background audio to improve focus.",
+    link: "https://www.youtube.com/watch?v=OdIJ2x3nxzQ",
+    type: "🌧️",
+  }
+];

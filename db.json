@@ -1342,6 +1342,126 @@
             ],
             "sitting_time": 1
           }
+        },
+        {
+          "id": "1752380848187",
+          "timestamp": "2025-07-13T04:27:28.187Z",
+          "recommendations": {
+            "bmi": 24.337479718766904,
+            "class": "class_2",
+            "goal": "flexibility",
+            "is_novel": false,
+            "physical_activity_risk": 0.8639090505221476,
+            "routine": [
+              {
+                "exercises": [
+                  {
+                    "equipment": "other",
+                    "force": "push",
+                    "instructions": [
+                      "To begin, load the sled with the desired weight and attach the pulling strap. You can pull with handles, use a harness, or attach the pulling strap to a weight belt.",
+                      "Whether pulling forwards or backwards, lean in the direction of travel and progress by extending through the hips and knees."
+                    ],
+                    "level": "beginner",
+                    "name": "Sled Drag - Harness",
+                    "primaryMuscles": [
+                      "quadriceps"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "calves",
+                      "glutes",
+                      "hamstrings"
+                    ]
+                  }
+                ],
+                "role": "Warm-Up"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "other",
+                    "force": "static",
+                    "instructions": [
+                      "Start by standing with your back about two to three feet away from a bench or step.",
+                      "Lift one leg behind you and rest your foot on the step,either on your instep or the ball of your foot, whichever you find most comfortable.",
+                      "Keep your supporting knee slightly bent and avoid letting that knee extend out beyond your toes. Switch sides."
+                    ],
+                    "level": "beginner",
+                    "name": "Standing Elevated Quad Stretch",
+                    "primaryMuscles": [
+                      "quadriceps"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  },
+                  {
+                    "equipment": "other",
+                    "force": "static",
+                    "instructions": [
+                      "Lie on a flat bench or step, and hang one leg and arm over the side.",
+                      "Bend the knee and hold the top of the foot. As you do this, be careful not to arch your lower back.",
+                      "Pull the belly button to the spine to stay in neutral. Press your foot down and into your hand. To add the hip stretch, lift the hip of the leg you're holding up toward the ceiling.",
+                      "Switch sides."
+                    ],
+                    "level": "beginner",
+                    "name": "On-Your-Back Quad Stretch",
+                    "primaryMuscles": [
+                      "quadriceps"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  }
+                ],
+                "role": "Stretching"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "body only",
+                    "force": null,
+                    "instructions": [
+                      "With your hands wide apart, support your body on your toes and hands in a plank position. Your elbows should be extended and your body straight. Do not allow your hips to sag. This will be your starting position.",
+                      "To begin, allow the elbows to flex, lowering your chest to the floor as you inhale.",
+                      "Using your pectoral muscles, press your upper body back up to the starting position by extending the elbows. Exhale as you perform this step.",
+                      "After pausing at the contracted position, repeat the movement for the prescribed amount of repetitions."
+                    ],
+                    "level": "beginner",
+                    "name": "Push-Up Wide",
+                    "primaryMuscles": [
+                      "chest"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "abdominals",
+                      "shoulders",
+                      "triceps"
+                    ]
+                  },
+                  {
+                    "equipment": "machine",
+                    "force": "pull",
+                    "instructions": [
+                      "Sit down on the Preacher Curl Machine and select the weight.",
+                      "Place the back of your upper arms (your triceps) on the preacher pad provided and grab the handles using an underhand grip (palms facing up). Tip: Make sure that when you place the arms on the pad you keep the elbows in. This will be your starting position.",
+                      "Now lift the handles as you exhale and you contract the biceps. At the top of the position make sure that you hold the contraction for a second. Tip: Only the forearms should move. The upper arms should remain stationary and on the pad at all times.",
+                      "Lower the handles slowly back to the starting position as you inhale.",
+                      "Repeat for the recommended amount of repetitions."
+                    ],
+                    "level": "beginner",
+                    "name": "Machine Preacher Curls",
+                    "primaryMuscles": [
+                      "biceps"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  }
+                ],
+                "role": "Strength"
+              }
+            ],
+            "sitting_time": 1
+          }
         }
       ],
       "nutritionRecommendations": [

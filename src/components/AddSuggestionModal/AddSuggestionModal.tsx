@@ -218,7 +218,11 @@ const AddSuggestionModal: React.FC<AddSuggestionModalProps> = ({ isOpen, onClose
                             onChange={(e) => setSuggestion(e.target.value)}
                             placeholder="Enter any specific requirements or preferences..."
                         />
+                        <small className="suggestion-modal-prompt">
+                            Example: "I’m overweight and just starting out. I need very simple exercises I can do at home."
+                        </small>
                     </div>
+
 
                     <div className="suggestion-modal-button-group">
                         <button

@@ -1,0 +1,163 @@
+.blog-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.68);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s;
+}
+
+.blog-modal-content {
+    background: linear-gradient(#0B1117, #102530, #0B1F29);
+    /* Darker background for better contrast */
+    color: #e0e0e0;
+    /* Light font color for readability */
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.10), 0 1.5px 5px rgba(0, 0, 0, 0.08);
+    width: 95vw;
+    max-width: 1080px;
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 2rem 2.5rem 2.5rem 2.5rem;
+    position: relative;
+    animation: fadeIn 0.8s;
+}
+
+.blog-modal-close {
+    position: absolute;
+    top: 1.1rem;
+    right: 1.2rem;
+    background: #ff4d4f;
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 2.1rem;
+    font-weight: bold;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s;
+}
+
+.blog-modal-close:hover {
+    background: #e43a43;
+}
+
+.blog-modal-headerbox {
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 0.2rem;
+}
+
+.blog-modal-header {
+    font-size: 2.3rem;
+    color: #e0e0e0;
+    /* Light font color for readability */
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.blog-modal-subtitle {
+    color: #b0b0b0;
+    /* Softer light color for subtitle */
+    font-size: 1.06rem;
+    margin: 0;
+    font-weight: 500;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blog-modal-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.blog-modal-card {
+    background: #2c4353;
+    /* Slightly lighter than modal background */
+    color: #e0e0e0;
+    /* Light font color for readability */
+    border-radius: 14px;
+    box-shadow: 0 1.5px 12px rgba(0, 0, 0, 0.09);
+    width: 310px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.6rem;
+    transition: box-shadow 0.2s;
+}
+
+.blog-modal-card:hover {
+    box-shadow: 0 2.5px 16px rgba(25, 140, 220, 0.16);
+    transform: translateY(-2px) scale(1.022);
+}
+
+.blog-modal-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.blog-modal-imgbox {
+    position: relative;
+    border-radius: 14px 14px 0 0;
+    overflow: hidden;
+    height: 180px;
+    background: #e7e7e7;
+    display: flex;
+    align-items: flex-end;
+}
+
+.blog-modal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 120px;
+}
+
+.blog-modal-badge {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    background: #fd4353;
+    color: #fff;
+    font-size: 0.97rem;
+    font-weight: 600;
+    padding: 0.26em 0.92em;
+    border-radius: 18px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+    z-index: 3;
+}
+
+.blog-modal-cardbody {
+    padding: 1.08rem 1.2rem 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 110px;
+}
+
+.blog-modal-title {
+    font-size: 1.17rem;
+    margin: 0 0 0.37rem 0;
+    color: #e0e0e0;
+    /* Light font color for readability */
+    font-weight: 600;
+    min-height: 48px;
+}
+
+.blog-modal-desc {
+    font-size: 1.01rem;
+    color: #b0b0b0;
+    /* Softer light color for description */
+    margin: 0;
+    min-height: 36px;
+}

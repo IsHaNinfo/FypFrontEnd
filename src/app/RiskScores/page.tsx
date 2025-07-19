@@ -10,6 +10,7 @@ import AddSuggestionModal from "../../components/AddSuggestionModal/AddSuggestio
 import ExerciseRecommendationsModal from "../../components/ExerciseRecommendationsModal/ExerciseRecommendationsModal";
 import MentalRecommandationModal from "@/components/MentalRecommandationModal/MentalRecommandationModal";
 import { HelpfulToolsModal } from "@/components/HelpfulToolsModal/HelpfulToolsModal";
+import MentalHealthHistoryModal from "@/components/MentalHealthHistoryModal/MentalHealthHistoryModal ";
 export interface MentalRiskData {
   DL_Output: string;
   ML_Output: string;
@@ -46,7 +47,9 @@ const RiskScores = () => {
     null
   );
   const [showMentalModal, setShowMentalModal] = useState(false);
-    const [showHelpfulTools, setShowHelpfulTools] = useState(false);
+  const [showHelpfulTools, setShowHelpfulTools] = useState(false);
+  const [showMentalHistory, setShowMentalHistory] = useState(false);
+  const [userData, setUserData] = useState<any>(null);
 
 
   // Function to get the color based on the risk level
@@ -61,20 +64,20 @@ const RiskScores = () => {
     return "#2196F3"; // Default blue
   };
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const userData = localStorage.getItem("userData");
-        if (!userData) return;
+ useEffect(() => {
+  const fetchUserData = async () => {
+    try {
+      const userData = localStorage.getItem("userData");
+      if (!userData) return;
 
-        const { email } = JSON.parse(userData);
-        const response = await fetch(getDatabaseUrl(`/users?email=${email}`));
-        const userResponseData = await response.json();
+      const { email } = JSON.parse(userData);
+      const response = await fetch(getDatabaseUrl(`/users?email=${email}`));
+      const userResponseData = await response.json();
 
-        if (
-          userResponseData &&
-          userResponseData[0]?.nutritionAssessments?.length > 0
-        ) {
+      if (userResponseData && userResponseData.length > 0) {
+        setUserData(userResponseData[0]);
+
+        if (userResponseData[0]?.nutritionAssessments?.length > 0) {
           const latestAssessment =
             userResponseData[0].nutritionAssessments[
               userResponseData[0].nutritionAssessments.length - 1
@@ -82,17 +85,12 @@ const RiskScores = () => {
           const score = latestAssessment.nutritionRiskPrediction[0];
           setNutritionScore(Math.round(score));
 
-          // Set feature contributions if available
           if (latestAssessment.feature_contributions) {
             setFeatureContributions(latestAssessment.feature_contributions);
           }
         }
 
-        // Get the latest physical assessment
-        if (
-          userResponseData &&
-          userResponseData[0]?.physicalAssessments?.length > 0
-        ) {
+        if (userResponseData[0]?.physicalAssessments?.length > 0) {
           const latestPhysicalAssessment =
             userResponseData[0].physicalAssessments[
               userResponseData[0].physicalAssessments.length - 1
@@ -101,7 +99,6 @@ const RiskScores = () => {
             latestPhysicalAssessment.physicalRiskPrediction[0];
           setPhysicalScore(Math.round(physicalScore));
 
-          // Set physical feature contributions if available
           if (latestPhysicalAssessment.feature_contributions) {
             setPhysicalFeatureContributions(
               latestPhysicalAssessment.feature_contributions
@@ -109,62 +106,57 @@ const RiskScores = () => {
           }
         }
 
-        if (
-          userResponseData &&
-          userResponseData[0]?.mentalAssessments?.length > 0
-        ) {
+        if (userResponseData[0]?.mentalAssessments?.length > 0) {
           const latestMentalAssessment =
             userResponseData[0].mentalAssessments[
               userResponseData[0].mentalAssessments.length - 1
             ];
           setMentalRiskData(latestMentalAssessment.prediction);
         }
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-        setIsLoading(false);
       }
-    };
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      setIsLoading(false);
+    }
+  };
 
-    fetchUserData();
+  fetchUserData();
 
-    // Define scenario here
-    const scenario = mentalRiskData?.Scenario || "No assessment available";
+  const scenario = mentalRiskData?.Scenario || "No assessment available";
 
-    // Listen for nutrition assessment updates
-    const handleNutritionUpdate = (event: CustomEvent) => {
-      const { prediction, featureContributions } = event.detail;
-      setNutritionScore(Math.round(prediction));
-      setFeatureContributions(featureContributions);
-    };
+  const handleNutritionUpdate = (event: CustomEvent) => {
+    const { prediction, featureContributions } = event.detail;
+    setNutritionScore(Math.round(prediction));
+    setFeatureContributions(featureContributions);
+  };
 
-    // Listen for physical assessment updates
-    const handlePhysicalUpdate = (event: CustomEvent) => {
-      const { prediction, featureContributions } = event.detail;
-      setPhysicalScore(Math.round(prediction));
-      setPhysicalFeatureContributions(featureContributions);
-    };
+  const handlePhysicalUpdate = (event: CustomEvent) => {
+    const { prediction, featureContributions } = event.detail;
+    setPhysicalScore(Math.round(prediction));
+    setPhysicalFeatureContributions(featureContributions);
+  };
 
-    window.addEventListener(
+  window.addEventListener(
+    "nutritionAssessmentUpdated",
+    handleNutritionUpdate as EventListener
+  );
+  window.addEventListener(
+    "physicalAssessmentUpdated",
+    handlePhysicalUpdate as EventListener
+  );
+
+  return () => {
+    window.removeEventListener(
       "nutritionAssessmentUpdated",
       handleNutritionUpdate as EventListener
     );
-    window.addEventListener(
+    window.removeEventListener(
       "physicalAssessmentUpdated",
       handlePhysicalUpdate as EventListener
     );
-
-    return () => {
-      window.removeEventListener(
-        "nutritionAssessmentUpdated",
-        handleNutritionUpdate as EventListener
-      );
-      window.removeEventListener(
-        "physicalAssessmentUpdated",
-        handlePhysicalUpdate as EventListener
-      );
-    };
-  }, [mentalRiskData]); // Add mentalRiskData as a dependency
+  };
+}, [mentalRiskData]);
 
   // Add this function to fetch feature contributions
   const fetchFeatureContributions = async () => {
@@ -581,6 +573,12 @@ const RiskScores = () => {
           >
             Helpful Tools to Reduce Stress
           </button>
+          <button
+            className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200"
+            onClick={() => setShowMentalHistory(true)}
+          >
+            View History
+          </button>
         </div>
       </div>
       <NutritionRecommandationModal
@@ -616,8 +614,16 @@ const RiskScores = () => {
           recommendations={previousRecommendations}
         />
       )}
-      <HelpfulToolsModal show={showHelpfulTools} onClose={() => setShowHelpfulTools(false)} scenario={mentalRiskData?.Scenario} />
-
+      <HelpfulToolsModal
+        show={showHelpfulTools}
+        onClose={() => setShowHelpfulTools(false)}
+        scenario={mentalRiskData?.Scenario}
+      />
+      <MentalHealthHistoryModal
+  show={showMentalHistory}
+  onClose={() => setShowMentalHistory(false)}
+  assessments={userData?.mentalAssessments || []}
+/>
     </div>
   );
 };

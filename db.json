@@ -10658,6 +10658,31 @@
             "ML_Output": "Moderate",
             "Scenario": "Scenario 03"
           }
+        },
+        {
+          "id": "1752911018534",
+          "timestamp": "2025-07-19T07:43:38.534Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "Perceived_Control": "5",
+            "Stress_Freq_Intensity": "Always (6+ times)",
+            "Emotional_Reg": "Nearly every day",
+            "Physical_Stress": "Nearly every day",
+            "Cognitive_Stress": "Often",
+            "Behavioral_Response": "Often",
+            "Work_Stress": "5",
+            "Productivity": "Nearly every day",
+            "Suicidal_Thoughts": "More than half the days",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "0.4604"
+          },
+          "prediction": {
+            "DL_Output": "Stable",
+            "ML_Output": "Severe",
+            "Scenario": "Scenario 07"
+          }
         }
       ],
       "mental_health_recommendations": [

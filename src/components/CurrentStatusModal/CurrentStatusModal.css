@@ -1,0 +1,77 @@
+/* src/components/CurrentStatusModal/CurrentStatusModal.css */
+
+.assessment-timestamp {
+    color: #a0aec0;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.assessment-grid {
+    display: grid;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.assessment-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.assessment-section h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.info-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.info-item span:first-child {
+    color: #a0aec0;
+}
+
+.info-item span:last-child {
+    color: #fff;
+    font-weight: 500;
+}
+
+.info-item.highlight {
+    background: rgba(66, 153, 225, 0.1);
+    border-left: 3px solid #4299e1;
+}
+
+.info-item.highlight:hover {
+    background: rgba(66, 153, 225, 0.15);
+}
+
+.modal-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.no-assessment {
+    text-align: center;
+    color: #a0aec0;
+    padding: 2rem;
+}

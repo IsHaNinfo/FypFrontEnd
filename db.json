@@ -1795,6 +1795,143 @@
             ],
             "sitting_time": 1
           }
+        },
+        {
+          "id": "1753123138255",
+          "timestamp": "2025-07-21T18:38:58.255Z",
+          "recommendations": {
+            "bmi": 24.337479718766904,
+            "class": "class_flexibility",
+            "goal": "flexibility",
+            "is_novel": false,
+            "physical_activity_risk": 0.8639090505221476,
+            "routine": [
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "push",
+                    "instructions": [
+                      "Stand up and extend your arms straight out by the sides. The arms should be parallel to the floor and perpendicular (90-degree angle) to your torso. This will be your starting position.",
+                      "Slowly start to make circles of about 1 foot in diameter with each outstretched arm. Breathe normally as you perform the movement.",
+                      "Continue the circular motion of the outstretched arms for about ten seconds. Then reverse the movement, going the opposite direction."
+                    ],
+                    "level": "beginner",
+                    "name": "Arm Circles",
+                    "primaryMuscles": [
+                      "shoulders"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "traps"
+                    ]
+                  }
+                ],
+                "role": "Warm-Up"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "foam roll",
+                    "force": "static",
+                    "instructions": [
+                      "While lying on the floor, place a foam roll under your back and to one side, just behind your arm pit. This will be your starting position.",
+                      "Keep the arm of the side being stretched behind and to the side of you as you shift your weight onto your lats, keeping your upper body off of the ground. Hold for 10-30 seconds, and switch sides."
+                    ],
+                    "level": "beginner",
+                    "name": "Latissimus Dorsi-SMR",
+                    "primaryMuscles": [
+                      "lats"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  },
+                  {
+                    "equipment": "body only",
+                    "force": "push",
+                    "instructions": [
+                      "Lie on your back, with one leg extended straight out.",
+                      "With the other leg, bend the hip and knee to 90 degrees. You may brace your leg with your hands if necessary. This will be your starting position.",
+                      "Extend your leg straight into the air, pausing briefly at the top. Return the leg to the starting position.",
+                      "Repeat for 10-20 repetitions, and then switch to the other leg."
+                    ],
+                    "level": "beginner",
+                    "name": "90/90 Hamstring",
+                    "primaryMuscles": [
+                      "hamstrings"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "calves"
+                    ]
+                  },
+                  {
+                    "equipment": "body only",
+                    "force": "pull",
+                    "instructions": [
+                      "Position yourself on your hands and knees on the ground. Maintaining good posture, raise one bent knee off of the ground. This will be your starting position.",
+                      "Keeping the knee in a bent position, rotate the femur in an arc, attempting to make a big circle with your knee.",
+                      "Perform this slowly for a number of repetitions, and repeat on the other side."
+                    ],
+                    "level": "beginner",
+                    "name": "Hip Circles (prone)",
+                    "primaryMuscles": [
+                      "abductors"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "adductors"
+                    ]
+                  }
+                ],
+                "role": "Stretching"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "body only",
+                    "force": "static",
+                    "instructions": [
+                      "Get into a prone position on the floor, supporting your weight on your toes and your forearms. Your arms are bent and directly below the shoulder.",
+                      "Keep your body straight at all times, and hold this position as long as possible. To increase difficulty, an arm or leg can be raised."
+                    ],
+                    "level": "beginner",
+                    "name": "Plank",
+                    "primaryMuscles": [
+                      "abdominals"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  }
+                ],
+                "role": "Strength"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "push",
+                    "instructions": [
+                      "Stand up and extend your arms straight out by the sides. The arms should be parallel to the floor and perpendicular (90-degree angle) to your torso. This will be your starting position.",
+                      "Slowly start to make circles of about 1 foot in diameter with each outstretched arm. Breathe normally as you perform the movement.",
+                      "Continue the circular motion of the outstretched arms for about ten seconds. Then reverse the movement, going the opposite direction."
+                    ],
+                    "level": "beginner",
+                    "name": "Arm Circles",
+                    "primaryMuscles": [
+                      "shoulders"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "traps"
+                    ]
+                  }
+                ],
+                "role": "Cardio"
+              }
+            ],
+            "sitting_time": 1
+          }
         }
       ],
       "nutritionRecommendations": [
@@ -21369,6 +21506,12 @@
       "userId": "1746685903852",
       "token": "eyJ1c2VySWQiOiIxNzQ2Njg1OTAzODUyIiwiZW1haWwiOiJpc2hhbkBnbWFpbC5jb20iLCJ0b2tlbiI6ImY0Njc1NzQ1NGI1ZjY2OTZlN2ExZWJlZTQ3MDg5YjY4ODRmOGExNjJmYjhlNGRlZTYyZWI4MTM1IiwidGltZXN0YW1wIjoxNzUwOTQ5MDQxMTgxfQ==",
       "createdAt": "2025-06-26T14:44:01.181Z"
+    },
+    {
+      "id": "a281",
+      "userId": "1746685903852",
+      "token": "eyJ1c2VySWQiOiIxNzQ2Njg1OTAzODUyIiwiZW1haWwiOiJpc2hhbkBnbWFpbC5jb20iLCJ0b2tlbiI6ImRlMTI0MTAyODBkOGNjYzI0MjBiZGMzMjExNjEzY2M4ZmE2YWY4NjdiY2U0NGY5NjYyM2EwMTdmIiwidGltZXN0YW1wIjoxNzUzMTMzNTU0NzUwfQ==",
+      "createdAt": "2025-07-21T21:32:34.750Z"
     }
   ]
 }

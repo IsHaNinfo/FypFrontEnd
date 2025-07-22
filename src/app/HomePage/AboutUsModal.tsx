@@ -20,11 +20,11 @@ const AboutUsModal: React.FC<AboutUsModalProps> = ({ isOpen, onClose }) => {
                             It's not about where or when you work. It's about how you get it done.
                         </h2>
                         <p className="aboutus-description">
-                            In a flexibility-first world, great work can happen anywhere. At Tech Tonic, we deliver innovative tech solutions, specializing in web and mobile app development. With React, Node.js, AWS, and machine learning, our team ensures excellence, scalability, and client success.
+                            In a flexibility-first world, great work can happen anywhere. At Tech Tonic, we deliver innovative tech solutions, specializing in web and mobile app development. With Python,Next Js,Json Web server and machine learning and naural language models, our team ensures excellence, scalability, and client success.
                         </p>
                         <h3 className="aboutus-section-title">Product Capabilities</h3>
                         <p className="aboutus-section-desc">
-                            Our product helps office workers (aged 20-50) predict their diabetic risk using lifestyle and health data—analyzing nutrition, physical activity, and mental well-being for actionable recommendations.
+                            Our product helps office workers (aged 20-50) predict their diabetic risk using lifestyle and health data analyzing nutrition, physical activity, and mental well-being for actionable recommendations.
                         </p>
                         <h3 className="aboutus-section-title">Specialties</h3>
                         <ul className="aboutus-list">

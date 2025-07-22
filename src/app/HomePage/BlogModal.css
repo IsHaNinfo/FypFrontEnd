@@ -49,28 +49,28 @@
 
 .blog-modal-headerbox {
     text-align: center;
-    margin-bottom: 2rem;
-    margin-top: 0.2rem;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    border-left: 4px solid #4a90e2;
+    /* Medical blue accent */
 }
 
 .blog-modal-header {
     font-size: 2.3rem;
-    color: #e0e0e0;
-    /* Light font color for readability */
-    margin-bottom: 0.3rem;
+    color: #ffffff;
+    margin-bottom: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.02em;
 }
 
 .blog-modal-subtitle {
     color: #b0b0b0;
-    /* Softer light color for subtitle */
     font-size: 1.06rem;
-    margin: 0;
-    font-weight: 500;
-    max-width: 580px;
-    margin-left: auto;
-    margin-right: auto;
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 auto;
 }
 
 .blog-modal-list {

@@ -13,14 +13,13 @@ interface CurrentStatusModalProps {
                 gender: string;
                 height: string;
                 weight: string;
-                mealsPerDay: string;
-                waterIntake: string;
-                foodAllergies: string;
-                dietaryRestrictions: string;
-                sugarIntake: string;
-                saltIntake: string;
-                processedFoodConsumption: string;
-                fruitVegetableIntake: string;
+                Carbohydrate_Consumption: string;
+                Protein_Intake: string;
+                Fat_Intake: string;
+                Regularity_of_Meals: string;
+                Portion_Control: string;
+                Caloric_Balance: string;
+                Sugar_Consumption: string;
                 Diabetic_Risk: string;
             };
             nutritionRiskPrediction: number[];
@@ -50,11 +49,22 @@ const CurrentStatusModal: React.FC<CurrentStatusModalProps> = ({ isOpen, onClose
         return (weightInKg / (heightInMeters * heightInMeters)).toFixed(1);
     };
 
+    const getPortionSize = (value: string) => {
+        const sizes = {
+            "1.0": "Small (1/2 plate or 1 cup)",
+            "2.0": "Small-Medium (3/4 plate or 1.5 cups)",
+            "3.0": "Medium (1 plate or 2 cups)",
+            "4.0": "Medium-Large (1.5 plates or 3 cups)",
+            "5.0": "Large (2 plates or 4 cups)"
+        };
+        return sizes[value] || value;
+    };
+
     return (
         <div className="suggestion-modal-overlay">
             <div className="suggestion-modal-content">
                 <button className="suggestion-modal-close-icon" onClick={onClose}>&times;</button>
-                <h2 className="suggestion-modal-header">Latest Assessment Results</h2>
+                <h2 className="suggestion-modal-header">Latest Nutritional Assessment Results</h2>
 
                 {latestAssessment ? (
                     <>
@@ -93,20 +103,39 @@ const CurrentStatusModal: React.FC<CurrentStatusModalProps> = ({ isOpen, onClose
                                 <h3>Dietary Habits</h3>
                                 <div className="info-grid">
                                     <div className="info-item">
-                                        <span>Meals per Day:</span>
-                                        <span>{latestAssessment.formData.mealsPerDay}</span>
+                                        <span>Carbohydrate Consumption:</span>
+                                        <span>{`${latestAssessment.formData.Carbohydrate_Consumption} servings/day`}</span>
+                                        <div className="info-description">Daily servings of rice, bread, or pasta</div>
                                     </div>
                                     <div className="info-item">
-                                        <span>Water Intake:</span>
-                                        <span>{latestAssessment.formData.waterIntake} glasses</span>
+                                        <span>Protein Intake:</span>
+                                        <span>{latestAssessment.formData.Protein_Intake}</span>
+                                        <div className="info-description">Regular consumption of eggs, chicken, lentils</div>
                                     </div>
                                     <div className="info-item">
-                                        <span>Sugar Intake:</span>
-                                        <span>{latestAssessment.formData.sugarIntake}</span>
+                                        <span>Fat Consumption:</span>
+                                        <span>{latestAssessment.formData.Fat_Intake}</span>
+                                        <div className="info-description">Type of fats most frequently consumed</div>
                                     </div>
                                     <div className="info-item">
-                                        <span>Salt Intake:</span>
-                                        <span>{latestAssessment.formData.saltIntake}</span>
+                                        <span>Meal Regularity:</span>
+                                        <span>{latestAssessment.formData.Regularity_of_Meals}</span>
+                                        <div className="info-description">Whether meals are skipped during the day</div>
+                                    </div>
+                                    <div className="info-item">
+                                        <span>Portion Size:</span>
+                                        <span>{getPortionSize(latestAssessment.formData.Portion_Control)}</span>
+                                        <div className="info-description">Average portion size per meal</div>
+                                    </div>
+                                    <div className="info-item">
+                                        <span>Daily Calories:</span>
+                                        <span>{`${latestAssessment.formData.Caloric_Balance} calories`}</span>
+                                        <div className="info-description">Estimated daily calorie intake</div>
+                                    </div>
+                                    <div className="info-item">
+                                        <span>Sugar Consumption:</span>
+                                        <span>{`${latestAssessment.formData.Sugar_Consumption} items/day`}</span>
+                                        <div className="info-description">Daily sugary snacks or drinks consumed</div>
                                     </div>
                                 </div>
                             </div>

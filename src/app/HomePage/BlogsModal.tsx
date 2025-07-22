@@ -45,10 +45,10 @@ const BlogModal: React.FC<BlogsModalProps> = ({ isOpen, onClose }) => {
             <div className="blog-modal-content">
                 <button className="blog-modal-close" onClick={onClose}>&times;</button>
                 <div className="blog-modal-headerbox">
-                    <h2 className="blog-modal-header">Latest from Our Blog</h2>
+                    <h2 className="blog-modal-header">Latest Diabetic Health Insights</h2>
                     <p className="blog-modal-subtitle">
-                        You can rely on our amazing features. Let our user customer services be great
-                        experience for you without doubt and in no time.
+                        Stay informed with the latest research, lifestyle tips, and expert advice on managing diabetes.
+                        Our curated articles help you make informed decisions about your health and well-being.
                     </p>
                 </div>
                 <div className="blog-modal-list">

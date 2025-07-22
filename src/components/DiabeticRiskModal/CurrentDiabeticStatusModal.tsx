@@ -7,79 +7,134 @@ interface CurrentDiabeticStatusModalProps {
     assessmentData: any;
 }
 
-const FIELD_LABELS: Record<string, string> = {
-    age: "Age",
-    gender: "Gender",
-    height: "Height (cm)",
-    weight: "Weight (kg)",
-    Waist_Circumference: "Waist Circumference (in)",
-    Diet_Food_Habits: "Diet/Food Habits (per day)",
-    Family_History: "Family History",
-    Blood_Pressure: "Blood Pressure",
-    Cholesterol_Lipid_Levels: "Cholesterol/Lipid Levels",
-    Thirst: "Thirst",
-    Fatigue: "Fatigue",
-    Urination: "Urination",
-    Vision_Changes: "Vision Changes",
-    RiskLevel: "Expected Risk Level"
-};
-
-const FIELD_ORDER = [
-    "age",
-    "gender",
-    "height",
-    "weight",
-    "Waist_Circumference",
-    "Diet_Food_Habits",
-    "Family_History",
-    "Blood_Pressure",
-    "Cholesterol_Lipid_Levels",
-    "Thirst",
-    "Fatigue",
-    "Urination",
-    "Vision_Changes",
-    "RiskLevel"
-];
-
-function formatValue(key: string, value: any) {
-    if (key === "gender") {
-        if (value === "1.0") return "Male";
-        if (value === "0.0") return "Female";
-        return value;
-    }
-    if (key === "Diet_Food_Habits") {
-        return value + (value === "1" ? " meal" : " meals");
-    }
-    return value;
-}
-
 const CurrentDiabeticStatusModal: React.FC<CurrentDiabeticStatusModalProps> = ({ isOpen, onClose, assessmentData }) => {
     if (!isOpen || !assessmentData) return null;
 
-    const { formData, prediction, validationData, timestamp } = assessmentData;
+    const { formData, prediction, timestamp } = assessmentData;
+
+    const formatDate = (timestamp: string) => {
+        return new Date(timestamp).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    };
 
     return (
-        <div className="diabetic-modal-overlay">
-            <div className="diabetic-modal-content">
-                <button className="modal-close-icon" onClick={onClose} type="button">&times;</button>
-                <div className="diabetic-modal-header">
-                    <h2>Current Diabetic Status</h2>
+        <div className="suggestion-modal-overlay">
+            <div className="suggestion-modal-content">
+                <button className="suggestion-modal-close-icon" onClick={onClose}>&times;</button>
+                <h2 className="suggestion-modal-header">Current Diabetic Status</h2>
+
+                <div className="assessment-timestamp">
+                    Last Updated: {formatDate(timestamp)}
                 </div>
-                <div className="diabetic-modal-body">
-                    <p><strong>Date:</strong> {timestamp ? new Date(timestamp).toLocaleString() : "-"}</p>
-                    <p><strong>Prediction:</strong> {typeof prediction === 'number' ? `${(prediction * 100).toFixed(2)}%` : prediction}</p>
-                    <h3>Assessment Details:</h3>
-                    <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '1rem' }}>
-                        <tbody>
-                            {FIELD_ORDER.map((key) => (
-                                <tr key={key}>
-                                    <td style={{ fontWeight: 'bold', padding: '4px 8px', borderBottom: '1px solid #eee' }}>{FIELD_LABELS[key]}</td>
-                                    <td style={{ padding: '4px 8px', borderBottom: '1px solid #eee' }}>{formatValue(key, formData?.[key] ?? "-")}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                  
+
+                <div className="assessment-grid">
+                    <div className="assessment-section">
+                        <h3>Basic Information</h3>
+                        <div className="info-grid">
+                            <div className="info-item">
+                                <span>Age:</span>
+                                <span>{formData.age} years</span>
+                                <div className="info-description">Your current age</div>
+                            </div>
+                            <div className="info-item">
+                                <span>Gender:</span>
+                                <span>{formData.gender === "1.0" ? "Male" : "Female"}</span>
+                            </div>
+                            <div className="info-item">
+                                <span>Height:</span>
+                                <span>{formData.height} cm</span>
+                            </div>
+                            <div className="info-item">
+                                <span>Weight:</span>
+                                <span>{formData.weight} kg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="assessment-section">
+                        <h3>Health Indicators</h3>
+                        <div className="info-grid">
+                            <div className="info-item">
+                                <span>Waist Circumference:</span>
+                                <span>{formData.Waist_Circumference} inches</span>
+                                <div className="info-description">Measurement around your waist</div>
+                            </div>
+                            <div className="info-item">
+                                <span>Diet/Food Habits:</span>
+                                <span>{formData.Diet_Food_Habits} meals/day</span>
+                                <div className="info-description">Number of meals consumed daily</div>
+                            </div>
+                            <div className="info-item">
+                                <span>Family History:</span>
+                                <span>{formData.Family_History}</span>
+                                <div className="info-description">History of diabetes in family</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="assessment-section">
+                        <h3>Medical Indicators</h3>
+                        <div className="info-grid">
+                            <div className="info-item">
+                                <span>Blood Pressure:</span>
+                                <span>{formData.Blood_Pressure}</span>
+                                <div className="info-description">Current blood pressure status</div>
+                            </div>
+                            <div className="info-item">
+                                <span>Cholesterol Levels:</span>
+                                <span>{formData.Cholesterol_Lipid_Levels}</span>
+                                <div className="info-description">Current cholesterol status</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="assessment-section">
+                        <h3>Symptoms</h3>
+                        <div className="info-grid">
+                            <div className="info-item">
+                                <span>Thirst:</span>
+                                <span>{formData.Thirst}</span>
+                                <div className="info-description">Frequency of excessive thirst</div>
+                            </div>
+                            <div className="info-item">
+                                <span>Fatigue:</span>
+                                <span>{formData.Fatigue}</span>
+                                <div className="info-description">Level of tiredness</div>
+                            </div>
+                            <div className="info-item">
+                                <span>Urination:</span>
+                                <span>{formData.Urination}</span>
+                                <div className="info-description">Frequency of urination</div>
+                            </div>
+                            <div className="info-item">
+                                <span>Vision Changes:</span>
+                                <span>{formData.Vision_Changes}</span>
+                                <div className="info-description">Changes in vision clarity</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="assessment-section">
+                        <h3>Risk Assessment</h3>
+                        <div className="info-grid">
+                            <div className="info-item highlight">
+                                <span>Diabetic Risk:</span>
+                                <span>{typeof prediction === 'number' ? `${(prediction * 100).toFixed(2)}%` : prediction}</span>
+                                <div className="info-description">Overall risk of developing diabetes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="modal-actions">
+                    <button className="suggestion-modal-btn-primary" onClick={onClose}>
+                        Continue
+                    </button>
                 </div>
             </div>
         </div>

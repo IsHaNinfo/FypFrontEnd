@@ -676,19 +676,19 @@ const RiskScores = () => {
             </div>
           </div>
           <button
-            className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200"
+            className="recommendation-button mental"
             onClick={() => setShowMentalModal(true)}
           >
             View Recommendations
           </button>
           <button
-            className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200"
+            className="recommendation-button mental"
             onClick={() => setShowHelpfulTools(true)}
           >
             Helpful Tools to Reduce Stress
           </button>
           <button
-            className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200"
+            className="recommendation-button mental"
             onClick={() => setShowMentalHistory(true)}
           >
             View History

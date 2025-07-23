@@ -10803,6 +10803,206 @@
             "ML_Output": "Severe",
             "Scenario": "Scenario 07"
           }
+        },
+        {
+          "id": "1753167499771",
+          "timestamp": "2025-07-22T06:58:19.771Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "Perceived_Control": "2",
+            "Stress_Freq_Intensity": "Rarely  (0-1 times)",
+            "Emotional_Reg": "Not at all",
+            "Physical_Stress": "Not at all",
+            "Cognitive_Stress": "Never",
+            "Behavioral_Response": "Never",
+            "Work_Stress": "1",
+            "Productivity": "Not at all",
+            "Suicidal_Thoughts": "Not at all",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "0.4604"
+          },
+          "prediction": {
+            "DL_Output": "Unstable",
+            "ML_Output": "Low",
+            "Scenario": "Scenario 02"
+          }
+        },
+        {
+          "id": "1753167530792",
+          "timestamp": "2025-07-22T06:58:50.792Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "Perceived_Control": "3",
+            "Stress_Freq_Intensity": "Sometimes (2-3 times)",
+            "Emotional_Reg": "More than half the days",
+            "Physical_Stress": "Several days",
+            "Cognitive_Stress": "Rarely",
+            "Behavioral_Response": "Sometimes",
+            "Work_Stress": "2",
+            "Productivity": "Several days",
+            "Suicidal_Thoughts": "Nearly every day",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "0.4604"
+          },
+          "prediction": {
+            "DL_Output": "Stable",
+            "ML_Output": "High",
+            "Scenario": "Scenario 05"
+          }
+        },
+        {
+          "id": "1753168413245",
+          "timestamp": "2025-07-22T07:13:33.245Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "Perceived_Control": "3",
+            "Stress_Freq_Intensity": "Always (6+ times)",
+            "Emotional_Reg": "Several days",
+            "Physical_Stress": "Several days",
+            "Cognitive_Stress": "Sometimes",
+            "Behavioral_Response": "Rarely",
+            "Work_Stress": "3",
+            "Productivity": "More than half the days",
+            "Suicidal_Thoughts": "Nearly every day",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "0.4604"
+          },
+          "prediction": {
+            "DL_Output": "Unstable",
+            "ML_Output": "High",
+            "Scenario": "Scenario 06"
+          }
+        },
+        {
+          "id": "1753168840164",
+          "timestamp": "2025-07-22T07:20:40.164Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "Perceived_Control": "2",
+            "Stress_Freq_Intensity": "Often  (4-5 times)",
+            "Emotional_Reg": "Nearly every day",
+            "Physical_Stress": "More than half the days",
+            "Cognitive_Stress": "Sometimes",
+            "Behavioral_Response": "Rarely",
+            "Work_Stress": "3",
+            "Productivity": "More than half the days",
+            "Suicidal_Thoughts": "More than half the days",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "0.4604"
+          },
+          "prediction": {
+            "DL_Output": "Stable",
+            "ML_Output": "High",
+            "Scenario": "Scenario 05"
+          }
+        },
+        {
+          "id": "1753169048562",
+          "timestamp": "2025-07-22T07:24:08.562Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "Perceived_Control": "4",
+            "Stress_Freq_Intensity": "Often  (4-5 times)",
+            "Emotional_Reg": "More than half the days",
+            "Physical_Stress": "More than half the days",
+            "Cognitive_Stress": "Often",
+            "Behavioral_Response": "Sometimes",
+            "Work_Stress": "2",
+            "Productivity": "Nearly every day",
+            "Suicidal_Thoughts": "More than half the days",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "0.4604"
+          },
+          "prediction": {
+            "DL_Output": "Unstable",
+            "ML_Output": "Severe",
+            "Scenario": "Scenario 08"
+          }
+        },
+        {
+          "id": "1753170776275",
+          "timestamp": "2025-07-22T07:52:56.275Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "Perceived_Control": "2",
+            "Stress_Freq_Intensity": "Sometimes (2-3 times)",
+            "Emotional_Reg": "Several days",
+            "Physical_Stress": "Not at all",
+            "Cognitive_Stress": "Never",
+            "Behavioral_Response": "Always",
+            "Work_Stress": "4",
+            "Productivity": "More than half the days",
+            "Suicidal_Thoughts": "Several days",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "0.4604"
+          },
+          "prediction": {
+            "DL_Output": "Stable",
+            "ML_Output": "Moderate",
+            "Scenario": "Scenario 03"
+          }
+        },
+        {
+          "id": "1753171162183",
+          "timestamp": "2025-07-22T07:59:22.183Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "Perceived_Control": "5",
+            "Stress_Freq_Intensity": "Always (6+ times)",
+            "Emotional_Reg": "Nearly every day",
+            "Physical_Stress": "More than half the days",
+            "Cognitive_Stress": "Often",
+            "Behavioral_Response": "Always",
+            "Work_Stress": "3",
+            "Productivity": "More than half the days",
+            "Suicidal_Thoughts": "More than half the days",
+            "FreeTime": "100",
+            "image": {},
+            "Diabetic_Risk": "0.4604"
+          },
+          "prediction": {
+            "DL_Output": "Stable",
+            "ML_Output": "Severe",
+            "Scenario": "Scenario 07"
+          }
+        },
+        {
+          "id": "1753248153508",
+          "timestamp": "2025-07-23T05:22:33.508Z",
+          "formData": {
+            "age": "37",
+            "gender": "1.0",
+            "Perceived_Control": "3",
+            "Stress_Freq_Intensity": "Sometimes (2-3 times)",
+            "Emotional_Reg": "Several days",
+            "Physical_Stress": "Not at all",
+            "Cognitive_Stress": "Rarely",
+            "Behavioral_Response": "Sometimes",
+            "Work_Stress": "3",
+            "Productivity": "Not at all",
+            "Suicidal_Thoughts": "Not at all",
+            "FreeTime": "420",
+            "image": {},
+            "Diabetic_Risk": "0.4604"
+          },
+          "prediction": {
+            "DL_Output": "Unstable",
+            "ML_Output": "Moderate",
+            "Scenario": "Scenario 04"
+          }
         }
       ],
       "mental_health_recommendations": [

@@ -2069,6 +2069,315 @@
             ],
             "sitting_time": 1
           }
+        },
+        {
+          "id": "1753359401864",
+          "timestamp": "2025-07-24T12:16:41.865Z",
+          "recommendations": {
+            "bmi": 21.296296296296294,
+            "class": "class_flexibility",
+            "goal": "flexibility",
+            "is_novel": true,
+            "modifications": {},
+            "physical_activity_risk": 0.44060000000000005,
+            "routine": [
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "push",
+                    "instructions": [
+                      "Stand up and extend your arms straight out by the sides. The arms should be parallel to the floor and perpendicular (90-degree angle) to your torso. This will be your starting position.",
+                      "Slowly start to make circles of about 1 foot in diameter with each outstretched arm. Breathe normally as you perform the movement.",
+                      "Continue the circular motion of the outstretched arms for about ten seconds. Then reverse the movement, going the opposite direction."
+                    ],
+                    "level": "beginner",
+                    "name": "Arm Circles",
+                    "primaryMuscles": [
+                      "shoulders"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "traps"
+                    ]
+                  }
+                ],
+                "role": "Warm-Up"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "other",
+                    "force": "pull",
+                    "instructions": [
+                      "To begin, stand straight up grabbing a wrist roller using a pronated grip (palms facing down). Your feet should be shoulder width apart.",
+                      "Slowly lift both arms until they are fully extended and parallel to the floor in front of you. Note: Make sure the rope is not wrapped around the roller. Your entire body should be stationary except for the forearms. This is the starting position.",
+                      "Rotate one wrist at a time in an upward motion to bring the weight up to the bar by rolling the rope around the roller.",
+                      "Once the weight has reached the bar, slowly begin to lower the weight back down by rotating the wrist in a downward motion until the weight reaches the starting position.",
+                      "Repeat for the prescribed amount of repetitions in your program."
+                    ],
+                    "level": "beginner",
+                    "name": "Wrist Roller",
+                    "primaryMuscles": [
+                      "forearms"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "shoulders"
+                    ]
+                  },
+                  {
+                    "equipment": null,
+                    "force": "static",
+                    "instructions": [
+                      "Start with your shoulders relaxed, gently tilt your head towards your shoulder.",
+                      "Assist stretch with a gentle pull on the side of the head."
+                    ],
+                    "level": "beginner",
+                    "name": "Side Neck Stretch",
+                    "primaryMuscles": [
+                      "neck"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  },
+                  {
+                    "equipment": null,
+                    "force": "push",
+                    "instructions": [
+                      "Assume a comfortable stance with one foot slightly in front of the other.",
+                      "Begin by pushing off with the front leg, driving the opposite knee forward and as high as possible before landing. Attempt to cover as much distance to each side with each bound.",
+                      "It may help to use a line on the ground to guage distance from side to side.",
+                      "Repeat the sequence with the other leg."
+                    ],
+                    "level": "beginner",
+                    "name": "Alternate Leg Diagonal Bound",
+                    "primaryMuscles": [
+                      "quadriceps"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "abductors",
+                      "adductors",
+                      "calves",
+                      "glutes",
+                      "hamstrings"
+                    ]
+                  },
+                  {
+                    "equipment": "dumbbell",
+                    "force": "push",
+                    "instructions": [
+                      "Pick a couple of dumbbells and stand with a straight torso and the dumbbells on front of your thighs at arms length with the palms of the hand facing your thighs. This will be your starting position.",
+                      "While maintaining the torso stationary (no swinging), lift the dumbbells to the front with a slight bend on the elbow and the palms of the hands always facing down. Continue to go up until you arms are slightly above parallel to the floor. Exhale as you execute this portion of the movement and pause for a second at the top.",
+                      "As you inhale, lower the dumbbells back down slowly to the starting position.",
+                      "Repeat for the recommended amount of repetitions."
+                    ],
+                    "level": "beginner",
+                    "name": "Front Two-Dumbbell Raise",
+                    "primaryMuscles": [
+                      "shoulders"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": []
+                  }
+                ],
+                "role": "Stretching"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": null,
+                    "force": "pull",
+                    "instructions": [
+                      "Begin in a pushup position, with your weight supported by your hands and toes. Flexing the knee and hip, bring one leg until the knee is approximately under the hip. This will be your starting position.",
+                      "Explosively reverse the positions of your legs, extending the bent leg until the leg is straight and supported by the toe, and bringing the other foot up with the hip and knee flexed. Repeat in an alternating fashion for 20-30 seconds."
+                    ],
+                    "level": "beginner",
+                    "name": "Mountain Climbers",
+                    "primaryMuscles": [
+                      "quadriceps"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "chest",
+                      "hamstrings",
+                      "shoulders"
+                    ]
+                  }
+                ],
+                "role": "Strength"
+              },
+              {
+                "exercises": [],
+                "role": "Cardio"
+              }
+            ],
+            "safety_notes": [],
+            "sitting_time": 0
+          }
+        },
+        {
+          "id": "1753359649811",
+          "timestamp": "2025-07-24T12:20:49.811Z",
+          "recommendations": {
+            "bmi": 21.296296296296294,
+            "class": "class_flexibility",
+            "goal": "flexibility",
+            "is_novel": true,
+            "modifications": {},
+            "physical_activity_risk": 0.44060000000000005,
+            "routine": [
+              {
+                "exercises": [
+                  {
+                    "equipment": "machine",
+                    "force": null,
+                    "instructions": [
+                      "To begin, step onto the elliptical and select the desired option from the menu. Most ellipticals have a manual setting, or you can select a program to run. Typically, you can enter your age and weight to estimate the amount of calories burned during exercise. Elevation can be adjusted to change the intensity of the workout.",
+                      "The handles can be used to monitor your heart rate to help you stay at an appropriate intensity."
+                    ],
+                    "level": "intermediate",
+                    "name": "Elliptical Trainer",
+                    "primaryMuscles": [
+                      "quadriceps"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "calves",
+                      "glutes",
+                      "hamstrings"
+                    ]
+                  }
+                ],
+                "role": "Warm-Up"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "barbell",
+                    "force": "pull",
+                    "instructions": [
+                      "Begin with a shoulder width, double overhand or hook grip, with the bar hanging just below the knees. Your back should be straight and inclined slightly forward.",
+                      "Begin by aggressively extending through the hips, knees and ankles, driving the weight upward. As you do so, shrug your shoulders towards your ears. As full extension is achieved, transition into the third pull by aggressively shrugging and flexing the arms with the elbows up and out.",
+                      "At peak extension, aggressively pull yourself down, rotating your elbows under the bar as you do so. Receive the bar in a front squat position, the depth of which is dependent upon the height of the bar at the end of the third pull. The bar should be racked onto the protracted shoulders, lightly touching the throat with the hands relaxed. Continue to descend to the bottom squat position, which will help in the recovery.",
+                      "Immediately recover by driving through the heels, keeping the torso upright and elbows up. Continue until you have risen to a standing position."
+                    ],
+                    "level": "intermediate",
+                    "name": "Hang Clean - Below the Knees",
+                    "primaryMuscles": [
+                      "quadriceps"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "calves",
+                      "forearms",
+                      "glutes",
+                      "hamstrings",
+                      "lower back",
+                      "shoulders",
+                      "traps"
+                    ]
+                  },
+                  {
+                    "equipment": "machine",
+                    "force": "push",
+                    "instructions": [
+                      "Position a Smith machine bar a couple feet off of the ground. Ensure that it is resting on the safeties. After loading the bar to an appropriate weight, lie underneath the bar. Place the middle of your feet on the bar, tucking your knees to your chest. This will be your starting position.",
+                      "Begin the movement by driving through your feet to move the bar upward, extending the hips and knees. Do not lock out your knees.",
+                      "At the top of the motion, pause briefly before returning to the starting position."
+                    ],
+                    "level": "intermediate",
+                    "name": "Smith Machine Leg Press",
+                    "primaryMuscles": [
+                      "quadriceps"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "calves",
+                      "glutes",
+                      "hamstrings"
+                    ]
+                  },
+                  {
+                    "equipment": "kettlebells",
+                    "force": "pull",
+                    "instructions": [
+                      "Place one kettlebell between your feet.",
+                      "Grab the handle with one hand and raise the kettlebell rapidly, let it flip so that the ball of the kettlebell lands in the palm of your hand.",
+                      "Throw the kettlebell out in front of you and catch the handle with one hand.",
+                      "Take the kettlebell to the floor and repeat. Make sure to work both arms."
+                    ],
+                    "level": "intermediate",
+                    "name": "One-Arm Open Palm Kettlebell Clean",
+                    "primaryMuscles": [
+                      "hamstrings"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "forearms",
+                      "glutes",
+                      "lower back",
+                      "quadriceps",
+                      "shoulders"
+                    ]
+                  },
+                  {
+                    "equipment": "barbell",
+                    "force": "push",
+                    "instructions": [
+                      "Lie back on a flat bench. Using a medium-width grip (a grip that creates a 90-degree angle in the middle of the movement between the forearms and the upper arms), lift the bar from the rack and hold it straight over your neck with your arms locked. This will be your starting position.",
+                      "As you breathe in, come down slowly until you feel the bar on your neck.",
+                      "After a second pause, bring the bar back to the starting position as you breathe out and push the bar using your chest muscles. Lock your arms and squeeze your chest in the contracted position, hold for a second and then start coming down slowly again. Tip: It should take at least twice as long to go down than to come up).",
+                      "Repeat the movement for the prescribed amount of repetitions.",
+                      "When you are done, place the bar back in the rack."
+                    ],
+                    "level": "intermediate",
+                    "name": "Neck Press",
+                    "primaryMuscles": [
+                      "chest"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "shoulders",
+                      "triceps"
+                    ]
+                  }
+                ],
+                "role": "Stretching"
+              },
+              {
+                "exercises": [
+                  {
+                    "equipment": "barbell",
+                    "force": "pull",
+                    "instructions": [
+                      "Begin with a barbell loaded on the floor. Adopt a wide stance, and then bend at the hips to grab the bar. Your hips should be as far back as possible, and your legs nearly straight. Keep your back straight, and your head and chest up. This will be your starting position.",
+                      "Begin the movement be engaging the hips, driving them forward as you allow the arms to hang straight. Continue until you are standing straight up, and then slowly return the weight to the starting position. For successive reps, the weight need not touch the floor."
+                    ],
+                    "level": "intermediate",
+                    "name": "Wide Stance Stiff Legs",
+                    "primaryMuscles": [
+                      "hamstrings"
+                    ],
+                    "reps_sets": "3x12",
+                    "secondaryMuscles": [
+                      "adductors",
+                      "glutes",
+                      "lower back"
+                    ]
+                  }
+                ],
+                "role": "Strength"
+              },
+              {
+                "exercises": [],
+                "role": "Cardio"
+              }
+            ],
+            "safety_notes": [],
+            "sitting_time": 0
+          }
         }
       ],
       "nutritionRecommendations": [

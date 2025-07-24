@@ -1,0 +1,161 @@
+/* src/components/PhysicalStatusModal/PhysicalStatusModal.css */
+
+.assessment-timestamp {
+    color: #a0aec0;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.assessment-grid {
+    display: grid;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.assessment-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.assessment-section h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.info-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.info-item span:first-child {
+    color: #a0aec0;
+}
+
+.info-item span:last-child {
+    color: #fff;
+    font-weight: 500;
+}
+
+.info-item.highlight {
+    background: rgba(66, 153, 225, 0.1);
+    border-left: 3px solid #4299e1;
+}
+
+.info-item.highlight:hover {
+    background: rgba(66, 153, 225, 0.15);
+}
+
+.modal-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.no-assessment {
+    text-align: center;
+    color: #a0aec0;
+    padding: 2rem;
+}
+
+/* Additional styles specific to physical assessment */
+.suggestion-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.suggestion-modal-content {
+    background: linear-gradient(#0B1117, #102530, #0B1F29);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.2);
+}
+
+.suggestion-modal-close-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.suggestion-modal-close-icon:hover {
+    opacity: 1;
+}
+
+.suggestion-modal-header {
+    color: #fff;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.suggestion-modal-btn-primary {
+    background: #4299e1;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.suggestion-modal-btn-primary:hover {
+    background: #3182ce;
+}
+
+/* Scrollbar styling */
+.suggestion-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.suggestion-modal-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.suggestion-modal-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.suggestion-modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}

@@ -1,0 +1,89 @@
+/* src/components/CurrentStatusModal/CurrentStatusModal.css */
+
+.assessment-timestamp {
+    color: #a0aec0;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.assessment-grid {
+    display: grid;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.assessment-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.assessment-section h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.info-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.info-item>span:first-child {
+    color: #a0aec0;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.info-item>span:nth-child(2) {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-description {
+    color: #718096;
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-top: 0.25rem;
+    line-height: 1.2;
+}
+
+.info-item.highlight {
+    background: rgba(66, 153, 225, 0.1);
+    border-left: 3px solid #4299e1;
+}
+
+.info-item.highlight:hover {
+    background: rgba(66, 153, 225, 0.15);
+}
+
+.modal-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.no-assessment {
+    text-align: center;
+    color: #a0aec0;
+    padding: 2rem;
+}

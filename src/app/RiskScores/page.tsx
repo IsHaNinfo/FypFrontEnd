@@ -12,6 +12,8 @@ import MentalRecommandationModal from "@/components/MentalRecommandationModal/Me
 import { HelpfulToolsModal } from "@/components/HelpfulToolsModal/HelpfulToolsModal";
 import MentalHealthHistoryModal from "@/components/MentalHealthHistoryModal/MentalHealthHistoryModal ";
 import DiseaseSelectionModal from '../../components/DiseaseSelectionModal/DiseaseSelectionModal';
+import CurrentStatusModal from "../../components/CurrentStatusModal/CurrentStatusModal";
+import PhysicalStatusModal from "../../components/PhysicalStatusModal/PhysicalStatusModal";
 export interface MentalRiskData {
   DL_Output: string;
   ML_Output: string;
@@ -51,20 +53,22 @@ const RiskScores = () => {
   const [showHelpfulTools, setShowHelpfulTools] = useState(false);
   const [showMentalHistory, setShowMentalHistory] = useState(false);
   const [userData, setUserData] = useState<any>(null);
+  const [showCurrentStatus, setShowCurrentStatus] = useState(false);
+  const [showPhysicalStatus, setShowPhysicalStatus] = useState(false);
 
   const [showDiseaseModal, setShowDiseaseModal] = useState(false);
   const [selectedDiseases, setSelectedDiseases] = useState<string[]>([]);
 
   const handleDiseaseSubmit = (diseases: string[]) => {
-      console.log("Diseases submitted:", diseases);
-      setSelectedDiseases(diseases);
+    console.log("Diseases submitted:", diseases);
+    setSelectedDiseases(diseases);
   };
 
   useEffect(() => {
-      if (selectedDiseases.length > 0) {
-          console.log("Selected diseases updated:", selectedDiseases);
-          handleViewRecommendations();
-      }
+    if (selectedDiseases.length > 0) {
+      console.log("Selected diseases updated:", selectedDiseases);
+      handleViewRecommendations();
+    }
   }, [selectedDiseases]);
 
   const diseases: Disease[] = [
@@ -144,7 +148,7 @@ const RiskScores = () => {
     { id: 'd74', name: 'Gout' },
     { id: 'd75', name: 'Hypertension' },
     { id: 'd76', name: 'Cardiovascular Disease' }
-];
+  ];
   // Function to get the color based on the risk level
   const getMentalRiskColor = (level: string | undefined) => {
     if (!level) return "#2196F3"; // Default blue
@@ -384,148 +388,148 @@ const RiskScores = () => {
   const handleViewRecommendations = async () => {
     setLoading(true); // Start loading
     try {
-        const storedUser = localStorage.getItem('userData');
-        if (storedUser) {
-            const { email } = JSON.parse(storedUser);
-            const response = await axios.get(`http://localhost:8000/users?email=${email}`);
-            if (response.data && response.data.length > 0) {
-                const user = response.data[0];
-                const latestNutritionAssessment = user.nutritionAssessments?.[user.nutritionAssessments.length - 1];
-                console.log("selected diseases", selectedDiseases);
-                if (latestNutritionAssessment) {
-                    const requestData = {
-                        age: parseInt(latestNutritionAssessment.formData.age),
-                        gender: parseInt(latestNutritionAssessment.formData.gender),
-                        bmi: calculateBMI(latestNutritionAssessment.formData.height, latestNutritionAssessment.formData.weight),
-                        diabetes_risk: parseFloat(latestNutritionAssessment.formData.Diabetic_Risk),
-                        nutrition_risk: parseFloat(latestNutritionAssessment.nutritionRiskPrediction[0]),
-                        preferences: "Sri Lankan",
-                        diseases: selectedDiseases // Ensure this is passed correctly
-                    };
+      const storedUser = localStorage.getItem('userData');
+      if (storedUser) {
+        const { email } = JSON.parse(storedUser);
+        const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+        if (response.data && response.data.length > 0) {
+          const user = response.data[0];
+          const latestNutritionAssessment = user.nutritionAssessments?.[user.nutritionAssessments.length - 1];
+          console.log("selected diseases", selectedDiseases);
+          if (latestNutritionAssessment) {
+            const requestData = {
+              age: parseInt(latestNutritionAssessment.formData.age),
+              gender: parseInt(latestNutritionAssessment.formData.gender),
+              bmi: calculateBMI(latestNutritionAssessment.formData.height, latestNutritionAssessment.formData.weight),
+              diabetes_risk: parseFloat(latestNutritionAssessment.formData.Diabetic_Risk),
+              nutrition_risk: parseFloat(latestNutritionAssessment.nutritionRiskPrediction[0]),
+              preferences: "Sri Lankan",
+              diseases: selectedDiseases // Ensure this is passed correctly
+            };
 
-                    console.log("Request data:", requestData);
+            console.log("Request data:", requestData);
 
-                    const recommendationResponse = await axios.post('http://127.0.0.1:5000/generate_meal_plan', requestData);
-                    const recommendationData = recommendationResponse.data;
-                    console.log(recommendationData);
+            const recommendationResponse = await axios.post('http://127.0.0.1:5000/generate_meal_plan', requestData);
+            const recommendationData = recommendationResponse.data;
+            console.log(recommendationData);
 
-                    if (recommendationData) {
-                        // Define the type for recommendation data
-                        interface RecommendationData {
-                            day: string;
-                            food_id: string;
-                            food_item: string;
-                            meal: string;
-                            nutrients: {
-                                calories: number;
-                                carbs: number;
-                                fat: number;
-                                glycemic_index: number;
-                                protein: number;
-                            };
-                            portion_g: number;
-                        }
+            if (recommendationData) {
+              // Define the type for recommendation data
+              interface RecommendationData {
+                day: string;
+                food_id: string;
+                food_item: string;
+                meal: string;
+                nutrients: {
+                  calories: number;
+                  carbs: number;
+                  fat: number;
+                  glycemic_index: number;
+                  protein: number;
+                };
+                portion_g: number;
+              }
 
-                        // Update the formattedRecommendations logic
-                        const formattedRecommendations = recommendationData.map((item: RecommendationData) => ({
-                            day: item.day,
-                            meals: {
-                                [item.meal]: [{
-                                    food_id: item.food_id,
-                                    food_item: item.food_item,
-                                    portion_g: item.portion_g,
-                                    nutrients: {
-                                        calories: item.nutrients?.calories || 'N/A',
-                                        carbs: item.nutrients?.carbs || 'N/A',
-                                        fat: item.nutrients?.fat || 'N/A',
-                                        protein: item.nutrients?.protein || 'N/A',
-                                        glycemic_index: item.nutrients?.glycemic_index || 'N/A',
-                                    }
-                                }]
-                            }
-                        }));
-
-                        // Save the recommendation in db.json with timestamp
-                        const updatedUser = {
-                            ...user,
-                            nutritionRecommendations: [...(user.nutritionRecommendations || []), {
-                                ...recommendationData,
-                                timestamp: new Date().toISOString()
-                            }]
-                        };
-                        await axios.put(`http://localhost:8000/users/${user.id}`, updatedUser);
-
-                        // Set the recommendation data to state
-                        setNutritionRecommendations(formattedRecommendations);
-                        setNutritionSummary(recommendationData.summary);
-                        setShowNutritionModal(true);
-                    } else {
-                        console.error('No updated meal plan found in the response.');
+              // Update the formattedRecommendations logic
+              const formattedRecommendations = recommendationData.map((item: RecommendationData) => ({
+                day: item.day,
+                meals: {
+                  [item.meal]: [{
+                    food_id: item.food_id,
+                    food_item: item.food_item,
+                    portion_g: item.portion_g,
+                    nutrients: {
+                      calories: item.nutrients?.calories || 'N/A',
+                      carbs: item.nutrients?.carbs || 'N/A',
+                      fat: item.nutrients?.fat || 'N/A',
+                      protein: item.nutrients?.protein || 'N/A',
+                      glycemic_index: item.nutrients?.glycemic_index || 'N/A',
                     }
-                } else {
-                    console.error('No latest nutrition assessment found.');
+                  }]
                 }
+              }));
+
+              // Save the recommendation in db.json with timestamp
+              const updatedUser = {
+                ...user,
+                nutritionRecommendations: [...(user.nutritionRecommendations || []), {
+                  ...recommendationData,
+                  timestamp: new Date().toISOString()
+                }]
+              };
+              await axios.put(`http://localhost:8000/users/${user.id}`, updatedUser);
+
+              // Set the recommendation data to state
+              setNutritionRecommendations(formattedRecommendations);
+              setNutritionSummary(recommendationData.summary);
+              setShowNutritionModal(true);
+            } else {
+              console.error('No updated meal plan found in the response.');
             }
+          } else {
+            console.error('No latest nutrition assessment found.');
+          }
         }
+      }
     } catch (error) {
-        console.error('Error fetching recommendations:', error);
+      console.error('Error fetching recommendations:', error);
     } finally {
-        setLoading(false); // Stop loading
+      setLoading(false); // Stop loading
     }
-};
+  };
 
-const handleViewPreviousRecommendations = async () => {
+  const handleViewPreviousRecommendations = async () => {
     try {
-        const storedUser = localStorage.getItem('userData');
-        if (storedUser) {
-            const { email } = JSON.parse(storedUser);
-            const response = await axios.get(`http://localhost:8000/users?email=${email}`);
-            if (response.data && response.data.length > 0) {
-                const user = response.data[0];
+      const storedUser = localStorage.getItem('userData');
+      if (storedUser) {
+        const { email } = JSON.parse(storedUser);
+        const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+        if (response.data && response.data.length > 0) {
+          const user = response.data[0];
 
-                // Get the last saved nutrition recommendation
-                const lastRecommendation = user.nutritionRecommendations?.slice(-1)[0];
+          // Get the last saved nutrition recommendation
+          const lastRecommendation = user.nutritionRecommendations?.slice(-1)[0];
 
-                if (lastRecommendation) {
-                    // Format the previous recommendations
-                    const formattedRecommendations = Object.values(lastRecommendation).reduce((acc: any, item: any) => {
-                        if (!acc[item.day]) {
-                            acc[item.day] = { day: item.day, meals: {} };
-                        }
-                        if (!acc[item.day].meals[item.meal]) {
-                            acc[item.day].meals[item.meal] = [];
-                        }
-                        acc[item.day].meals[item.meal].push({
-                            food_id: item.food_id,
-                            food_item: item.food_item,
-                            portion_g: item.portion_g,
-                            nutrients: {
-                                calories: item.nutrients?.calories || 'N/A',
-                                carbs: item.nutrients?.carbs || 'N/A',
-                                fat: item.nutrients?.fat || 'N/A',
-                                protein: item.nutrients?.protein || 'N/A',
-                                glycemic_index: item.nutrients?.glycemic_index || 'N/A',
-                            }
-                        });
-                        return acc;
-                    }, {});
-
-                    // Convert the object to an array
-                    const recommendationsArray = Object.values(formattedRecommendations);
-
-                    // Set the recommendation data to state
-                    setNutritionRecommendations(recommendationsArray);
-                    setNutritionSummary(lastRecommendation.summary);
-                    setShowNutritionModal(true);
-                } else {
-                    alert("No previous recommendations found.");
+          if (lastRecommendation) {
+            // Format the previous recommendations
+            const formattedRecommendations = Object.values(lastRecommendation).reduce((acc: any, item: any) => {
+              if (!acc[item.day]) {
+                acc[item.day] = { day: item.day, meals: {} };
+              }
+              if (!acc[item.day].meals[item.meal]) {
+                acc[item.day].meals[item.meal] = [];
+              }
+              acc[item.day].meals[item.meal].push({
+                food_id: item.food_id,
+                food_item: item.food_item,
+                portion_g: item.portion_g,
+                nutrients: {
+                  calories: item.nutrients?.calories || 'N/A',
+                  carbs: item.nutrients?.carbs || 'N/A',
+                  fat: item.nutrients?.fat || 'N/A',
+                  protein: item.nutrients?.protein || 'N/A',
+                  glycemic_index: item.nutrients?.glycemic_index || 'N/A',
                 }
-            }
+              });
+              return acc;
+            }, {});
+
+            // Convert the object to an array
+            const recommendationsArray = Object.values(formattedRecommendations);
+
+            // Set the recommendation data to state
+            setNutritionRecommendations(recommendationsArray);
+            setNutritionSummary(lastRecommendation.summary);
+            setShowNutritionModal(true);
+          } else {
+            alert("No previous recommendations found.");
+          }
         }
+      }
     } catch (error) {
-        console.error('Error fetching previous recommendations:', error);
+      console.error('Error fetching previous recommendations:', error);
     }
-};
+  };
 
   // Helper function to calculate BMI
   const calculateBMI = (height: string, weight: string) => {
@@ -574,6 +578,9 @@ const handleViewPreviousRecommendations = async () => {
               intersectionEnabled: true,
             }}
           />
+          <button className="recommendation-button nutrition" onClick={() => setShowCurrentStatus(true)}>
+            View Current Status
+          </button>
           <button className="recommendation-button nutrition" onClick={() => setShowDiseaseModal(true)}>
             View Recommendations
           </button>
@@ -621,6 +628,12 @@ const handleViewPreviousRecommendations = async () => {
 
           <button
             className="recommendation-button physical"
+            onClick={() => setShowPhysicalStatus(true)}
+          >
+            View Current Status
+          </button>
+          <button
+            className="recommendation-button physical"
             onClick={() => {
               setSuggestionType("physical");
               setShowAddSuggestionModal(true);
@@ -663,19 +676,19 @@ const handleViewPreviousRecommendations = async () => {
             </div>
           </div>
           <button
-            className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200"
+            className="recommendation-button mental"
             onClick={() => setShowMentalModal(true)}
           >
             View Recommendations
           </button>
           <button
-            className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200"
+            className="recommendation-button mental"
             onClick={() => setShowHelpfulTools(true)}
           >
             Helpful Tools to Reduce Stress
           </button>
           <button
-            className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200"
+            className="recommendation-button mental"
             onClick={() => setShowMentalHistory(true)}
           >
             View History
@@ -729,6 +742,16 @@ const handleViewPreviousRecommendations = async () => {
         show={showMentalHistory}
         onClose={() => setShowMentalHistory(false)}
         assessments={userData?.mentalAssessments || []}
+      />
+      <CurrentStatusModal
+        isOpen={showCurrentStatus}
+        onClose={() => setShowCurrentStatus(false)}
+        userData={userData}
+      />
+      <PhysicalStatusModal
+        isOpen={showPhysicalStatus}
+        onClose={() => setShowPhysicalStatus(false)}
+        userData={userData}
       />
     </div>
   );

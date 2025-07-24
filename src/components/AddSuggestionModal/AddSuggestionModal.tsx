@@ -44,6 +44,7 @@ interface UserData {
 
 const AddSuggestionModal: React.FC<AddSuggestionModalProps> = ({ isOpen, onClose }) => {
     const [goal, setGoal] = useState('');
+    const [level, setLevel] = useState('beginner'); // Add level state
     const [suggestion, setSuggestion] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [userData, setUserData] = useState<UserData | null>(null);
@@ -144,7 +145,8 @@ const AddSuggestionModal: React.FC<AddSuggestionModalProps> = ({ isOpen, onClose
                 flexibility: userData.formData.Flexibility,
                 balance: userData.formData.Balance,
                 goal: goal,
-                user_prompt: suggestion
+                user_prompt: suggestion,
+                level: level // Add level to request
             };
 
             const response = await axios.post('http://127.0.0.1:5000/exerciserecommendations', requestData);
@@ -210,6 +212,25 @@ const AddSuggestionModal: React.FC<AddSuggestionModalProps> = ({ isOpen, onClose
                 </div>
                 <form className="suggestion-modal-form" onSubmit={handleSubmit}>
                     <div className="suggestion-modal-mb-3">
+                        <label className="suggestion-modal-form-label">Experience Level</label>
+                        <select
+                            className="suggestion-modal-form-control"
+                            value={level}
+                            onChange={(e) => setLevel(e.target.value)}
+                        >
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="expert">Expert</option>
+                        </select>
+                        <small className="suggestion-modal-level-guide">
+                            Choose based on your exercise history:<br />
+                            • Beginner: New to exercise or returning after long break<br />
+                            • Intermediate: Regular exercise for 6+ months<br />
+                            • Expert: Consistent training for 1+ years
+                        </small>
+                    </div>
+
+                    <div className="suggestion-modal-mb-3">
                         <label className="suggestion-modal-form-label">Additional Information</label>
                         <input
                             type="text"
@@ -219,10 +240,19 @@ const AddSuggestionModal: React.FC<AddSuggestionModalProps> = ({ isOpen, onClose
                             placeholder="Enter any specific requirements or preferences..."
                         />
                         <small className="suggestion-modal-prompt">
-                            Example: "I’m overweight and just starting out. I need very simple exercises I can do at home."
+                            Example: "I'm overweight and just starting out. I need very simple exercises I can do at home."
                         </small>
+                        <div className="suggestion-modal-guidelines">
+                            <h4>Guidelines for Better Recommendations:</h4>
+                            <ul>
+                                <li>Mention any exercises to avoid (e.g., "avoid jumping exercises")</li>
+                                <li>Specify any muscle groups to avoid due to injury (e.g., "avoid shoulder exercises")</li>
+                                <li>Indicate focus areas (e.g., "focus on lower body strength")</li>
+                                <li>Mention any pain or discomfort (e.g., "experiencing knee pain")</li>
+                                <li>Specify exercise environment (e.g., "home workouts only" or "gym available")</li>
+                            </ul>
+                        </div>
                     </div>
-
 
                     <div className="suggestion-modal-button-group">
                         <button
@@ -232,14 +262,7 @@ const AddSuggestionModal: React.FC<AddSuggestionModalProps> = ({ isOpen, onClose
                         >
                             {isLoading ? 'Generating...' : 'Get Recommendations'}
                         </button>
-                        <button
-                            className="suggestion-modal-close-btn"
-                            type="button"
-                            onClick={onClose}
-                            disabled={isLoading}
-                        >
-                            Close
-                        </button>
+                       
                     </div>
                 </form>
             </div>

@@ -423,15 +423,15 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
         </div>
         */
         <div className="physical-modal-overlay">
-        <div className="physical-modal-content">
-            <button className="modal-close-icon" onClick={onClose} type="button">
-                &times;
-            </button>
-            <div className="physical-modal-header">
-                <h2>Physical Activity Risk Assessment</h2>
-            </div>
+            <div className="physical-modal-content">
+                <button className="modal-close-icon" onClick={onClose} type="button">
+                    &times;
+                </button>
+                <div className="physical-modal-header">
+                    <h2>Physical Activity Risk Assessment</h2>
+                </div>
                 <form className="physical-modal-form" onSubmit={handleSubmit}>
-                <div className="physical-modal-mb-3">
+                    <div className="physical-modal-mb-3">
                         <label className="physical-modal-form-label">Do you feel tired or lack energy after mild activity? (1-10)</label>
                         <select
                             className="form-control"
@@ -561,7 +561,7 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                         </select>
                     </div>
                     <div className="physical-modal-mb-3">
-                        <label className="physical-modal-form-label">How many hours do you typically spend working in the office each day?</label>
+                        <label className="physical-modal-form-label">How many hours do you typically spend working in the office each day?(minutes)</label>
                         <input
                             className="form-control"
                             type="number"
@@ -590,8 +590,8 @@ const PhysicalRiskModal: React.FC<PhysicalRiskModalProps> = ({ isOpen, onClose }
                         </button>
                     </div>
                 </form>
+            </div>
         </div>
-    </div>
     );
 };
 

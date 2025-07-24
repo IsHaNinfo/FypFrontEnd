@@ -38,6 +38,12 @@ const AboutUsModal: React.FC<AboutUsModalProps> = ({ isOpen, onClose }) => {
                                     <li>Graph Neural Networks (GNN)</li>
                                     <li>Natural Language Processing (NLP)</li>
                                     <li>Knowledge Graph-based Recommendation</li>
+                                    <li>Support Vector Machine (SVM)</li>
+                                </ul>
+                            </li>
+                             <li>Deep Learning Methods:
+                                <ul className="aboutus-list aboutus-ml-list">
+                                    <li>ConvNeXt(modernized convolutional neural network)</li>
                                 </ul>
                             </li>
                         </ul>

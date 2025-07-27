@@ -85,38 +85,38 @@ export default function Home() {
 
   return (
     <BackgroundLines svgOptions={{ duration: 15 }}>
-    <div style={{ position: "relative", minHeight: "100vh" }}>
-      <button
-        style={{
-          position: "absolute",
-          top: 20,
-          right: 20,
-          border: "none",
-          background: "transparent",
-          cursor: "pointer"
-        }}
-        onClick={() => setShowMenu((s) => !s)}
-      >
-        <img
-          src={user.avatar}
-          alt="avatar"
-          style={{ width: 48, height: 48, borderRadius: "50%" }}
-        />
-      </button>
-      {showMenu && (
-        <UserMenu
-          user={user}
-          onLogout={() => {
-            localStorage.removeItem("token");
-            localStorage.removeItem("userData");
-            router.push('/signin');
+      <div style={{ position: "relative", minHeight: "100vh" }}>
+        <button
+          style={{
+            position: "absolute",
+            top: 20,
+            right: 20,
+            border: "none",
+            background: "transparent",
+            cursor: "pointer"
           }}
-        />
-      )}
-      <HomePage />
-      {hasPredictions && <RiskAssesment />}
-      {hasPredictions && <RiskScores />}
-    </div>
+          onClick={() => setShowMenu((s) => !s)}
+        >
+          <img
+            src={user.avatar}
+            alt="avatar"
+            style={{ width: 48, height: 48, borderRadius: "50%" }}
+          />
+        </button>
+        {showMenu && (
+          <UserMenu
+            user={user}
+            onLogout={() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("userData");
+              router.push('/signin');
+            }}
+          />
+        )}
+        <HomePage />
+        {hasPredictions && <RiskAssesment />}
+        {hasPredictions && <RiskScores />}
+      </div>
     </BackgroundLines>
   );
 }

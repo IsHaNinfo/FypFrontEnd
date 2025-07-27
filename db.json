@@ -516,6 +516,44 @@
             "Sugar_Consumption": 2.5,
             "Weight": 4.55
           }
+        },
+        {
+          "id": "1753635976489",
+          "timestamp": "2025-07-27T17:06:16.489Z",
+          "formData": {
+            "age": "35",
+            "gender": "1.0",
+            "height": "185",
+            "weight": "85",
+            "Carbohydrate_Consumption": "3.0",
+            "Protein_Intake": "No",
+            "Fat_Intake": "Healthy fats",
+            "Regularity_of_Meals": "Yes",
+            "Portion_Control": "2.0",
+            "Caloric_Balance": "2341",
+            "Sugar_Consumption": "4.0",
+            "Diabetic_Risk": "0.5624"
+          },
+          "nutritionRiskPrediction": [
+            [
+              44.67143333333327
+            ]
+          ],
+          "feature_contributions": {
+            "Age": 4.79,
+            "BMI": 16.65,
+            "Caloric_Balance": 11.76,
+            "Carbohydrate_Consumption": 9.78,
+            "DiabetesRisk": 23.56,
+            "Fat_Intake": 0,
+            "Gender": 1.45,
+            "Height": 0.05,
+            "Portion_Control": 1.99,
+            "Protein_Intake": 19.75,
+            "Regularity_of_Meals": 0.6,
+            "Sugar_Consumption": 5.3,
+            "Weight": 4.33
+          }
         }
       ],
       "physicalActivityAssessments": [
@@ -22556,6 +22594,401 @@
             "portion_g": 806
           },
           "timestamp": "2025-07-22T20:20:28.596Z"
+        },
+        {
+          "0": {
+            "day": "Day 1",
+            "food_id": "f1662",
+            "food_item": "Quinoa with tofu and onion",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 392.208413,
+              "carbs": 51.6,
+              "fat": 19.7,
+              "glycemic_index": 58,
+              "protein": 28.6
+            },
+            "portion_g": 243.8
+          },
+          "1": {
+            "day": "Day 1",
+            "food_id": "f1509",
+            "food_item": "Barley with lean beef and carrot",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 814.5315486,
+              "carbs": 105.6,
+              "fat": 25.44,
+              "glycemic_index": 46,
+              "protein": 59
+            },
+            "portion_g": 507.1
+          },
+          "2": {
+            "day": "Day 1",
+            "food_id": "f1516",
+            "food_item": "Quinoa with lean beef and tomato",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 616.0611852,
+              "carbs": 76.14,
+              "fat": 19.2,
+              "glycemic_index": 48,
+              "protein": 50.3
+            },
+            "portion_g": 383.9
+          },
+          "3": {
+            "day": "Day 1",
+            "food_id": "f1609",
+            "food_item": "Barley with beef and cabbage",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 462.332696,
+              "carbs": 52.2,
+              "fat": 13.1,
+              "glycemic_index": 49,
+              "protein": 67.4
+            },
+            "portion_g": 287.6
+          },
+          "4": {
+            "day": "Day 2",
+            "food_id": "f1436",
+            "food_item": "Barley with beef and cucumber",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 405.6883365,
+              "carbs": 34.62,
+              "fat": 21.9,
+              "glycemic_index": 60,
+              "protein": 38.6
+            },
+            "portion_g": 252.7
+          },
+          "5": {
+            "day": "Day 2",
+            "food_id": "f2830",
+            "food_item": "Bread with mung beans and cabbage",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 384.0344168,
+              "carbs": 59.5,
+              "fat": 26.8,
+              "glycemic_index": 57,
+              "protein": 35.6
+            },
+            "portion_g": 239
+          },
+          "6": {
+            "day": "Day 2",
+            "food_id": "f2092",
+            "food_item": "Quinoa with grilled fish and cucumber",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 514.6749522,
+              "carbs": 14.88,
+              "fat": 28.02,
+              "glycemic_index": 41,
+              "protein": 82.4
+            },
+            "portion_g": 320.8
+          },
+          "7": {
+            "day": "Day 2",
+            "food_id": "f3012",
+            "food_item": "Quinoa with skinless chicken and carrot",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 696.0803058,
+              "carbs": 90.48,
+              "fat": 25.2,
+              "glycemic_index": 37,
+              "protein": 41.9
+            },
+            "portion_g": 433.4
+          },
+          "8": {
+            "day": "Day 3",
+            "food_id": "f2929",
+            "food_item": "Millet with egg and tomato",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 817.112811,
+              "carbs": 113,
+              "fat": 43.08,
+              "glycemic_index": 45,
+              "protein": 57.9
+            },
+            "portion_g": 508.7
+          },
+          "9": {
+            "day": "Day 3",
+            "food_id": "f3364",
+            "food_item": "Quinoa with mung beans and onion",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 555.2581262,
+              "carbs": 40.26,
+              "fat": 27.6,
+              "glycemic_index": 40,
+              "protein": 61.4
+            },
+            "portion_g": 345.9
+          },
+          "10": {
+            "day": "Day 3",
+            "food_id": "f2115",
+            "food_item": "Barley with beef and cabbage",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 590.9655832,
+              "carbs": 68.52,
+              "fat": 22.3,
+              "glycemic_index": 44,
+              "protein": 74.2
+            },
+            "portion_g": 367.7
+          },
+          "11": {
+            "day": "Day 3",
+            "food_id": "f1038",
+            "food_item": "Bread with beef and carrot",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 543.9292543,
+              "carbs": 91.4,
+              "fat": 30,
+              "glycemic_index": 57,
+              "protein": 60.8
+            },
+            "portion_g": 338.6
+          },
+          "12": {
+            "day": "Day 4",
+            "food_id": "f1225",
+            "food_item": "Bread with beef and beans",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 433.0783939,
+              "carbs": 104.6,
+              "fat": 15.6,
+              "glycemic_index": 60,
+              "protein": 32.9
+            },
+            "portion_g": 269.7
+          },
+          "13": {
+            "day": "Day 4",
+            "food_id": "f1308",
+            "food_item": "Bread with beef and cucumber",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 484.7036329,
+              "carbs": 88,
+              "fat": 22.3,
+              "glycemic_index": 54,
+              "protein": 60
+            },
+            "portion_g": 301.3
+          },
+          "14": {
+            "day": "Day 4",
+            "food_id": "f2324",
+            "food_item": "Quinoa with fish and onion",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 377.581262,
+              "carbs": 15.42,
+              "fat": 22.6,
+              "glycemic_index": 39,
+              "protein": 77
+            },
+            "portion_g": 234.9
+          },
+          "15": {
+            "day": "Day 4",
+            "food_id": "f3267",
+            "food_item": "Millet with egg and onion",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 448.9961759,
+              "carbs": 58.4,
+              "fat": 21.5,
+              "glycemic_index": 47,
+              "protein": 77.4
+            },
+            "portion_g": 279.4
+          },
+          "16": {
+            "day": "Day 5",
+            "food_id": "f1549",
+            "food_item": "Quinoa with tofu and tomato",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 725.4780114,
+              "carbs": 95.82,
+              "fat": 23.22,
+              "glycemic_index": 53,
+              "protein": 46
+            },
+            "portion_g": 452
+          },
+          "17": {
+            "day": "Day 5",
+            "food_id": "f1409",
+            "food_item": "Barley with chicken and cucumber",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 505.4971319,
+              "carbs": 54.36,
+              "fat": 21.5,
+              "glycemic_index": 35,
+              "protein": 67.2
+            },
+            "portion_g": 314.3
+          },
+          "18": {
+            "day": "Day 5",
+            "food_id": "f2555",
+            "food_item": "Bread with tofu and cabbage",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 477.9636711,
+              "carbs": 53.2,
+              "fat": 23.7,
+              "glycemic_index": 58,
+              "protein": 51.9
+            },
+            "portion_g": 297.3
+          },
+          "19": {
+            "day": "Day 5",
+            "food_id": "f1276",
+            "food_item": "Bread with fish and carrot",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 515.3919694,
+              "carbs": 74.7,
+              "fat": 28.8,
+              "glycemic_index": 46,
+              "protein": 68.2
+            },
+            "portion_g": 320.8
+          },
+          "20": {
+            "day": "Day 6",
+            "food_id": "f3406",
+            "food_item": "Quinoa with mung beans and beans",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 429.0152964,
+              "carbs": 39.72,
+              "fat": 7.7,
+              "glycemic_index": 60,
+              "protein": 22
+            },
+            "portion_g": 267.3
+          },
+          "21": {
+            "day": "Day 6",
+            "food_id": "f1164",
+            "food_item": "Kurakkan with fish and beans",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 401.8164436,
+              "carbs": 72.7,
+              "fat": 22.2,
+              "glycemic_index": 57,
+              "protein": 39
+            },
+            "portion_g": 250.3
+          },
+          "22": {
+            "day": "Day 6",
+            "food_id": "f2830",
+            "food_item": "Bread with mung beans and cabbage",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 384.0344168,
+              "carbs": 59.5,
+              "fat": 26.8,
+              "glycemic_index": 57,
+              "protein": 35.6
+            },
+            "portion_g": 239
+          },
+          "23": {
+            "day": "Day 6",
+            "food_id": "f2216",
+            "food_item": "Kurakkan with egg and tomato",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 306.8833652,
+              "carbs": 38,
+              "fat": 8.1,
+              "glycemic_index": 60,
+              "protein": 17.4
+            },
+            "portion_g": 191.2
+          },
+          "24": {
+            "day": "Day 7",
+            "food_id": "f2951",
+            "food_item": "Quinoa with mung beans and beans",
+            "meal": "Breakfast",
+            "nutrients": {
+              "calories": 540.917782,
+              "carbs": 20.28,
+              "fat": 50.04,
+              "glycemic_index": 60,
+              "protein": 7.5
+            },
+            "portion_g": 336.2
+          },
+          "25": {
+            "day": "Day 7",
+            "food_id": "f1309",
+            "food_item": "Bread with skinless chicken and tomato",
+            "meal": "Lunch",
+            "nutrients": {
+              "calories": 576.1950287,
+              "carbs": 102.4,
+              "fat": 19.68,
+              "glycemic_index": 49,
+              "protein": 58
+            },
+            "portion_g": 358.8
+          },
+          "26": {
+            "day": "Day 7",
+            "food_id": "f3140",
+            "food_item": "Quinoa with tofu and onion",
+            "meal": "Dinner",
+            "nutrients": {
+              "calories": 701.5296366,
+              "carbs": 72.96,
+              "fat": 23.34,
+              "glycemic_index": 39,
+              "protein": 73.3
+            },
+            "portion_g": 436.6
+          },
+          "27": {
+            "day": "Day 7",
+            "food_id": "f1356",
+            "food_item": "Millet with beef and cabbage",
+            "meal": "Snack",
+            "nutrients": {
+              "calories": 479.9713193,
+              "carbs": 83.2,
+              "fat": 25,
+              "glycemic_index": 47,
+              "protein": 55.6
+            },
+            "portion_g": 298.9
+          },
+          "timestamp": "2025-07-27T17:07:36.464Z"
         }
       ],
       "mentalAssessments": [
@@ -23285,6 +23718,48 @@
           },
           "scenario": "Scenario 01",
           "timestamp": "2025-07-13T06:33:30.307Z"
+        }
+      ],
+      "selectedFoods": [
+        {
+          "food_id": "entered_1",
+          "food_item": "Rice and Curry",
+          "calories": 450,
+          "quantity": 2,
+          "meal_type": "Main Meal",
+          "portion_description": "1 large plate"
+        },
+        {
+          "food_id": "entered_2",
+          "food_item": "String Hoppers",
+          "calories": 350,
+          "quantity": 1,
+          "meal_type": "Breakfast",
+          "portion_description": "5 string hoppers"
+        },
+        {
+          "food_id": "entered_4",
+          "food_item": "Milk Rice",
+          "calories": 300,
+          "quantity": 1,
+          "meal_type": "Breakfast",
+          "portion_description": "2 pieces"
+        },
+        {
+          "food_id": "entered_5",
+          "food_item": "Hoppers",
+          "calories": 280,
+          "quantity": 1,
+          "meal_type": "Breakfast/Dinner",
+          "portion_description": "3 plain hoppers"
+        },
+        {
+          "food_id": "f1289",
+          "food_item": "Millet with mung beans and onion",
+          "calories": 511,
+          "quantity": 1,
+          "meal_type": "Lunch",
+          "portion_description": ""
         }
       ]
     },

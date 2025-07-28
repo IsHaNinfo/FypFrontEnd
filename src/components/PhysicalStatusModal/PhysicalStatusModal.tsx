@@ -33,7 +33,7 @@ interface PhysicalStatusModalProps {
 const PhysicalStatusModal: React.FC<PhysicalStatusModalProps> = ({ isOpen, onClose, userData }) => {
     if (!isOpen) return null;
 
-    const latestAssessment = userData.physicalAssessments?.[userData.physicalAssessments.length - 1];
+    const latestAssessment = userData.physicalAssessments?.[userData.physicalAssessments.length - 1];s
 
     const formatDate = (timestamp: string) => {
         return new Date(timestamp).toLocaleDateString('en-US', {
@@ -142,7 +142,7 @@ const PhysicalStatusModal: React.FC<PhysicalStatusModalProps> = ({ isOpen, onClo
                                     </div>
                                     <div className="info-item highlight">
                                         <span>Diabetic Risk:</span>
-                                        <span>{latestAssessment.formData.Diabetic_Risk}%</span>
+                                        <span>{Number(latestAssessment.formData.Diabetic_Risk).toFixed(2)}%</span>
                                         <div className="info-description">Risk level for developing diabetes</div>
                                     </div>
                                 </div>

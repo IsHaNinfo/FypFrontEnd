@@ -67,7 +67,7 @@ const DiseaseSelectionModal: React.FC<DiseaseSelectionModalProps> = ({ isOpen, o
                 <button className="suggestion-modal-close-icon" onClick={onClose} type="button">
                     &times;
                 </button>
-                <h2 className="suggestion-modal-header">Select Diseases</h2>
+                <h2 className="suggestion-modal-header">Select Diseases </h2>
                 <input
                     type="text"
                     className="suggestion-modal-form-control"

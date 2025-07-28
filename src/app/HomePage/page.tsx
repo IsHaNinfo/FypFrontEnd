@@ -8,6 +8,9 @@ import Link from 'next/link';
 import { BackgroundLines } from "@/components/ui/background-lines";
 import BlogsModal from './BlogsModal';
 import AboutUsModal from './AboutUsModal';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+
 const HomePage = () => {
     const [avatarUrl, setAvatarUrl] = useState("https://avatar.iran.liara.run/public");
     const router = useRouter();
@@ -70,6 +73,84 @@ const HomePage = () => {
             localStorage.setItem('userAvatar', avatarUrl);
         }
     }, []);
+
+    useEffect(() => {
+        const checkAssessments = async () => {
+            const storedUserData = localStorage.getItem('userData');
+            if (!storedUserData) return;
+
+            try {
+                const { email } = JSON.parse(storedUserData);
+                const response = await axios.get(`http://localhost:8000/users?email=${email}`);
+                const user = response.data[0];
+
+                if (!user) return;
+
+                // Function to check if assessment data matches
+                const getOutdatedAssessments = (user: any) => {
+                    const outdated = [];
+
+                    const latestDiabetic = user.diabeticAssessments?.[user.diabeticAssessments.length - 1];
+                    const latestNutrition = user.nutritionAssessments?.[user.nutritionAssessments.length - 1];
+                    const latestPhysical = user.physicalAssessments?.[user.physicalAssessments.length - 1];
+
+                    if (latestDiabetic && latestNutrition) {
+                        const diabeticData = latestDiabetic.formData;
+                        const nutritionData = latestNutrition.formData;
+
+                        if (diabeticData.age !== nutritionData.age ||
+                            diabeticData.height !== nutritionData.height ||
+                            diabeticData.weight !== nutritionData.weight) {
+                            outdated.push('Please update your nutrition assessment');
+                        }
+                    }
+
+                    if (latestDiabetic && latestPhysical) {
+                        const diabeticData = latestDiabetic.formData;
+                        const physicalData = latestPhysical.formData;
+
+                        if (diabeticData.age !== physicalData.age ||
+                            diabeticData.height !== physicalData.height ||
+                            diabeticData.weight !== physicalData.weight) {
+                            outdated.push('Please update your physical assessment');
+                        }
+                    }
+
+                    return outdated;
+                };
+
+                // Check assessments only once when component mounts
+                const outdatedAssessments = getOutdatedAssessments(user);
+
+                if (outdatedAssessments.length > 0) {
+                    // Show a single toast with combined message
+                    toast(
+                        <div>
+                            <strong>Updates needed:</strong>
+                            <ul>
+                                {outdatedAssessments.map((msg, i) => (
+                                    <li key={i}>{msg}</li>
+                                ))}
+                            </ul>
+                        </div>,
+                        {
+                            duration: 6000,
+                            icon: '⚠️',
+                            style: {
+                                borderRadius: '10px',
+                                background: '#333',
+                                color: '#fff',
+                            },
+                        }
+                    );
+                }
+            } catch (error) {
+                console.error('Error checking assessments:', error);
+            }
+        };
+
+        checkAssessments();
+    }, []); // Run only once when component mounts
 
     const handleLogout = () => {
         localStorage.removeItem('token');
